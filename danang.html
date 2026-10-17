@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#F8F2E9">
+
+    <title>Bản đồ Việt Nam - Module Trải Nghiệm Thông Minh</title>
+    <meta name="description"
+        content="Khám phá bản đồ hành chính Việt Nam, tìm hiểu các địa phương qua Module Trải Nghiệm Thông Minh.">
+
+    <!-- Be Vietnam Pro: đồng bộ trang chủ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Be Vietnam Pro"', 'sans-serif'],
+                    },
+                    colors: {
+                        vietnam: {
+                            red: '#A51F2B',
+                            dark: '#801B25',
+                            light: '#F8E8E8',
+                            cream: '#F8F2E9',
+                            paper: '#FFFEFC',
+                            ink: '#302927',
+                            muted: '#766B66',
+                        },
+                    },
+                    boxShadow: {
+                        soft: '0 12px 35px rgba(89, 34, 34, 0.08)',
+                        card: '0 18px 45px rgba(89, 34, 34, 0.10)',
+                    },
+                },
+            },
+        };
+    </script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body class="min-h-screen bg-vietnam-paper font-sans text-vietnam-ink antialiased">
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-50 border-b border-red-900/10 bg-white/95 shadow-sm backdrop-blur-md">
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+
+            <!-- Logo -->
+            <a href="index.html" class="group flex min-w-0 items-center gap-3">
+                <div
+                    class="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full border border-red-900/10">
+                    <img src="assets/images/logo.jpg" alt="Logo Module Trải Nghiệm Thông Minh"
+                        class="h-full w-full object-contain">
+                </div>
+
+                <div class="min-w-0">
+                    <span class="block text-sm font-extrabold tracking-[0.12em] text-vietnam-red sm:text-base">
+                        VIỆT NAM
+                    </span>
+                    <span class="mt-0.5 block text-xs font-medium text-vietnam-muted sm:text-sm">
+                        Khám Phá Tổ Quốc
+                    </span>
+                </div>
+            </a>
+
+            <!-- Desktop navigation -->
+            <nav id="desktop-nav" aria-label="Điều hướng chính" class="hidden items-center gap-1 lg:flex">
+                <a href="index.html" class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+                    Giới thiệu
+                </a>
+                <a href="vietnam.html" class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+                    Việt Nam
+                </a>
+                <a href="danang.html" class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+                    Đà Nẵng
+                </a>
+                <a href="dantoc.html" class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+                    Dân tộc
+                </a>
+                <a href="tulieu.html" class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+                    Tư liệu
+                </a>
+                <a href="lienhe.html" class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+                    Liên hệ
+                </a>
+            </nav>
+
+            <!-- Mobile menu button -->
+            <button id="menu-toggle" type="button"
+                class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-red-900/10 text-vietnam-red transition hover:bg-vietnam-light focus:outline-none focus:ring-2 focus:ring-vietnam-red/30 lg:hidden"
+                aria-label="Mở menu điều hướng" aria-controls="mobile-nav" aria-expanded="false">
+                <i id="menu-icon" class="fa-solid fa-bars text-xl" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <!-- Mobile navigation -->
+        <nav id="mobile-nav" aria-label="Điều hướng di động"
+            class="hidden border-t border-red-900/10 bg-white px-4 pb-4 pt-3 shadow-lg lg:hidden">
+            <div class="mx-auto flex max-w-7xl flex-col gap-1">
+                <a href="index.html" class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+                    Giới thiệu
+                </a>
+                <a href="vietnam.html" class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+                    Việt Nam
+                </a>
+                <a href="danang.html" class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+                    Đà Nẵng
+                </a>
+                <a href="dantoc.html" class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+                    Dân tộc
+                </a>
+                <a href="tulieu.html" class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+                    Tư liệu
+                </a>
+                <a href="lienhe.html" class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+                    Liên hệ
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="mx-auto w-full max-w-7xl px-3 py-6 sm:px-6 sm:py-10 lg:px-8 ">
+
+        <!-- Heading -->
+        <section class="mb-5 text-center sm:mb-8 ">
+            <span
+                class="inline-flex items-center gap-2 rounded-full border border-vietnam-red/15 bg-vietnam-light px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-vietnam-red sm:px-4 sm:py-2 sm:text-sm">
+                <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+                Khám phá địa phương
+            </span>
+
+            <h2 class="mt-3 text-xl font-black tracking-tight text-vietnam-ink sm:text-3xl lg:text-4xl">
+                Bản đồ hành chính Đà Nẵng
+            </h2>
+
+            <p class="mx-auto mt-2 max-w-2xl text-sm leading-6 text-vietnam-muted sm:mt-3 sm:text-base">
+                Nhấn vào địa phương trên bản đồ hoặc tìm kiếm để khám phá.
+            </p>
+        </section>
+
+        <!-- Search and map -->
+        <section class="grid grid-cols-1 items-start gap-4 lg:grid-cols-[minmax(0,1fr)_360px] lg:gap-6"
+            aria-label="Bản đồ và thông tin địa phương">
+
+            <!-- Map column -->
+            <div class="order-2 min-w-0 lg:order-1 ">
+                <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+
+                    <div
+                        class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 px-4 py-3 sm:px-5 sm:py-4">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="flex h-9 w-9 items-center justify-center rounded-xl bg-teal-50 text-teal-700 sm:h-10 sm:w-10">
+                                <i class="fa-solid fa-map text-lg" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-bold text-slate-900 sm:text-base">Bản đồ Đà Nẵng</h3>
+                                <p class="mt-0.5 text-xs text-slate-500">Chọn địa phương để xem chi tiết</p>
+                            </div>
+                        </div>
+
+                        <span
+                            class="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1.5 text-xs font-medium text-emerald-700">
+                            <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+                            Bản đồ tương tác
+                        </span>
+                    </div>
+
+                    <!-- SVG map -->
+                    <div id="mapWrapper"
+                        class="relative h-[52dvh] min-h-[320px] max-h-[520px] select-none overflow-hidden sm:h-[480px] sm:min-h-[440px] sm:max-h-none lg:h-[calc(100vh-250px)] lg:min-h-[600px] lg:max-h-[900px]">
+                        <object id="map" data="assets/images/xa.svg" type="image/svg+xml"
+                            aria-label="Bản đồ hành chính Việt Nam" class="block h-full min-h-full w-full bg-white">
+                            <p class="p-6 text-center text-sm text-slate-500">
+                                Không thể tải bản đồ. Vui lòng kiểm tra file assets/images/xa.svg.
+                            </p>
+                        </object>
+                    </div>
+
+                    <div
+                        class="flex flex-wrap items-center justify-between gap-2 border-t border-slate-100 px-4 py-3 text-xs text-slate-500 sm:px-5">
+                        <span>Chọn xã hoặc địa phương để khám phá</span>
+                        <span class="inline-flex items-center gap-1.5">
+                            <i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i>
+                            Có thể phóng to và kéo bản đồ
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search and information column -->
+            <aside class="order-1 flex min-w-0 flex-col gap-4 lg:order-2">
+
+                <!-- Search -->
+                <section class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+                    <div class="mb-3 flex items-center gap-3">
+                        <div
+                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-teal-50 text-teal-700">
+                            <i class="fa-solid fa-magnifying-glass text-lg" aria-hidden="true"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-bold text-slate-900 sm:text-base">Tìm địa phương</h3>
+                            <p class="mt-1 text-xs text-slate-500">Nhập tên xã hoặc tỉnh/thành phố</p>
+                        </div>
+                    </div>
+
+                    <div class="relative">
+                        <input type="text" id="searchInput" placeholder="Nhập tên địa phương..." autocomplete="off"
+                            aria-label="Tìm kiếm địa phương"
+                            class="h-12 w-full rounded-xl border border-slate-300 bg-white px-4 pr-11 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-teal-600 focus:ring-4 focus:ring-teal-600/10">
+                        <i class="fa-solid fa-search pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-slate-400"
+                            aria-hidden="true"></i>
+                    </div>
+                </section>
+
+                <!-- Information panel: desktop sidebar, mobile bottom sheet -->
+                <section id="infoPanel"
+                    class="pointer-events-none fixed inset-x-0 bottom-0 z-[101] max-h-[85dvh] translate-y-full overflow-y-auto overscroll-contain rounded-t-3xl border border-slate-200 bg-white shadow-2xl transition-transform duration-300 ease-out lg:pointer-events-auto lg:relative lg:inset-auto lg:z-auto lg:max-h-none lg:translate-y-0 lg:overflow-hidden lg:rounded-2xl lg:shadow-sm"
+                    role="dialog" aria-label="Thông tin xã, phường" aria-modal="false">
+                    <!-- Header -->
+                    <div
+                        class="sticky top-0 z-10 flex items-center justify-between gap-3 border-b border-slate-100 bg-white px-5 py-4 sm:px-6">
+                        <div class="flex min-w-0 items-center gap-3">
+                            <div
+                                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sky-50 text-sky-700">
+                                <i class="fa-solid fa-map-location-dot text-lg" aria-hidden="true"></i>
+                            </div>
+                        </div>
+
+                        <button id="closePanel" type="button"
+                            class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-slate-200 text-slate-500 transition hover:bg-slate-100 hover:text-slate-900"
+                            aria-label="Đóng thông tin" title="Đóng">
+                            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                        </button>
+                    </div>
+
+                    <!-- Nội dung thông tin địa phương -->
+                    <div id="provinceInfo" class="space-y-5 p-5 sm:p-6">
+                        <!-- Trạng thái mặc định -->
+                        <div class="flex min-h-[220px] flex-col items-center justify-center text-center">
+                            <div
+                                class="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-sky-50 text-sky-500">
+                                <i class="fa-solid fa-map-location-dot text-2xl" aria-hidden="true"></i>
+                            </div>
+
+                            <h4 class="text-base font-bold text-slate-800">
+                                Khám phá Đà Nẵng
+                            </h4>
+
+                            <p class="mt-2 max-w-xs text-sm leading-6 text-slate-500">
+                                Chọn một xã, phường trên bản đồ hoặc tìm kiếm tên địa phương
+                                để xem thông tin giới thiệu, lịch sử, sản xuất và văn hóa.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </aside>
+        </section>
+    </main>
+
+    <!-- Mobile modal backdrop -->
+    <div id="infoBackdrop"
+        class="pointer-events-none fixed inset-0 z-[100] bg-slate-950/45 opacity-0 transition-opacity duration-300 lg:hidden"
+        aria-hidden="true"></div>
+
+    <!-- FOOTER -->
+    <footer class="mt-8 bg-vietnam-dark px-4 py-6 text-white sm:mt-10 sm:px-8 sm:py-7">
+        <div
+            class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 text-center sm:flex-row sm:text-left">
+            <a href="khampha.html" class="flex items-center gap-2 text-sm font-extrabold tracking-wide">
+                <i class="fa-solid fa-compass text-lg" aria-hidden="true"></i>
+                <span>MODULE TRẢI NGHIỆM THÔNG MINH</span>
+            </a>
+
+            <p class="text-xs leading-6 text-white/75 sm:text-sm">
+                © 2026 MODULE TRẢI NGHIỆM THÔNG MINH
+                <span class="hidden sm:inline">—</span>
+                <span class="block sm:inline">Hành trình khám phá Tổ quốc</span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Existing map logic -->
+    <script src="assets/js/mobile.js"></script>
+    <script src="assets/js/data/da-nang-data.js"></script>
+    <script src="assets/js/danangmap.js"></script>
+
+    <!-- Mobile information modal -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const menuToggle = document.getElementById("menuToggle");
+            const mainNavigation = document.getElementById("mainNavigation");
+            const menuIcon = document.getElementById("menuIcon");
+            const navLinks = document.querySelectorAll(".nav-links-item");
+
+            const currentPage =
+                window.location.pathname.split("/").filter(Boolean).pop()
+                || "index.html";
+
+            // Đánh dấu trang hiện tại
+            navLinks.forEach(link => {
+                const linkPage = link.getAttribute("href").split("/").pop();
+                const isActive = linkPage === currentPage;
+
+                link.classList.toggle("bg-vietnam-red", isActive);
+                link.classList.toggle("text-white", isActive);
+                link.classList.toggle("text-vietnam-muted", !isActive);
+
+                if (isActive) {
+                    link.setAttribute("aria-current", "page");
+                } else {
+                    link.removeAttribute("aria-current");
+                    link.classList.add(
+                        "hover:bg-vietnam-light",
+                        "hover:text-vietnam-red"
+                    );
+                }
+            });
+
+            // Đóng menu mobile
+            function closeMenu() {
+                mainNavigation.classList.add("hidden");
+                menuToggle.setAttribute("aria-expanded", "false");
+                menuToggle.setAttribute("aria-label", "Mở menu điều hướng");
+
+                menuIcon.classList.remove("fa-xmark");
+                menuIcon.classList.add("fa-bars");
+            }
+
+            // Mở / đóng menu
+            if (menuToggle && mainNavigation && menuIcon) {
+                menuToggle.addEventListener("click", () => {
+                    const isExpanded =
+                        menuToggle.getAttribute("aria-expanded") === "true";
+
+                    if (isExpanded) {
+                        closeMenu();
+                    } else {
+                        mainNavigation.classList.remove("hidden");
+                        menuToggle.setAttribute("aria-expanded", "true");
+                        menuToggle.setAttribute("aria-label", "Đóng menu điều hướng");
+
+                        menuIcon.classList.remove("fa-bars");
+                        menuIcon.classList.add("fa-xmark");
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.addEventListener("click", () => {
+                        if (window.innerWidth < 1024) {
+                            closeMenu();
+                        }
+                    });
+                });
+
+                document.addEventListener("keydown", event => {
+                    if (event.key === "Escape") {
+                        closeMenu();
+                    }
+                });
+
+                window.addEventListener("resize", () => {
+                    if (window.innerWidth >= 1024) {
+                        closeMenu();
+                    }
+                });
+            }
+
+            // MODAL THÔNG TIN ĐỊA PHƯƠNG TRÊN ĐIỆN THOẠI
+            const infoPanel = document.getElementById("infoPanel");
+            const infoBackdrop = document.getElementById("infoBackdrop");
+            const provinceInfo = document.getElementById("provinceInfo");
+            const closePanel = document.getElementById("closePanel");
+
+            if (infoPanel && infoBackdrop && provinceInfo) {
+                const isMobile = () => window.innerWidth < 1024;
+
+                function openInfoModal() {
+                    if (!isMobile()) return;
+
+                    infoPanel.classList.remove(
+                        "translate-y-full",
+                        "pointer-events-none"
+                    );
+
+                    infoPanel.classList.add("translate-y-0");
+                    infoPanel.setAttribute("aria-modal", "true");
+
+                    infoBackdrop.classList.remove(
+                        "opacity-0",
+                        "pointer-events-none"
+                    );
+
+                    infoBackdrop.classList.add(
+                        "opacity-100",
+                        "pointer-events-auto"
+                    );
+
+                    document.body.classList.add("overflow-hidden");
+                }
+
+                function closeInfoModal() {
+                    infoPanel.classList.add(
+                        "translate-y-full",
+                        "pointer-events-none"
+                    );
+
+                    infoPanel.classList.remove("translate-y-0");
+                    infoPanel.setAttribute("aria-modal", "false");
+
+                    infoBackdrop.classList.add(
+                        "opacity-0",
+                        "pointer-events-none"
+                    );
+
+                    infoBackdrop.classList.remove(
+                        "opacity-100",
+                        "pointer-events-auto"
+                    );
+
+                    document.body.classList.remove("overflow-hidden");
+                }
+
+                function hasProvinceContent() {
+                    const content = provinceInfo.textContent.trim();
+
+                    // Không mở modal khi đang hiển thị nội dung mặc định.
+                    return content.length > 0 &&
+                        !content.includes("Khám phá Việt Nam");
+                }
+
+                // Tự mở modal khi JavaScript cập nhật thông tin tỉnh/thành.
+                const infoObserver = new MutationObserver(() => {
+                    if (hasProvinceContent()) {
+                        openInfoModal();
+                    } else {
+                        closeInfoModal();
+                    }
+                });
+
+                infoObserver.observe(provinceInfo, {
+                    childList: true,
+                    subtree: true,
+                    characterData: true
+                });
+
+                // Chạm vào vùng tối để đóng modal.
+                infoBackdrop.addEventListener("click", closeInfoModal);
+
+                // Nút X đóng modal; sự kiện đặt lại bản đồ hiện có vẫn hoạt động.
+                if (closePanel) {
+                    closePanel.addEventListener("click", closeInfoModal);
+                }
+
+                // Nhấn Escape để đóng modal.
+                document.addEventListener("keydown", (event) => {
+                    if (event.key === "Escape" && isMobile()) {
+                        closeInfoModal();
+                    }
+                });
+
+                // Khi đổi kích thước màn hình, tránh để modal ở trạng thái sai.
+                window.addEventListener("resize", () => {
+                    if (!isMobile()) {
+                        closeInfoModal();
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+
+</html>

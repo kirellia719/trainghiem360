@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Giới thiệu - Module Trải Nghiệm Thông Minh</title>
+
+  <!-- Tailwind CSS -->
+  <!-- Font Be Vietnam Pro -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body class="min-h-screen bg-[#FFFEFC] font-sans text-[#392824] antialiased">
+
+  <!-- HEADER -->
+  <header
+    class="sticky top-0 z-50 border-b border-[#E9DDD4] bg-[#FFFEFC]/95 shadow-[0_3px_16px_rgba(91,45,36,0.04)] backdrop-blur-md">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 sm:px-8 lg:px-10">
+
+      <!-- LOGO -->
+      <a href="khampha.html"
+        class="flex shrink-0 items-center gap-3 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A51F2B]">
+        <img src="assets/images/logo.jpg" alt="Logo"
+          class="h-11 w-11 rounded-full border border-[#E9DDD4] object-cover sm:h-12 sm:w-12">
+
+        <div class="flex flex-col">
+          <h2 class="text-lg font-black tracking-[0.12em] text-[#A51F2B] sm:text-xl">
+            VIỆT NAM
+          </h2>
+          <span class="mt-0.5 text-[10px] font-medium tracking-[0.12em] text-[#927A6C] sm:text-xs">
+            Khám Phá Tổ Quốc
+          </span>
+        </div>
+      </a>
+
+      <!-- DESKTOP NAVIGATION -->
+      <nav id="desktopNav" class="hidden items-center gap-1 lg:flex" aria-label="Điều hướng chính">
+        <a href="khampha.html"
+          class="nav-link rounded-lg px-3 py-3 text-sm font-semibold text-[#62504A] transition hover:bg-[#F9EDE8] hover:text-[#A51F2B] xl:px-4">
+          Giới thiệu
+        </a>
+
+        <a href="vietnam.html"
+          class="nav-link rounded-lg px-3 py-3 text-sm font-semibold text-[#62504A] transition hover:bg-[#F9EDE8] hover:text-[#A51F2B] xl:px-4">
+          Việt Nam
+        </a>
+
+        <a href="danang.html"
+          class="nav-link rounded-lg px-3 py-3 text-sm font-semibold text-[#62504A] transition hover:bg-[#F9EDE8] hover:text-[#A51F2B] xl:px-4">
+          Đà Nẵng
+        </a>
+
+        <a href="dantoc.html"
+          class="nav-link rounded-lg px-3 py-3 text-sm font-semibold text-[#62504A] transition hover:bg-[#F9EDE8] hover:text-[#A51F2B] xl:px-4">
+          Dân tộc
+        </a>
+
+        <a href="tulieu.html"
+          class="nav-link rounded-lg px-3 py-3 text-sm font-semibold text-[#62504A] transition hover:bg-[#F9EDE8] hover:text-[#A51F2B] xl:px-4">
+          Tư liệu
+        </a>
+
+        <a href="lienhe.html"
+          class="nav-link rounded-lg px-3 py-3 text-sm font-semibold text-[#62504A] transition hover:bg-[#F9EDE8] hover:text-[#A51F2B] xl:px-4">
+          Liên hệ
+        </a>
+      </nav>
+
+      <!-- MOBILE MENU BUTTON -->
+      <button id="menuToggle" type="button"
+        class="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-[#E9DDD4] text-lg text-[#A51F2B] transition hover:bg-[#F9EDE8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A51F2B] lg:hidden"
+        aria-label="Mở menu điều hướng" aria-controls="mobileMenu" aria-expanded="false">
+        <i id="menuIcon" class="fas fa-bars" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <!-- MOBILE NAVIGATION -->
+    <nav id="mobileMenu" class="hidden border-t border-[#E9DDD4] bg-[#FFFEFC] px-5 py-3 shadow-lg lg:hidden"
+      aria-label="Điều hướng di động" inert>
+      <div class="mx-auto flex max-w-7xl flex-col gap-1">
+        <a href="khampha.html"
+          class="nav-link rounded-lg px-4 py-3 text-sm font-semibold text-[#62504A] transition hover:bg-[#F9EDE8] hover:text-[#A51F2B]">
+          Giới thiệu
+        </a>
+
+        <a href="vietnam.html"
+          class="nav-link rounded-lg px-4 py-3 text-sm font-semibold text-[#62504A] transition hover:bg-[#F9EDE8] hover:text-[#A51F2B]">
+          Việt Nam
+        </a>
+
+        <a href="danang.html"
+          class="nav-link rounded-lg px-4 py-3 text-sm font-semibold text-[#62504A] transition hover:bg-[#F9EDE8] hover:text-[#A51F2B]">
+          Đà Nẵng
+        </a>
+
+        <a href="dantoc.html"
+          class="nav-link rounded-lg px-4 py-3 text-sm font-semibold text-[#62504A] transition hover:bg-[#F9EDE8] hover:text-[#A51F2B]">
+          Dân tộc
+        </a>
+
+        <a href="tulieu.html"
+          class="nav-link rounded-lg px-4 py-3 text-sm font-semibold text-[#62504A] transition hover:bg-[#F9EDE8] hover:text-[#A51F2B]">
+          Tư liệu
+        </a>
+
+        <a href="lienhe.html"
+          class="nav-link rounded-lg px-4 py-3 text-sm font-semibold text-[#62504A] transition hover:bg-[#F9EDE8] hover:text-[#A51F2B]">
+          Liên hệ
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="relative isolate overflow-hidden border-b border-[#E9DDD4] bg-[#F8F2E9]">
+
+      <!-- TRADITIONAL DECORATIVE CIRCLES -->
+      <div aria-hidden="true"
+        class="pointer-events-none absolute -right-32 -top-36 h-96 w-96 rounded-full border border-[#A51F2B]/10"></div>
+
+      <div aria-hidden="true"
+        class="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full border border-[#A51F2B]/10"></div>
+
+      <div aria-hidden="true"
+        class="pointer-events-none absolute -right-8 -top-12 h-48 w-48 rounded-full border border-[#A51F2B]/10"></div>
+
+      <div
+        class="relative mx-auto grid max-w-7xl items-center gap-10 px-5 py-12 sm:px-8 sm:py-16 lg:min-h-[560px] lg:grid-cols-[1.05fr_0.95fr] lg:gap-12 lg:px-10 lg:py-20">
+
+        <!-- HERO TEXT -->
+        <div class="order-2 text-center lg:order-1 lg:text-left">
+
+          <div class="mb-5 flex items-center justify-center gap-3 lg:justify-start">
+            <span class="h-px w-10 bg-[#A51F2B]"></span>
+            <p class="text-[10px] font-bold uppercase tracking-[0.25em] text-[#A51F2B] sm:text-xs">
+              Khám phá bản sắc Việt
+            </p>
+            <span class="h-px w-10 bg-[#A51F2B] lg:hidden"></span>
+          </div>
+
+          <h1
+            class="text-3xl font-black leading-tight tracking-tight text-[#392824] sm:text-4xl md:text-5xl lg:text-left lg:text-[3.25rem] xl:text-6xl">
+            MODULE TRẢI NGHIỆM
+            <br>
+            <span class="mt-2 inline-block text-[#A51F2B]">
+              THÔNG MINH
+            </span>
+          </h1>
+
+          <div class="mx-auto mt-6 flex items-center justify-center gap-2 lg:mx-0 lg:justify-start">
+            <span class="h-px w-10 bg-[#C9A18D]"></span>
+            <span class="h-2 w-2 rotate-45 border border-[#A51F2B]"></span>
+            <span class="h-px w-10 bg-[#C9A18D]"></span>
+          </div>
+
+          <p class="mx-auto mt-6 max-w-xl text-base leading-8 text-[#715D53] sm:text-lg lg:mx-0 lg:text-xl">
+            Hành trình khám phá Tổ quốc
+            <br>
+            trong kỷ nguyên vươn mình của dân tộc
+          </p>
+
+          <div class="mt-8 flex justify-center lg:justify-start">
+            <a href="khampha.html"
+              class="group inline-flex items-center justify-center gap-3 rounded-lg bg-[#A51F2B] px-6 py-3.5 text-sm font-bold text-white shadow-md shadow-[#A51F2B]/15 transition duration-300 hover:-translate-y-0.5 hover:bg-[#8F1D28] hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A51F2B] focus-visible:ring-offset-2">
+              <i class="fas fa-rocket transition-transform group-hover:-translate-y-0.5" aria-hidden="true"></i>
+              Khám phá ngay
+            </a>
+          </div>
+        </div>
+
+        <!-- HERO IMAGE -->
+        <div class="order-1 flex items-center justify-center lg:order-2">
+          <div class="relative w-full max-w-[460px]">
+
+            <div class="absolute inset-4 rotate-3 rounded-3xl border border-[#A51F2B]/20 sm:inset-6"></div>
+
+            <div
+              class="relative rounded-2xl border border-[#E9DDD4] bg-[#FFFEFC] p-3 shadow-[0_24px_60px_rgba(91,45,36,0.10)] sm:p-5">
+              <div class="mb-3 flex items-center justify-between border-b border-[#EEE2D8] pb-3">
+                <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#A51F2B]">
+                  Việt Nam
+                </span>
+                <span class="text-[10px] font-medium text-[#A38B7D]">
+                  <i class="fas fa-circle mr-1 text-[6px]" aria-hidden="true"></i>
+                  Tri thức văn hóa
+                </span>
+              </div>
+
+              <div
+                class="flex min-h-[220px] items-center justify-center rounded-xl bg-[#F8F2E9] p-3 sm:min-h-[300px] sm:p-5">
+                <img src="assets/images/hoptrithuc-DiIFbOdd.png" alt="Hộp gỗ Việt Nam" fetchpriority="high"
+                  class="mx-auto h-auto max-h-[360px] w-full object-contain transition duration-500 hover:scale-[1.03]">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INTRODUCTION CONTENT -->
+    <section class="bg-[#FFFEFC] px-5 py-14 sm:px-8 sm:py-20 lg:px-10 lg:py-24">
+      <div class="mx-auto max-w-7xl">
+
+        <!-- INTRODUCTION HEADING -->
+        <div class="mx-auto mb-12 max-w-4xl text-center sm:mb-16">
+
+          <h2 class="text-2xl font-black leading-snug tracking-tight text-[#392824] sm:text-3xl md:text-4xl">
+            Kính chào quý thầy cô, các bạn và mọi người!
+          </h2>
+
+          <div class="mx-auto mt-5 flex items-center justify-center gap-2">
+            <span class="h-px w-10 bg-[#D8B6A5]"></span>
+            <span class="h-2 w-2 rotate-45 bg-[#A51F2B]"></span>
+            <span class="h-px w-10 bg-[#D8B6A5]"></span>
+          </div>
+
+          <p
+            class="mt-6 text-sm font-black uppercase tracking-[0.16em] text-[#A51F2B] sm:text-base sm:tracking-[0.2em]">
+            MODULE TRẢI NGHIỆM THÔNG MINH
+          </p>
+
+          <p class="mt-3 text-sm leading-7 text-[#78665C] sm:text-base">
+            Hành trình khám phá Tổ quốc trong kỷ nguyên vươn mình của dân tộc
+          </p>
+        </div>
+
+        <!-- SHOWCASE IMAGE -->
+        <div class="mx-auto mb-14 max-w-5xl sm:mb-20">
+          <div class="relative border border-[#E9DDD4] bg-[#F8F2E9] p-2 sm:p-4">
+            <div class="absolute left-0 top-0 h-1 w-20 bg-[#A51F2B] sm:w-28"></div>
+            <div class="absolute bottom-0 right-0 h-1 w-20 bg-[#A51F2B] sm:w-28"></div>
+
+            <div class="overflow-hidden bg-white">
+              <img src="assets/images/Gemini_Generated_Image_liker3liker3like.png" alt="Module Trải Nghiệm Thông Minh"
+                loading="lazy" class="mx-auto block h-auto max-h-[650px] w-full object-contain">
+            </div>
+          </div>
+        </div>
+
+        <!-- FEATURES HEADING -->
+        <div class="mb-8 text-center">
+          <p class="text-[10px] font-bold uppercase tracking-[0.25em] text-[#A51F2B] sm:text-xs">
+            Quy trình thực hiện
+          </p>
+        </div>
+
+        <!-- FEATURES GRID -->
+        <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:gap-6">
+
+          <!-- FEATURE 1 -->
+          <article
+            class="group relative flex h-full flex-col border border-[#E9DDD4] bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-[#C58B7A] hover:shadow-[0_16px_36px_rgba(91,45,36,0.08)] sm:p-7">
+
+            <div class="mb-5 flex items-center gap-4">
+              <div
+                class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#F9EDE8] text-lg text-[#A51F2B] transition group-hover:bg-[#A51F2B] group-hover:text-white">
+                <i class="fas fa-tools" aria-hidden="true"></i>
+              </div>
+
+              <h3 class="text-lg font-extrabold text-[#392824] sm:text-xl">
+                1. Nguyên Liệu
+              </h3>
+            </div>
+
+            <ul class="flex-1 space-y-3 text-sm leading-7 text-[#715D53] sm:text-base">
+              <li class="flex gap-3">
+                <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#A51F2B]"></span>
+                <span>Bản đồ nền: Giấy Rô-ki khổ lớn (A1 hoặc A2)</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#A51F2B]"></span>
+                <span>94 thẻ địa phương (giấy bìa cứng)</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#A51F2B]"></span>
+                <span>Băng gai dính Velcro</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#A51F2B]"></span>
+                <span>Máy in mini, kéo, keo dán</span>
+              </li>
+            </ul>
+          </article>
+
+          <!-- FEATURE 2 -->
+          <article
+            class="group relative flex h-full flex-col border border-[#E9DDD4] bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-[#C58B7A] hover:shadow-[0_16px_36px_rgba(91,45,36,0.08)] sm:p-7">
+
+            <div class="mb-5 flex items-center gap-4">
+              <div
+                class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#F9EDE8] text-lg text-[#A51F2B] transition group-hover:bg-[#A51F2B] group-hover:text-white">
+                <i class="fas fa-lightbulb" aria-hidden="true"></i>
+              </div>
+
+              <h3 class="text-lg font-extrabold text-[#392824] sm:text-xl">
+                2. Cách Làm
+              </h3>
+            </div>
+
+            <ul class="flex-1 space-y-3 text-sm leading-7 text-[#715D53] sm:text-base">
+              <li class="flex gap-3">
+                <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#A51F2B]"></span>
+                <span>Vẽ ranh giới 94 xã/phường lên bản đồ</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#A51F2B]"></span>
+                <span>Dán Velcro và tạo thẻ hai mặt</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#A51F2B]"></span>
+                <span>Tạo &amp; in mã QR cho mỗi thẻ</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#A51F2B]"></span>
+                <span>Làm hộp đựng chuyên dụng</span>
+              </li>
+            </ul>
+          </article>
+
+          <!-- FEATURE 3 -->
+          <article
+            class="group relative flex h-full flex-col border border-[#E9DDD4] bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-[#C58B7A] hover:shadow-[0_16px_36px_rgba(91,45,36,0.08)] sm:p-7">
+
+            <div class="mb-5 flex items-center gap-4">
+              <div
+                class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#F9EDE8] text-lg text-[#A51F2B] transition group-hover:bg-[#A51F2B] group-hover:text-white">
+                <i class="fas fa-trophy" aria-hidden="true"></i>
+              </div>
+
+              <h3 class="text-lg font-extrabold text-[#392824] sm:text-xl">
+                3. Kết Quả
+              </h3>
+            </div>
+
+            <ul class="flex-1 space-y-3 text-sm leading-7 text-[#715D53] sm:text-base">
+              <li class="flex gap-3">
+                <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#A51F2B]"></span>
+                <span>Bản đồ giấy tháo lắp linh hoạt</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#A51F2B]"></span>
+                <span>Hệ thống QR Code tích hợp dữ liệu số</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#A51F2B]"></span>
+                <span>Hộp trò chơi “Smart Map Edu” nhỏ gọn</span>
+              </li>
+            </ul>
+          </article>
+
+          <!-- FEATURE 4 -->
+          <article
+            class="group relative flex h-full flex-col border border-[#E9DDD4] bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-[#C58B7A] hover:shadow-[0_16px_36px_rgba(91,45,36,0.08)] sm:p-7">
+
+            <div class="mb-5 flex items-center gap-4">
+              <div
+                class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#F9EDE8] text-lg text-[#A51F2B] transition group-hover:bg-[#A51F2B] group-hover:text-white">
+                <i class="fas fa-chart-bar" aria-hidden="true"></i>
+              </div>
+
+              <h3 class="text-lg font-extrabold text-[#392824] sm:text-xl">
+                4. Lợi Ích &amp; Mục Tiêu
+              </h3>
+            </div>
+
+            <ul class="flex-1 space-y-3 text-sm leading-7 text-[#715D53] sm:text-base">
+              <li class="flex gap-3">
+                <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#A51F2B]"></span>
+                <span>Chi phí thấp, dễ làm, tái chế</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#A51F2B]"></span>
+                <span>Tăng tính tương tác, giảm nhìn màn hình</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#A51F2B]"></span>
+                <span>Dễ dàng cập nhật thông tin mới</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#A51F2B]"></span>
+                <span>Học sinh thuộc lòng 94 xã/phường qua trò chơi</span>
+              </li>
+            </ul>
+          </article>
+
+        </div>
+
+        <!-- PURPOSE SECTION -->
+        <section
+          class="relative mt-10 overflow-hidden border border-[#DCC9BA] bg-[#F8F2E9] p-6 sm:mt-14 sm:p-9 lg:p-11">
+
+          <div aria-hidden="true" class="absolute bottom-0 left-0 top-0 w-1.5 bg-[#A51F2B]"></div>
+
+          <div aria-hidden="true"
+            class="pointer-events-none absolute -right-10 -top-16 h-48 w-48 rounded-full border border-[#A51F2B]/10">
+          </div>
+
+          <div class="relative">
+            <h3 class="flex items-center gap-3 text-xl font-black text-[#A51F2B] sm:text-2xl">
+              <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#A51F2B] text-white">
+                <i class="fas fa-bullseye" aria-hidden="true"></i>
+              </span>
+              Mục Đích
+            </h3>
+
+            <p class="mt-5 text-sm leading-8 text-[#715D53] sm:text-base sm:leading-9">
+              Đổi mới phương pháp dạy và học bằng cách kết hợp
+              <strong class="font-bold text-[#392824]">“Học qua thực hành”</strong>
+              (vật lý) và
+              <strong class="font-bold text-[#392824]">“Công nghệ số”</strong>
+              (QR Code). Phát triển kỹ năng tư duy, làm việc nhóm và tinh thần tự học cho học sinh.
+            </p>
+          </div>
+        </section>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="relative overflow-hidden bg-[#8F1D28] px-5 py-7 text-white sm:px-8">
+
+    <div aria-hidden="true"
+      class="pointer-events-none absolute -right-12 -top-20 h-48 w-48 rounded-full border border-white/10"></div>
+
+    <div aria-hidden="true"
+      class="pointer-events-none absolute -right-4 -top-12 h-32 w-32 rounded-full border border-white/10"></div>
+
+    <div class="relative mx-auto max-w-7xl">
+
+      <div class="mb-4 flex items-center justify-center gap-3">
+        <span class="h-px w-8 bg-white/40"></span>
+        <span class="h-1.5 w-1.5 rotate-45 border border-white/80"></span>
+        <span class="h-px w-8 bg-white/40"></span>
+      </div>
+
+      <p class="text-center text-xs leading-6 text-white/85 sm:text-sm">
+        &copy; 2026 MODULE TRẢI NGHIỆM THÔNG MINH - Hành trình khám phá Tổ Quốc
+      </p>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const menuToggle = document.getElementById("menuToggle");
+      const mobileMenu = document.getElementById("mobileMenu");
+      const menuIcon = document.getElementById("menuIcon");
+
+      // Chuẩn hóa tên trang hiện tại.
+      const normalizePath = (path) => {
+        const cleanPath = path.split("/").pop().split("?")[0].split("#")[0];
+        return cleanPath || "khampha.html";
+      };
+
+      // ACTIVE NAVIGATION
+      const currentPage = normalizePath(window.location.pathname);
+
+      document.querySelectorAll(".nav-link").forEach((link) => {
+        const linkPage = normalizePath(link.getAttribute("href"));
+        const isActive = linkPage === currentPage;
+
+        link.classList.toggle("active", isActive);
+
+        if (isActive) {
+          link.classList.remove("text-[#62504A]");
+          link.classList.add("bg-[#F9EDE8]", "text-[#A51F2B]");
+          link.setAttribute("aria-current", "page");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
+
+      // OPEN / CLOSE MOBILE MENU
+      const setMenuState = (isOpen) => {
+        mobileMenu.classList.toggle("hidden", !isOpen);
+        mobileMenu.inert = !isOpen;
+
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+        menuToggle.setAttribute(
+          "aria-label",
+          isOpen ? "Đóng menu điều hướng" : "Mở menu điều hướng"
+        );
+
+        menuIcon.classList.toggle("fa-bars", !isOpen);
+        menuIcon.classList.toggle("fa-xmark", isOpen);
+      };
+
+      menuToggle.addEventListener("click", () => {
+        const isOpen =
+          menuToggle.getAttribute("aria-expanded") === "true";
+
+        setMenuState(!isOpen);
+      });
+
+      // Đóng menu sau khi chọn liên kết.
+      mobileMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          setMenuState(false);
+        });
+      });
+
+      // Đóng menu bằng phím Escape.
+      document.addEventListener("keydown", (event) => {
+        if (
+          event.key === "Escape" &&
+          menuToggle.getAttribute("aria-expanded") === "true"
+        ) {
+          setMenuState(false);
+          menuToggle.focus();
+        }
+      });
+
+      // Đóng menu khi chuyển sang giao diện desktop.
+      const desktopMedia = window.matchMedia("(min-width: 1024px)");
+
+      const handleDesktopChange = (event) => {
+        if (event.matches) {
+          setMenuState(false);
+        }
+      };
+
+      if (desktopMedia.addEventListener) {
+        desktopMedia.addEventListener("change", handleDesktopChange);
+      } else {
+        desktopMedia.addListener(handleDesktopChange);
+      }
+    });
+  </script>
+
+</body>
+
+</html>

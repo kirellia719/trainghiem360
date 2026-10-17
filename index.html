@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Giới thiệu - Module Trải Nghiệm Thông Minh</title>
+  <meta name="description"
+    content="Module Trải Nghiệm Thông Minh - Hành trình khám phá Tổ quốc trong kỷ nguyên vươn mình của dân tộc.">
+
+  <!-- Be Vietnam Pro -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- TailwindCSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Be Vietnam Pro"', 'sans-serif'],
+          },
+          colors: {
+            vietnam: {
+              red: '#A51F2B',
+              dark: '#801B25',
+              light: '#F8E8E8',
+              cream: '#F8F2E9',
+              paper: '#FFFEFC',
+              ink: '#302927',
+              muted: '#766B66',
+            },
+          },
+          boxShadow: {
+            soft: '0 12px 35px rgba(89, 34, 34, 0.08)',
+            card: '0 18px 45px rgba(89, 34, 34, 0.10)',
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body class="font-sans bg-vietnam-paper text-vietnam-ink antialiased">
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-50 border-b border-red-900/10 bg-white/95 shadow-sm backdrop-blur-md">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+
+      <!-- Logo -->
+      <a href="index.html" class="group flex min-w-0 items-center gap-3">
+        <div
+          class="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full border border-red-900/10">
+          <img src="assets/images/logo.jpg" alt="Logo Module Trải Nghiệm Thông Minh"
+            class="h-full w-full object-contain">
+        </div>
+
+        <div class="min-w-0">
+          <span class="block text-sm font-extrabold tracking-[0.12em] text-vietnam-red sm:text-base">
+            VIỆT NAM
+          </span>
+          <span class="mt-0.5 block text-xs font-medium text-vietnam-muted sm:text-sm">
+            Khám Phá Tổ Quốc
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop navigation -->
+      <nav id="desktop-nav" aria-label="Điều hướng chính" class="hidden items-center gap-1 lg:flex">
+        <a href="index.html" class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+          Giới thiệu
+        </a>
+        <a href="vietnam.html" class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+          Việt Nam
+        </a>
+        <a href="danang.html" class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+          Đà Nẵng
+        </a>
+        <a href="dantoc.html" class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+          Dân tộc
+        </a>
+        <a href="tulieu.html" class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+          Tư liệu
+        </a>
+        <a href="lienhe.html" class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+          Liên hệ
+        </a>
+      </nav>
+
+      <!-- Mobile menu button -->
+      <button id="menu-toggle" type="button"
+        class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-red-900/10 text-vietnam-red transition hover:bg-vietnam-light focus:outline-none focus:ring-2 focus:ring-vietnam-red/30 lg:hidden"
+        aria-label="Mở menu điều hướng" aria-controls="mobile-nav" aria-expanded="false">
+        <i id="menu-icon" class="fa-solid fa-bars text-xl" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <!-- Mobile navigation -->
+    <nav id="mobile-nav" aria-label="Điều hướng di động"
+      class="hidden border-t border-red-900/10 bg-white px-4 pb-4 pt-3 shadow-lg lg:hidden">
+      <div class="mx-auto flex max-w-7xl flex-col gap-1">
+        <a href="index.html" class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+          Giới thiệu
+        </a>
+        <a href="vietnam.html" class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+          Việt Nam
+        </a>
+        <a href="danang.html" class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+          Đà Nẵng
+        </a>
+        <a href="dantoc.html" class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+          Dân tộc
+        </a>
+        <a href="tulieu.html" class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+          Tư liệu
+        </a>
+        <a href="lienhe.html" class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+          Liên hệ
+        </a>
+      </div>
+    </nav>
+  </header>
+
+
+  <main>
+    <!-- HERO -->
+    <section class="relative isolate overflow-hidden bg-vietnam-cream">
+      <!-- Decorative background -->
+      <div
+        class="pointer-events-none absolute -right-24 -top-24 -z-10 h-80 w-80 rounded-full border border-vietnam-red/10">
+      </div>
+      <div
+        class="pointer-events-none absolute -right-12 -top-12 -z-10 h-56 w-56 rounded-full border border-vietnam-red/10">
+      </div>
+      <div class="pointer-events-none absolute -bottom-32 -left-24 -z-10 h-80 w-80 rounded-full bg-red-900/[0.03]">
+      </div>
+
+      <div
+        class="mx-auto grid max-w-7xl items-center gap-12 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-24">
+
+        <!-- Hero text -->
+        <div class="relative z-10">
+          <div
+            class="mb-6 inline-flex items-center gap-2 rounded-full border border-vietnam-red/15 bg-white/80 px-4 py-2 text-xs font-bold tracking-[0.12em] text-vietnam-red shadow-sm sm:text-sm">
+            <i class="fa-solid fa-compass" aria-hidden="true"></i>
+            HỌC HỎI · TRẢI NGHIỆM · KHÁM PHÁ
+          </div>
+
+          <h1 class="text-4xl font-black leading-[1.16] tracking-tight text-vietnam-ink sm:text-5xl lg:text-6xl">
+            MODULE
+            <span class="mt-2 block">TRẢI NGHIỆM</span>
+            <span class="mt-2 block text-vietnam-red">THÔNG MINH</span>
+          </h1>
+
+          <div class="my-7 flex items-center gap-3">
+            <span class="h-1 w-16 rounded-full bg-vietnam-red"></span>
+            <span class="h-1 w-6 rounded-full bg-vietnam-red/30"></span>
+            <span class="h-1 w-2 rounded-full bg-vietnam-red/15"></span>
+          </div>
+
+          <p class="max-w-xl text-base leading-8 text-vietnam-muted sm:text-lg sm:leading-9">
+            Hành trình khám phá Tổ quốc<br class="hidden sm:block">
+            trong kỷ nguyên vươn mình của dân tộc
+          </p>
+
+          <div class="mt-9 flex flex-wrap items-center gap-4">
+            <a href="#gioi-thieu"
+              class="inline-flex items-center justify-center gap-3 rounded-full bg-vietnam-red px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-red-900/15 transition duration-300 hover:-translate-y-0.5 hover:bg-vietnam-dark focus:outline-none focus:ring-4 focus:ring-vietnam-red/20">
+              Khám phá ngay
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero image -->
+        <div class="relative mx-auto w-full max-w-xl">
+          <div class="absolute inset-5 rounded-[2rem] bg-vietnam-red/10 blur-2xl"></div>
+
+          <div class="relative overflow-hidden rounded-[2rem] p-3 sm:p-4">
+            <div class="overflow-hidden rounded-[1.5rem] ">
+              <img src="assets/images/hop-tri-thuc-360.png" alt="Hộp gỗ Việt Nam"
+                class="h-auto max-h-[520px] w-full object-contain" fetchpriority="high">
+            </div>
+
+          </div>
+
+          <div
+            class="absolute -right-3 top-10 hidden h-16 w-16 items-center justify-center rounded-2xl border border-vietnam-red/10 bg-white text-vietnam-red shadow-soft sm:flex">
+            <i class="fa-solid fa-star text-2xl" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- INTRODUCTION -->
+    <section id="gioi-thieu" class="scroll-mt-28 bg-white px-5 py-16 sm:px-8 sm:py-20 lg:px-8">
+      <div class="mx-auto max-w-7xl">
+
+        <div class="mx-auto mb-12 max-w-3xl text-center">
+          <span
+            class="inline-flex items-center gap-2 rounded-full bg-vietnam-light px-4 py-2 text-xs font-bold tracking-wider text-vietnam-red sm:text-sm">
+            <i class="fa-solid fa-heart" aria-hidden="true"></i>
+            GIỚI THIỆU
+          </span>
+
+          <div class="mx-auto my-5 h-1 w-16 rounded-full bg-vietnam-red"></div>
+
+        </div>
+
+        <!-- Product image -->
+        <div class="mx-auto max-w-5xl">
+          <div
+            class="relative overflow-hidden rounded-3xl border border-red-900/10 bg-vietnam-cream p-3 shadow-soft sm:p-5">
+            <div
+              class="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full border border-vietnam-red/10">
+            </div>
+            <img src="assets/images/Gemini_Generated_Image_liker3liker3like.png" alt="Module Trải Nghiệm Thông Minh"
+              loading="lazy" class="relative mx-auto h-auto max-h-[620px] w-full rounded-2xl object-contain">
+          </div>
+        </div>
+
+
+        <!-- Four information cards -->
+        <div class="mt-14 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+
+          <!-- Card 1 -->
+          <article
+            class="group rounded-2xl border border-red-900/10 bg-white p-6 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-vietnam-red/30 hover:shadow-card">
+            <div
+              class="flex h-12 w-12 items-center justify-center rounded-xl bg-vietnam-light text-vietnam-red transition group-hover:bg-vietnam-red group-hover:text-white">
+              <i class="fa-solid fa-box-open text-xl" aria-hidden="true"></i>
+            </div>
+
+            <h3 class="mt-5 text-lg font-extrabold text-vietnam-ink">
+              1. Nguyên Liệu
+            </h3>
+
+            <div class="mb-5 mt-3 h-1 w-10 rounded-full bg-vietnam-red/60"></div>
+
+            <ul class="space-y-3 text-sm leading-6 text-vietnam-muted">
+              <li class="flex gap-2.5">
+                <i class="fa-solid fa-check mt-1 text-xs text-vietnam-red" aria-hidden="true"></i>
+                <span>Bản đồ nền: Giấy Rô-ki khổ lớn (A1 hoặc A2)</span>
+              </li>
+              <li class="flex gap-2.5">
+                <i class="fa-solid fa-check mt-1 text-xs text-vietnam-red" aria-hidden="true"></i>
+                <span>94 thẻ địa phương (giấy bìa cứng)</span>
+              </li>
+              <li class="flex gap-2.5">
+                <i class="fa-solid fa-check mt-1 text-xs text-vietnam-red" aria-hidden="true"></i>
+                <span>Băng gai dính Velcro</span>
+              </li>
+              <li class="flex gap-2.5">
+                <i class="fa-solid fa-check mt-1 text-xs text-vietnam-red" aria-hidden="true"></i>
+                <span>Máy in mini, kéo, keo dán</span>
+              </li>
+            </ul>
+          </article>
+
+
+          <!-- Card 2 -->
+          <article
+            class="group rounded-2xl border border-red-900/10 bg-white p-6 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-vietnam-red/30 hover:shadow-card">
+            <div
+              class="flex h-12 w-12 items-center justify-center rounded-xl bg-vietnam-light text-vietnam-red transition group-hover:bg-vietnam-red group-hover:text-white">
+              <i class="fa-solid fa-screwdriver-wrench text-xl" aria-hidden="true"></i>
+            </div>
+
+            <h3 class="mt-5 text-lg font-extrabold text-vietnam-ink">
+              2. Cách Làm
+            </h3>
+
+            <div class="mb-5 mt-3 h-1 w-10 rounded-full bg-vietnam-red/60"></div>
+
+            <ul class="space-y-3 text-sm leading-6 text-vietnam-muted">
+              <li class="flex gap-2.5">
+                <i class="fa-solid fa-check mt-1 text-xs text-vietnam-red" aria-hidden="true"></i>
+                <span>Vẽ ranh giới 94 xã/phường lên bản đồ</span>
+              </li>
+              <li class="flex gap-2.5">
+                <i class="fa-solid fa-check mt-1 text-xs text-vietnam-red" aria-hidden="true"></i>
+                <span>Dán Velcro và tạo thẻ hai mặt</span>
+              </li>
+              <li class="flex gap-2.5">
+                <i class="fa-solid fa-check mt-1 text-xs text-vietnam-red" aria-hidden="true"></i>
+                <span>Tạo &amp; in mã QR cho mỗi thẻ</span>
+              </li>
+              <li class="flex gap-2.5">
+                <i class="fa-solid fa-check mt-1 text-xs text-vietnam-red" aria-hidden="true"></i>
+                <span>Làm hộp đựng chuyên dụng</span>
+              </li>
+            </ul>
+          </article>
+
+
+          <!-- Card 3 -->
+          <article
+            class="group rounded-2xl border border-red-900/10 bg-white p-6 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-vietnam-red/30 hover:shadow-card">
+            <div
+              class="flex h-12 w-12 items-center justify-center rounded-xl bg-vietnam-light text-vietnam-red transition group-hover:bg-vietnam-red group-hover:text-white">
+              <i class="fa-solid fa-map-location-dot text-xl" aria-hidden="true"></i>
+            </div>
+
+            <h3 class="mt-5 text-lg font-extrabold text-vietnam-ink">
+              3. Kết Quả
+            </h3>
+
+            <div class="mb-5 mt-3 h-1 w-10 rounded-full bg-vietnam-red/60"></div>
+
+            <ul class="space-y-3 text-sm leading-6 text-vietnam-muted">
+              <li class="flex gap-2.5">
+                <i class="fa-solid fa-check mt-1 text-xs text-vietnam-red" aria-hidden="true"></i>
+                <span>Bản đồ giấy tháo lắp linh hoạt</span>
+              </li>
+              <li class="flex gap-2.5">
+                <i class="fa-solid fa-check mt-1 text-xs text-vietnam-red" aria-hidden="true"></i>
+                <span>Hệ thống QR Code tích hợp dữ liệu số</span>
+              </li>
+              <li class="flex gap-2.5">
+                <i class="fa-solid fa-check mt-1 text-xs text-vietnam-red" aria-hidden="true"></i>
+                <span>Hộp trò chơi “Smart Map Edu” nhỏ gọn</span>
+              </li>
+            </ul>
+          </article>
+
+
+          <!-- Card 4 -->
+          <article
+            class="group rounded-2xl border border-red-900/10 bg-white p-6 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-vietnam-red/30 hover:shadow-card">
+            <div
+              class="flex h-12 w-12 items-center justify-center rounded-xl bg-vietnam-light text-vietnam-red transition group-hover:bg-vietnam-red group-hover:text-white">
+              <i class="fa-solid fa-bullseye text-xl" aria-hidden="true"></i>
+            </div>
+
+            <h3 class="mt-5 text-lg font-extrabold text-vietnam-ink">
+              4. Lợi Ích &amp; Mục Tiêu
+            </h3>
+
+            <div class="mb-5 mt-3 h-1 w-10 rounded-full bg-vietnam-red/60"></div>
+
+            <ul class="space-y-3 text-sm leading-6 text-vietnam-muted">
+              <li class="flex gap-2.5">
+                <i class="fa-solid fa-check mt-1 text-xs text-vietnam-red" aria-hidden="true"></i>
+                <span>Chi phí thấp, dễ làm, tái chế</span>
+              </li>
+              <li class="flex gap-2.5">
+                <i class="fa-solid fa-check mt-1 text-xs text-vietnam-red" aria-hidden="true"></i>
+                <span>Tăng tính tương tác, giảm nhìn màn hình</span>
+              </li>
+              <li class="flex gap-2.5">
+                <i class="fa-solid fa-check mt-1 text-xs text-vietnam-red" aria-hidden="true"></i>
+                <span>Dễ dàng cập nhật thông tin mới</span>
+              </li>
+              <li class="flex gap-2.5">
+                <i class="fa-solid fa-check mt-1 text-xs text-vietnam-red" aria-hidden="true"></i>
+                <span>Học sinh thuộc lòng 94 xã/phường qua trò chơi</span>
+              </li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer class="bg-vietnam-dark px-5 py-7 text-white sm:px-8">
+    <div
+      class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 text-center sm:flex-row sm:text-left">
+      <a href="index.html" class="flex items-center gap-2 font-extrabold tracking-wide">
+        <i class="fa-solid fa-compass text-lg" aria-hidden="true"></i>
+        <span>MODULE TRẢI NGHIỆM THÔNG MINH</span>
+      </a>
+
+      <p class="text-xs leading-6 text-white/75 sm:text-sm">
+        © 2026 MODULE TRẢI NGHIỆM THÔNG MINH - Hành trình khám phá Tổ Quốc
+      </p>
+    </div>
+  </footer>
+
+
+  <!-- JAVASCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const menuToggle = document.getElementById('menu-toggle');
+      const mobileNav = document.getElementById('mobile-nav');
+      const menuIcon = document.getElementById('menu-icon');
+
+      // Chuẩn hóa đường dẫn để xác định trang đang mở.
+      function getCurrentPage() {
+        const path = window.location.pathname;
+        const file = path.split('/').filter(Boolean).pop();
+        return file || 'index.html';
+      }
+
+      const currentPage = getCurrentPage();
+
+      // Tô màu liên kết của trang hiện tại.
+      document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(function (link) {
+        const linkPage = link.getAttribute('href').split('/').pop();
+        const isActive = linkPage === currentPage;
+
+        if (isActive) {
+          link.classList.add('bg-vietnam-red', 'text-white');
+          link.setAttribute('aria-current', 'page');
+        } else {
+          link.classList.add(
+            'text-vietnam-muted',
+            'hover:bg-vietnam-light',
+            'hover:text-vietnam-red'
+          );
+        }
+      });
+
+      // Đóng menu di động.
+      function closeMobileMenu() {
+        mobileNav.classList.add('hidden');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Mở menu điều hướng');
+        menuIcon.classList.remove('fa-xmark');
+        menuIcon.classList.add('fa-bars');
+      }
+
+      // Mở hoặc đóng menu di động.
+      menuToggle.addEventListener('click', function () {
+        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+
+        if (isExpanded) {
+          closeMobileMenu();
+        } else {
+          mobileNav.classList.remove('hidden');
+          menuToggle.setAttribute('aria-expanded', 'true');
+          menuToggle.setAttribute('aria-label', 'Đóng menu điều hướng');
+          menuIcon.classList.remove('fa-bars');
+          menuIcon.classList.add('fa-xmark');
+        }
+      });
+
+      // Đóng menu sau khi chọn một trang.
+      mobileNav.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', closeMobileMenu);
+      });
+
+      // Đóng menu khi nhấn Escape.
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') {
+          closeMobileMenu();
+        }
+      });
+
+      // Đóng menu khi chuyển sang màn hình desktop.
+      window.addEventListener('resize', function () {
+        if (window.innerWidth >= 1024) {
+          closeMobileMenu();
+        }
+      });
+    });
+  </script>
+
+</body>
+
+</html>

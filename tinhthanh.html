@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Thông tin tỉnh thành - Module Trải nghiệm 360</title>
+    <meta name="description"
+        content="Khám phá thông tin địa lý, văn hóa, dân tộc và con người các tỉnh thành Việt Nam cùng Module Trải nghiệm 360.">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        vietnam: {
+                            red: "#A51F2B",
+                            dark: "#801B25",
+                            light: "#F8E8E8",
+                            cream: "#F8F2E9",
+                            paper: "#FFFEFC",
+                            ink: "#302927",
+                            muted: "#766B66"
+                        }
+                    },
+                    boxShadow: {
+                        soft: "0 12px 35px rgba(65, 39, 35, 0.08)"
+                    }
+                }
+            }
+        };
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: "Roboto", sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .section-heading::before {
+            content: "";
+            display: block;
+            width: 42px;
+            height: 4px;
+            border-radius: 999px;
+            background: #A51F2B;
+            margin-bottom: 12px;
+        }
+
+        .gallery-image {
+            transition: transform 0.35s ease;
+        }
+
+        .gallery-card:hover .gallery-image {
+            transform: scale(1.045);
+        }
+
+        #imageModal {
+            transition: opacity 0.2s ease;
+        }
+
+        #imageModal img {
+            max-height: 82vh;
+        }
+
+        iframe {
+            border: 0;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-[#FAF8F5] text-vietnam-ink">
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-50 border-b border-red-900/10 bg-white/95 shadow-sm backdrop-blur-md">
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+
+            <!-- Logo -->
+            <a href="index.html" class="group flex min-w-0 items-center gap-3">
+                <div
+                    class="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full border border-red-900/10">
+                    <img src="assets/images/logo.jpg" alt="Logo Module Trải Nghiệm Thông Minh"
+                        class="h-full w-full object-contain">
+                </div>
+
+                <div class="min-w-0">
+                    <span class="block text-sm font-extrabold tracking-[0.12em] text-vietnam-red sm:text-base">
+                        VIỆT NAM
+                    </span>
+                    <span class="mt-0.5 block text-xs font-medium text-vietnam-muted sm:text-sm">
+                        Khám Phá Tổ Quốc
+                    </span>
+                </div>
+            </a>
+
+            <!-- Desktop navigation -->
+            <nav id="desktop-nav" aria-label="Điều hướng chính" class="hidden items-center gap-1 lg:flex">
+                <a href="index.html" class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+                    Giới thiệu
+                </a>
+                <a href="vietnam.html" class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+                    Việt Nam
+                </a>
+                <a href="danang.html" class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+                    Đà Nẵng
+                </a>
+                <a href="dantoc.html" class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+                    Dân tộc
+                </a>
+                <a href="tulieu.html" class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+                    Tư liệu
+                </a>
+                <a href="lienhe.html" class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+                    Liên hệ
+                </a>
+            </nav>
+
+            <!-- Mobile menu button -->
+            <button id="menu-toggle" type="button"
+                class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-red-900/10 text-vietnam-red transition hover:bg-vietnam-light focus:outline-none focus:ring-2 focus:ring-vietnam-red/30 lg:hidden"
+                aria-label="Mở menu điều hướng" aria-controls="mobile-nav" aria-expanded="false">
+                <i id="menu-icon" class="fa-solid fa-bars text-xl" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <!-- Mobile navigation -->
+        <nav id="mobile-nav" aria-label="Điều hướng di động"
+            class="hidden border-t border-red-900/10 bg-white px-4 pb-4 pt-3 shadow-lg lg:hidden">
+            <div class="mx-auto flex max-w-7xl flex-col gap-1">
+                <a href="index.html" class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+                    Giới thiệu
+                </a>
+                <a href="vietnam.html" class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+                    Việt Nam
+                </a>
+                <a href="danang.html" class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+                    Đà Nẵng
+                </a>
+                <a href="dantoc.html" class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+                    Dân tộc
+                </a>
+                <a href="tulieu.html" class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+                    Tư liệu
+                </a>
+                <a href="lienhe.html" class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+                    Liên hệ
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- LOADING -->
+    <section id="loadingState" class="mx-auto max-w-7xl px-4 py-24 text-center sm:px-6">
+        <div
+            class="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-vietnam-light text-vietnam-red">
+            <i class="fa-solid fa-spinner fa-spin text-2xl"></i>
+        </div>
+
+        <h2 class="text-lg font-bold text-vietnam-ink">Đang tải thông tin</h2>
+        <p class="mt-2 text-sm text-vietnam-muted">
+            Vui lòng chờ trong giây lát...
+        </p>
+    </section>
+
+    <!-- ERROR -->
+    <section id="errorState" class="hidden mx-auto max-w-3xl px-4 py-24 text-center sm:px-6">
+        <div class="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-red-50 text-red-600">
+            <i class="fa-solid fa-circle-exclamation text-2xl"></i>
+        </div>
+
+        <h2 class="text-2xl font-extrabold text-vietnam-ink">
+            Không tìm thấy thông tin
+        </h2>
+
+        <p id="errorMessage" class="mx-auto mt-3 max-w-xl text-sm leading-7 text-vietnam-muted">
+            Không thể tải dữ liệu tỉnh thành. Vui lòng thử lại.
+        </p>
+
+        <a href="../../vietnam.html"
+            class="mt-6 inline-flex items-center gap-2 rounded-full bg-vietnam-red px-6 py-3 text-sm font-bold text-white transition hover:bg-vietnam-dark">
+            <i class="fa-solid fa-arrow-left"></i>
+            Quay lại bản đồ Việt Nam
+        </a>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main id="pageContent" class="hidden">
+
+        <!-- 1. TIÊU ĐỀ VÀ GIỚI THIỆU -->
+        <section class="relative overflow-hidden    ">
+            <div class="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full bg-red-200/20 blur-3xl">
+            </div>
+            <div
+                class="pointer-events-none absolute -bottom-24 -left-16 h-64 w-64 rounded-full bg-amber-200/20 blur-3xl">
+            </div>
+
+            <div class="relative mx-auto max-w-7xl px-4 py-5 sm:px-6 sm:py-8 lg:px-8 lg:py-10">
+
+                <h1 id="provinceTitle"
+                    class="mt-5 text-3xl font-extrabold leading-tight tracking-tight text-vietnam-ink sm:text-4xl lg:text-5xl">
+                    Đang tải thông tin...
+                </h1>
+
+                <div class="mt-4 h-1.5 w-20 rounded-full bg-vietnam-red"></div>
+
+                <p id="provinceIntroduction"
+                    class="mt-6 whitespace-pre-line text-base leading-8 text-vietnam-muted sm:text-md">
+                </p>
+
+                <div class="mt-8 flex flex-wrap gap-3">
+                    <a href="#provinceOverview"
+                        class="inline-flex items-center gap-2 rounded-full bg-vietnam-red px-5 py-3 text-sm font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-vietnam-dark">
+                        <i class="fa-solid fa-book-open"></i>
+                        Tìm hiểu thông tin
+                    </a>
+
+                    <a href="#provinceMapSection"
+                        class="inline-flex items-center gap-2 rounded-full border border-vietnam-red/20 bg-white px-5 py-3 text-sm font-bold text-vietnam-red transition hover:bg-vietnam-light">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        Xem
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. THƯ VIỆN HÌNH ẢNH -->
+        <section id="galleryCard" class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-14 lg:px-8">
+            <div class="mb-7 flex flex-wrap items-end justify-between gap-4">
+                <div>
+                    <p class="text-lg font-bold uppercase text-vietnam-red">
+                        Hình ảnh địa phương
+                    </p>
+
+                    <p class=" max-w-2xl text-sm leading-7 text-vietnam-muted">
+                        Cùng khám phá cảnh quan, công trình, đời sống và những nét đặc trưng của địa phương qua hình
+                        ảnh.
+                    </p>
+                </div>
+
+                <span id="galleryCount"
+                    class="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-vietnam-muted shadow-sm">
+                    <i class="fa-regular fa-images text-vietnam-red"></i>
+                    0 hình ảnh
+                </span>
+            </div>
+
+            <div id="provinceGallery" class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                <!-- JavaScript sẽ thêm hình ảnh tại đây -->
+            </div>
+        </section>
+
+        <!-- 3. THÔNG TIN TỔNG QUAN - VỊ TRÍ ĐỊA LÝ -->
+        <section id="provinceOverview" class="border-y border-stone-200/80 bg-white">
+            <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-14 lg:px-8">
+                <div>
+                    <p class=" text-lg font-bold uppercase text-vietnam-red">
+                        Tổng quan địa phương
+                    </p>
+
+                    <p class="max-w-3xl text-sm leading-7 text-vietnam-muted">
+                        Những thông tin cơ bản giúp bạn hiểu rõ hơn về đặc điểm và vị trí của địa phương.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 items-start gap-6 lg:grid-cols-2">
+
+                    <!-- FACTS -->
+                    <article class="overflow-hidden rounded-2xl border border-stone-200 bg-[#FFFEFC] shadow-soft">
+                        <div class="flex items-center gap-3 border-b border-stone-200 bg-vietnam-cream/70 px-5 py-4">
+                            <div
+                                class="flex h-10 w-10 items-center justify-center rounded-xl bg-vietnam-light text-vietnam-red">
+                                <i class="fa-solid fa-circle-info text-lg"></i>
+                            </div>
+
+                            <div>
+                                <h3 class="font-extrabold text-vietnam-ink">Thông tin cơ bản</h3>
+                                <p class="mt-1 text-xs text-vietnam-muted">Các dữ liệu nổi bật</p>
+                            </div>
+                        </div>
+
+                        <div id="provinceFacts" class="divide-y divide-stone-100 px-5 bg-white">
+                            <!-- JavaScript render -->
+                        </div>
+                    </article>
+
+                    <!-- GEOGRAPHY -->
+                    <article class="overflow-hidden rounded-2xl border border-stone-200 bg-[#FFFEFC] shadow-soft">
+                        <div class="flex items-center gap-3 border-b border-stone-200 bg-vietnam-cream/70 px-5 py-4">
+                            <div
+                                class="flex h-10 w-10 items-center justify-center rounded-xl bg-vietnam-light text-vietnam-red">
+                                <i class="fa-solid fa-earth-asia text-lg"></i>
+                            </div>
+
+                            <div>
+                                <h3 class="font-extrabold text-vietnam-ink">Vị trí địa lý</h3>
+                                <p class="mt-1 text-xs text-vietnam-muted">Vị trí và đặc điểm tự nhiên</p>
+                            </div>
+                        </div>
+
+                        <div id="provinceGeography" class="divide-y divide-stone-100 px-5 bg-white">
+                            <!-- JavaScript render -->
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. BẢN ĐỒ -->
+        <section id="provinceMapSection" class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-14 lg:px-8">
+            <div id="mapCard" class="overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-soft">
+                <div
+                    class="flex flex-col gap-4 border-b border-stone-200 px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-7">
+                    <div>
+                        <p class="text-lg font-bold uppercase  text-vietnam-red">
+                            Khám phá không gian
+                        </p>
+
+                        <p class=" text-sm leading-6 text-vietnam-muted">
+                            Quan sát vị trí địa lý và khu vực xung quanh địa phương.
+                        </p>
+                    </div>
+
+                    <a id="openMapLink" href="#" target="_blank" rel="noopener noreferrer"
+                        class="inline-flex shrink-0 items-center justify-center gap-2 self-start rounded-full border border-vietnam-red/20 bg-vietnam-light px-5 py-3 text-sm font-bold text-vietnam-red transition hover:bg-red-100 sm:self-center">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        Mở bản đồ
+                    </a>
+                </div>
+
+                <div class="bg-stone-100 p-2 sm:p-4">
+                    <iframe id="provinceMap" title="Bản đồ địa phương"
+                        class="h-[320px] w-full rounded-2xl bg-stone-200 sm:h-[420px] lg:h-[500px]" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade" allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. DÂN TỘC VÀ CON NGƯỜI -->
+        <section class="border-y border-stone-200/80 bg-white">
+
+            <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-12 lg:px-8">
+
+                <article class="rounded-xl border border-stone-200 bg-[#FFFEFC] p-5 sm:p-6">
+                    <div>
+                        <p class=" text-lg font-bold uppercase text-vietnam-red">
+                            Dân tộc và con người
+                        </p>
+                        <div class="my-2 h-0.5 w-20 rounded-full bg-vietnam-red"></div>
+
+                        <div id="provinceEthnic" class="text-sm leading-7 text-vietnam-muted">
+                            <!-- JavaScript render dữ liệu ethnic -->
+                        </div>
+                    </div>
+
+                </article>
+            </div>
+        </section>
+
+        <!-- 6. KINH TẾ -->
+        <section class="bg-[#FFFEFC]">
+            <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-12 lg:px-8">
+
+
+
+                <article class="rounded-xl border border-stone-200 bg-white p-5 sm:p-6">
+                    <div>
+                        <p class=" text-lg font-bold uppercase text-vietnam-red">
+                            Kinh tế
+                        </p>
+                        <div class="my-2 h-0.5 w-20 rounded-full bg-vietnam-red"></div>
+
+                        <div id="provinceEconomy" class="text-sm leading-7 text-vietnam-muted">
+                            <!-- JavaScript render dữ liệu ethnic -->
+                        </div>
+                    </div>
+
+                </article>
+
+            </div>
+        </section>
+
+        <!-- 7. ĐẶC ĐIỂM VĂN HÓA -->
+        <section class="border-t border-stone-200/80 bg-white">
+            <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-12 lg:px-8">
+
+                <article class="bg-[#FFFEFC] p-5 sm:p-6">
+                    <p class=" text-lg font-bold uppercase text-vietnam-red">
+                        Dân tộc và con người
+                    </p>
+                    <div class="my-2 h-0.5 w-20 rounded-full bg-vietnam-red"></div>
+                    <div id="provinceCultureDescription" class="text-sm leading-7 text-vietnam-muted">
+                        <!-- JavaScript render dữ liệu culture.description -->
+                    </div>
+
+                    <div id="provinceCultureHighlights" class="mt-5 space-y-5">
+                        <!-- JavaScript render dữ liệu culture.highlights -->
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="bg-[#2F2927] text-white">
+            <div class="mx-auto max-w-7xl px-4 py-9 sm:px-6 lg:px-8">
+                <div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                        <p class="font-extrabold tracking-wide">
+                            MODULE TRẢI NGHIỆM 360
+                        </p>
+
+                        <p class="mt-2 text-sm leading-6 text-white/65">
+                            Hành trình khám phá Tổ quốc Việt Nam.
+                        </p>
+                    </div>
+
+                    <a href="../../vietnam.html"
+                        class="inline-flex items-center gap-2 self-start rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10">
+                        <i class="fa-solid fa-map"></i>
+                        Khám phá bản đồ Việt Nam
+                    </a>
+                </div>
+
+                <div class="mt-7 border-t border-white/10 pt-5 text-xs leading-6 text-white/50">
+                    Dữ liệu được trình bày nhằm phục vụ mục đích giáo dục và trải nghiệm khám phá.
+                    Vui lòng đối chiếu nguồn chính thức khi sử dụng thông tin hành chính.
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- IMAGE MODAL -->
+    <div id="imageModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/90 p-4 opacity-0"
+        role="dialog" aria-modal="true" aria-label="Xem hình ảnh phóng to">
+
+        <button id="closeImageModal" type="button"
+            class="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
+            aria-label="Đóng hình ảnh">
+            <i class="fa-solid fa-xmark text-xl"></i>
+        </button>
+
+        <div class="flex w-full max-w-5xl flex-col items-center">
+            <img id="modalImage" src="" alt="" class="max-w-full rounded-xl object-contain shadow-2xl">
+
+            <p id="modalImageCaption" class="mt-4 text-center text-sm text-white/85"></p>
+        </div>
+    </div>
+
+    <!-- NÚT ÂM THANH TỈNH THÀNH -->
+    <button id="provinceSoundToggle" type="button" class="fixed bottom-5 right-5 z-[100] flex h-12 w-12 items-center justify-center
+           rounded-full bg-[#A51F2B] text-white shadow-lg
+           transition hover:scale-105 hover:bg-[#801B25]
+           focus:outline-none focus:ring-4 focus:ring-red-200" aria-label="Phát âm thanh" title="Phát âm thanh"
+        aria-pressed="false">
+        <i id="provinceSoundIcon" class="fa-solid fa-volume-xmark text-lg"></i>
+    </button>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            "use strict";
+
+            // ========================================
+            // CẤU HÌNH
+            // ========================================
+
+            const DATA_URL = "/assets/js/data/tinh-thanh.json";
+
+            const $ = (id) => document.getElementById(id);
+
+            const loadingState = $("loadingState");
+            const errorState = $("errorState");
+            const errorMessage = $("errorMessage");
+            const pageContent = $("pageContent");
+
+            // ========================================
+            // HEADER - MENU MOBILE
+            // ========================================
+
+            const menuToggle = $("menu-toggle");
+            const mobileNav = $("mobile-nav");
+            const menuIcon = $("menu-icon");
+
+            // ========================================
+            // ÂM THANH THEO TỈNH / THÀNH
+            // ========================================
+
+            let provinceAudio = null;
+
+            const soundToggle = $("provinceSoundToggle");
+            const soundIcon = $("provinceSoundIcon");
+
+            function setupProvinceSound(province) {
+                if (!soundToggle || !soundIcon) return;
+
+                // Dừng và giải phóng âm thanh của tỉnh trước đó
+                if (provinceAudio) {
+                    provinceAudio.pause();
+                    provinceAudio.currentTime = 0;
+                    provinceAudio = null;
+                }
+
+                const sounds = province?.sounds;
+
+                // Hỗ trợ sounds là một chuỗi URL hoặc mảng các URL/đối tượng
+                const soundItem = Array.isArray(sounds) ? sounds[0] : sounds;
+
+                const soundSrc = typeof soundItem === "string"
+                    ? soundItem
+                    : soundItem?.src || soundItem?.url;
+
+                if (!soundSrc) {
+                    soundToggle.classList.add("hidden");
+                    return;
+                }
+
+                soundToggle.classList.remove("hidden");
+
+                provinceAudio = new Audio(soundSrc);
+                provinceAudio.preload = "none";
+                provinceAudio.loop = true;
+                provinceAudio.volume = 0.5;
+
+                function updateButton(isPlaying) {
+                    soundIcon.classList.toggle("fa-volume-high", isPlaying);
+                    soundIcon.classList.toggle("fa-volume-xmark", !isPlaying);
+
+                    soundToggle.setAttribute("aria-pressed", String(isPlaying));
+                    soundToggle.setAttribute(
+                        "aria-label",
+                        isPlaying ? "Tạm dừng âm thanh" : "Phát âm thanh"
+                    );
+                    soundToggle.title = isPlaying
+                        ? "Tạm dừng âm thanh"
+                        : "Phát âm thanh";
+                }
+
+                soundToggle.onclick = async () => {
+                    if (!provinceAudio) return;
+
+                    if (provinceAudio.paused) {
+                        try {
+                            await provinceAudio.play();
+                            updateButton(true);
+                        } catch (error) {
+                            console.error("Không thể phát âm thanh tỉnh thành:", error);
+                            updateButton(false);
+                        }
+                    } else {
+                        provinceAudio.pause();
+                        updateButton(false);
+                    }
+                };
+
+                provinceAudio.addEventListener("play", () => updateButton(true));
+                provinceAudio.addEventListener("pause", () => updateButton(false));
+                provinceAudio.addEventListener("ended", () => updateButton(false));
+
+                updateButton(false);
+            }
+
+            function closeMobileMenu() {
+                if (!menuToggle || !mobileNav || !menuIcon) return;
+
+                mobileNav.classList.add("hidden");
+                menuToggle.setAttribute("aria-expanded", "false");
+                menuToggle.setAttribute("aria-label", "Mở menu điều hướng");
+
+                menuIcon.classList.remove("fa-xmark");
+                menuIcon.classList.add("fa-bars");
+            }
+
+            if (menuToggle && mobileNav && menuIcon) {
+                menuToggle.addEventListener("click", () => {
+                    const expanded =
+                        menuToggle.getAttribute("aria-expanded") === "true";
+
+                    if (expanded) {
+                        closeMobileMenu();
+                    } else {
+                        mobileNav.classList.remove("hidden");
+                        menuToggle.setAttribute("aria-expanded", "true");
+                        menuToggle.setAttribute("aria-label", "Đóng menu điều hướng");
+
+                        menuIcon.classList.remove("fa-bars");
+                        menuIcon.classList.add("fa-xmark");
+                    }
+                });
+
+                mobileNav.querySelectorAll("a").forEach((link) => {
+                    link.addEventListener("click", closeMobileMenu);
+                });
+
+                document.addEventListener("keydown", (event) => {
+                    if (event.key === "Escape") closeMobileMenu();
+                });
+
+                window.addEventListener("resize", () => {
+                    if (window.innerWidth >= 1024) closeMobileMenu();
+                });
+            }
+
+            // ========================================
+            // HÀM TIỆN ÍCH
+            // ========================================
+
+            function escapeHTML(value) {
+                return String(value ?? "").replace(/[&<>"']/g, (character) => {
+                    const entities = {
+                        "&": "&amp;",
+                        "<": "&lt;",
+                        ">": "&gt;",
+                        '"': "&quot;",
+                        "'": "&#39;"
+                    };
+
+                    return entities[character];
+                });
+            }
+
+            function isObject(value) {
+                return value !== null &&
+                    typeof value === "object" &&
+                    !Array.isArray(value);
+            }
+
+            function getProvinceSlug() {
+                const params = new URLSearchParams(window.location.search);
+
+                return (
+                    params.get("province") ||
+                    params.get("slug") ||
+                    "bacninh"
+                ).trim().toLowerCase();
+            }
+
+            function normalizeSlug(value) {
+                return String(value ?? "")
+                    .trim()
+                    .toLowerCase()
+                    .replace(/\.html$/, "");
+            }
+
+            function showEmpty(container, message) {
+                if (!container) return;
+
+                container.innerHTML = `
+                    <p class="py-4 text-sm leading-6 text-vietnam-muted">
+                        ${escapeHTML(message)}
+                    </p>
+                `;
+            }
+
+            function showError(message) {
+                if (loadingState) loadingState.classList.add("hidden");
+                if (pageContent) pageContent.classList.add("hidden");
+
+                if (errorMessage) errorMessage.textContent = message;
+                if (errorState) errorState.classList.remove("hidden");
+            }
+
+            function getAssetPath(path) {
+                if (!path || typeof path !== "string") return "";
+
+                const value = path.trim();
+
+                if (!value) return "";
+
+                // Giữ nguyên URL ảnh trực tuyến.
+                if (/^https?:\/\//i.test(value)) return value;
+
+                // Không chấp nhận các giao thức không cần thiết.
+                if (/^(javascript|data|vbscript):/i.test(value)) return "";
+
+                // Đường dẫn tuyệt đối từ thư mục gốc website.
+                if (value.startsWith("/")) return value;
+
+                // File template nằm trong pages/tinh-thanh/.
+                // Đường dẫn tương đối trong JSON được tính từ thư mục gốc website.
+                return "../../" + value.replace(/^\.\/+/, "");
+            }
+
+            function setText(id, value, fallback = "") {
+                const element = $(id);
+                if (!element) return;
+
+                element.textContent =
+                    value !== undefined && value !== null && value !== ""
+                        ? String(value)
+                        : fallback;
+            }
+
+            function normalizeList(value) {
+                if (Array.isArray(value)) return value;
+
+                if (value === undefined || value === null || value === "") {
+                    return [];
+                }
+
+                return [value];
+            }
+
+            // ========================================
+            // TÌM DỮ LIỆU TỈNH THÀNH
+            // ========================================
+
+            function findProvince(data, slug) {
+                if (Array.isArray(data)) {
+                    return data.find((item) => {
+                        return normalizeSlug(item?.slug) === slug;
+                    }) || null;
+                }
+
+                if (isObject(data)) {
+                    // Trường hợp JSON là object chứa trực tiếp dữ liệu tỉnh.
+                    if (normalizeSlug(data.slug) === slug) {
+                        return data;
+                    }
+
+                    // Trường hợp JSON dạng { "bacninh": {...}, ... }.
+                    if (isObject(data[slug])) {
+                        return data[slug];
+                    }
+
+                    // Trường hợp dữ liệu nằm trong thuộc tính provinces.
+                    if (Array.isArray(data.provinces)) {
+                        return data.provinces.find((item) => {
+                            return normalizeSlug(item?.slug) === slug;
+                        }) || null;
+                    }
+
+                    if (isObject(data.provinces) && isObject(data.provinces[slug])) {
+                        return data.provinces[slug];
+                    }
+
+                    // Dò theo slug trong object nếu key không phải slug.
+                    for (const value of Object.values(data)) {
+                        if (
+                            isObject(value) &&
+                            normalizeSlug(value.slug) === slug
+                        ) {
+                            return value;
+                        }
+                    }
+                }
+
+                return null;
+            }
+
+            // ========================================
+            // HIỂN THỊ THÔNG TIN CƠ BẢN
+            // ========================================
+
+            function renderProvinceHeader(province) {
+                const name = province.name || "Tỉnh thành Việt Nam";
+
+                setText("provinceName", name, name);
+                setText("provinceTitle", name, name);
+                setText("breadcrumbName", name, name);
+
+                const title = province.title ||
+                    `${province.type || "Thông tin"} ${name} - Module Trải nghiệm 360`;
+
+                document.title = title;
+
+                const introduction =
+                    province.introduction ??
+                    province.description ??
+                    province.intro ??
+                    "";
+
+                setText(
+                    "provinceIntroduction",
+                    introduction,
+                    `Cùng khám phá thông tin, địa lý, văn hóa và con người ${name}.`
+                );
+            }
+
+            // ========================================
+            // THÔNG TIN TỔNG QUAN
+            // ========================================
+
+            function renderFacts(facts) {
+                const container = $("provinceFacts");
+                if (!container) return;
+
+                const list = normalizeList(facts).filter((item) => {
+                    if (isObject(item)) {
+                        return item.label && item.value !== undefined &&
+                            item.value !== null && item.value !== "";
+                    }
+
+                    return item !== null && item !== undefined && item !== "";
+                });
+
+                if (!list.length) {
+                    showEmpty(container, "Chưa có thông tin tổng quan.");
+                    return;
+                }
+
+                container.innerHTML = list.map((item) => {
+                    let label;
+                    let value;
+
+                    if (isObject(item)) {
+                        label = item.label || item.name || item.title || "Thông tin";
+                        value = item.value ?? item.description ?? "";
+                    } else {
+                        label = "Thông tin";
+                        value = item;
+                    }
+
+                    return `
+                        <div class="grid grid-cols-1 gap-1 py-4 sm:grid-cols-[125px_1fr] sm:gap-4 sm:items-center">
+    <dt class="text-sm font-semibold text-vietnam-muted">
+        ${escapeHTML(label)}
+    </dt>
+    <dd class="text-sm font-medium leading-6 text-vietnam-ink">
+        ${escapeHTML(value)}
+    </dd>
+</div>
+                    `;
+                }).join("");
+            }
+
+            // ========================================
+            // VỊ TRÍ ĐỊA LÝ
+            // ========================================
+
+            function renderGeography(geography) {
+                const container = $("provinceGeography");
+                if (!container) return;
+
+                const list = normalizeList(geography).filter((item) => {
+                    if (isObject(item)) {
+                        const value = item.value ?? item.description ?? item.content;
+
+                        return item.label && value !== undefined &&
+                            value !== null && value !== "";
+                    }
+
+                    return item !== null && item !== undefined && item !== "";
+                });
+
+                if (!list.length) {
+                    showEmpty(container, "Chưa có thông tin về vị trí địa lý.");
+                    return;
+                }
+
+                container.innerHTML = list.map((item) => {
+                    let label;
+                    let value;
+
+                    if (isObject(item)) {
+                        label = item.label || item.name || item.title || "Đặc điểm";
+                        value = item.value ?? item.description ?? item.content ?? "";
+                    } else {
+                        label = "Đặc điểm địa lý";
+                        value = item;
+                    }
+
+                    return `
+                        <div class="grid grid-cols-1 gap-1 py-4 sm:grid-cols-[125px_1fr] sm:gap-4 sm:items-center">
+                            <dt class="text-sm font-semibold text-vietnam-muted">
+                                ${escapeHTML(label)}
+                            </dt>
+                            <dd class="text-sm leading-6 text-vietnam-ink">
+                                ${escapeHTML(value)}
+                            </dd>
+                        </div>
+                    `;
+                }).join("");
+            }
+
+            // ========================================
+            // DÂN TỘC VÀ CON NGƯỜI
+            // ========================================
+
+            function renderEthnic(ethnic) {
+                const container = $("provinceEthnic");
+                if (!container) return;
+
+                if (
+                    ethnic === undefined ||
+                    ethnic === null ||
+                    ethnic === ""
+                ) {
+                    showEmpty(container, "Chưa có thông tin về dân tộc và con người.");
+                    return;
+                }
+
+                if (typeof ethnic === "string" || typeof ethnic === "number") {
+                    container.innerHTML = `
+                        <p>${escapeHTML(ethnic)}</p>
+                    `;
+                    return;
+                }
+
+                const list = normalizeList(ethnic);
+
+                if (!list.length) {
+                    showEmpty(container, "Chưa có thông tin về dân tộc và con người.");
+                    return;
+                }
+
+                container.innerHTML = list.map((item) => {
+                    if (isObject(item)) {
+                        const title =
+                            item.title ||
+                            item.name ||
+                            item.label ||
+                            "";
+
+                        const description =
+                            item.description ||
+                            item.value ||
+                            item.content ||
+                            "";
+
+                        return `
+                            <div class="rounded-xl border border-stone-200 bg-white p-4">
+                                ${title ? `
+                                    <h4 class="font-bold text-vietnam-ink">
+                                        ${escapeHTML(title)}
+                                    </h4>
+                                ` : ""}
+
+                                ${description ? `
+                                    <p class="mt-2 whitespace-pre-line leading-7 text-vietnam-muted">
+                                        ${escapeHTML(description)}
+                                    </p>
+                                ` : ""}
+                            </div>
+                        `;
+                    }
+
+                    return `
+                        <p class="whitespace-pre-line">${escapeHTML(item)}</p>
+                    `;
+                }).join("");
+            }
+
+            // ========================================
+            // KINH TẾ
+            // ========================================
+
+            function renderEconomy(economy) {
+                const container = $("provinceEconomy");
+                if (!container) return;
+
+                if (
+                    economy === undefined ||
+                    economy === null ||
+                    economy === ""
+                ) {
+                    showEmpty(container, "Chưa có thông tin về kinh tế.");
+                    return;
+                }
+
+                const list = normalizeList(economy).filter(Boolean);
+
+                if (!list.length) {
+                    showEmpty(container, "Chưa có thông tin về kinh tế.");
+                    return;
+                }
+
+                container.innerHTML = list.map((item) => {
+                    if (isObject(item)) {
+                        const title =
+                            item.title ||
+                            item.name ||
+                            item.label ||
+                            "";
+
+                        const description =
+                            item.description ||
+                            item.value ||
+                            item.content ||
+                            "";
+
+                        return `
+                <div class="border-b border-stone-200 py-4 first:pt-0 last:border-b-0 last:pb-0">
+                    ${title ? `
+                        <h4 class="font-bold text-vietnam-ink">
+                            ${escapeHTML(title)}
+                        </h4>
+                    ` : ""}
+
+                    ${description ? `
+                        <p class="${title ? "mt-1" : ""} text-sm leading-7 text-vietnam-muted">
+                            ${escapeHTML(description)}
+                        </p>
+                    ` : ""}
+                </div>
+            `;
+                    }
+
+                    return `
+            <p class="text-sm leading-7 text-vietnam-muted">
+                ${escapeHTML(item)}
+            </p>
+        `;
+                }).join("");
+            }
+
+            // ========================================
+            // VĂN HÓA
+            // ========================================
+
+            function renderCulture(culture) {
+                const descriptionContainer = $("provinceCultureDescription");
+                const highlightsContainer = $("provinceCultureHighlights");
+
+                if (!isObject(culture)) {
+                    if (descriptionContainer) {
+                        showEmpty(descriptionContainer, "Chưa có thông tin mô tả văn hóa.");
+                    }
+
+                    if (highlightsContainer) {
+                        highlightsContainer.innerHTML = "";
+                    }
+
+                    return;
+                }
+
+                const description =
+                    culture.description ||
+                    culture.introduction ||
+                    culture.content ||
+                    "";
+
+                if (descriptionContainer) {
+                    if (description) {
+                        descriptionContainer.textContent = description;
+                    } else {
+                        showEmpty(descriptionContainer, "Chưa có phần mô tả văn hóa.");
+                    }
+                }
+
+                const highlights = normalizeList(
+                    culture.highlights ||
+                    culture.features ||
+                    culture.items
+                ).filter(Boolean);
+
+                if (!highlightsContainer) return;
+
+                if (!highlights.length) {
+                    highlightsContainer.innerHTML = "";
+                    return;
+                }
+
+                highlightsContainer.innerHTML = highlights.map((item, index) => {
+                    let title = "";
+                    let descriptionText = "";
+
+                    if (isObject(item)) {
+                        title = item.title || item.name || item.label || "";
+                        descriptionText =
+                            item.description ||
+                            item.content ||
+                            item.value ||
+                            "";
+                    } else {
+                        descriptionText = String(item);
+                    }
+
+                    return `
+                        <div class="flex gap-3 rounded-xl border border-stone-200 bg-white p-4">
+                            <div class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-vietnam-light text-vietnam-red text-sm">
+                                ${index + 1}
+                            </div>
+
+                            <div class="min-w-0">
+                                ${title ? `
+                                    <h4 class="font-bold text-vietnam-ink">
+                                        ${escapeHTML(title)}
+                                    </h4>
+                                ` : ""}
+
+                                ${descriptionText ? `
+                                    <p class="mt-1 text-sm leading-6 text-vietnam-muted">
+                                        ${escapeHTML(descriptionText)}
+                                    </p>
+                                ` : ""}
+                            </div>
+                        </div>
+                    `;
+                }).join("");
+            }
+
+            // ========================================
+            // BẢN ĐỒ
+            // ========================================
+
+            function renderMap(mapUrl) {
+                const mapCard = $("mapCard");
+                const iframe = $("provinceMap");
+                const openMapLink = $("openMapLink");
+
+                if (!mapCard || !iframe || !openMapLink) return;
+
+                if (!mapUrl || typeof mapUrl !== "string") {
+                    mapCard.classList.add("hidden");
+                    return;
+                }
+
+                try {
+                    const url = new URL(mapUrl);
+
+                    const allowedHosts = [
+                        "www.google.com",
+                        "google.com",
+                        "maps.google.com",
+                        "maps.app.goo.gl",
+                        "goo.gl"
+                    ];
+
+                    const isAllowedHost = allowedHosts.some((host) => {
+                        return url.hostname === host ||
+                            url.hostname.endsWith("." + host);
+                    });
+
+                    if (
+                        url.protocol !== "https:" ||
+                        !isAllowedHost
+                    ) {
+                        mapCard.classList.add("hidden");
+                        return;
+                    }
+
+                    iframe.src = url.href;
+                    openMapLink.href = url.href;
+                    mapCard.classList.remove("hidden");
+                } catch (error) {
+                    mapCard.classList.add("hidden");
+                }
+            }
+
+            // ========================================
+            // THƯ VIỆN HÌNH ẢNH
+            // ========================================
+
+            function getGalleryImage(item) {
+                if (typeof item === "string") {
+                    return {
+                        src: item,
+                        alt: ""
+                    };
+                }
+
+                if (!isObject(item)) return null;
+
+                return {
+                    src: item.src || item.url || item.image || item.path || "",
+                    alt: item.alt || item.title || item.caption || ""
+                };
+            }
+
+            function renderGallery(gallery) {
+                const container = $("provinceGallery");
+                const galleryCard = $("galleryCard");
+                const galleryCount = $("galleryCount");
+
+                if (!container || !galleryCard || !galleryCount) return;
+
+                const images = normalizeList(gallery)
+                    .map(getGalleryImage)
+                    .filter((item) => item && item.src)
+                    .map((item) => ({
+                        src: getAssetPath(item.src),
+                        alt: item.alt || ""
+                    }))
+                    .filter((item) => item.src);
+
+                if (!images.length) {
+                    galleryCard.classList.add("hidden");
+                    return;
+                }
+
+                galleryCard.classList.remove("hidden");
+
+                galleryCount.innerHTML = `
+                    <i class="fa-regular fa-images text-vietnam-red"></i>
+                    ${images.length} hình ảnh
+                `;
+
+                container.innerHTML = images.map((item, index) => {
+                    const src = escapeHTML(item.src);
+                    const alt = escapeHTML(item.alt || `Hình ảnh ${index + 1}`);
+
+                    return `
+                        <button
+                            type="button"
+                            class="gallery-card group relative overflow-hidden rounded-2xl border border-stone-200 bg-white text-left shadow-sm transition hover:-translate-y-1 hover:shadow-soft"
+                            data-gallery-index="${index}"
+                            aria-label="Xem hình ảnh ${index + 1}">
+
+                            <div class="relative aspect-[4/3] overflow-hidden bg-stone-100">
+                                <img
+                                    src="${src}"
+                                    alt="${alt}"
+                                    loading="lazy"
+                                    class="gallery-image h-full w-full object-cover"
+                                    onerror="this.closest('.gallery-card').classList.add('hidden')">
+
+                                <div class="absolute inset-0 flex items-center justify-center bg-black/0 transition group-hover:bg-black/20">
+                                    <span class="flex h-11 w-11 scale-90 items-center justify-center rounded-full bg-white/90 text-vietnam-red opacity-0 shadow-lg transition group-hover:scale-100 group-hover:opacity-100">
+                                        <i class="fa-solid fa-magnifying-glass-plus"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                        </button>
+                    `;
+                }).join("");
+
+                container.querySelectorAll("[data-gallery-index]").forEach((button) => {
+                    button.addEventListener("click", () => {
+                        const index = Number(button.dataset.galleryIndex);
+                        const image = images[index];
+
+                        if (image) openImageModal(image.src, image.alt);
+                    });
+                });
+            }
+
+            // ========================================
+            // MODAL XEM ẢNH
+            // ========================================
+
+            const imageModal = $("imageModal");
+            const modalImage = $("modalImage");
+            const modalImageCaption = $("modalImageCaption");
+            const closeImageModalButton = $("closeImageModal");
+
+            let previousFocusedElement = null;
+
+            function openImageModal(src, alt) {
+                if (!imageModal || !modalImage) return;
+
+                previousFocusedElement = document.activeElement;
+
+                modalImage.src = src;
+                modalImage.alt = alt || "Hình ảnh địa phương";
+
+                if (modalImageCaption) {
+                    modalImageCaption.textContent = alt || "";
+                }
+
+                imageModal.classList.remove("hidden");
+                imageModal.classList.add("flex");
+
+                requestAnimationFrame(() => {
+                    imageModal.classList.remove("opacity-0");
+                });
+
+                document.body.classList.add("overflow-hidden");
+
+                if (closeImageModalButton) {
+                    closeImageModalButton.focus();
+                }
+            }
+
+            function closeImageModal() {
+                if (!imageModal) return;
+
+                imageModal.classList.add("opacity-0");
+
+                window.setTimeout(() => {
+                    imageModal.classList.add("hidden");
+                    imageModal.classList.remove("flex");
+
+                    if (modalImage) {
+                        modalImage.src = "";
+                    }
+
+                    document.body.classList.remove("overflow-hidden");
+
+                    if (previousFocusedElement &&
+                        typeof previousFocusedElement.focus === "function") {
+                        previousFocusedElement.focus();
+                    }
+                }, 200);
+            }
+
+            if (closeImageModalButton) {
+                closeImageModalButton.addEventListener("click", closeImageModal);
+            }
+
+            if (imageModal) {
+                imageModal.addEventListener("click", (event) => {
+                    if (event.target === imageModal) {
+                        closeImageModal();
+                    }
+                });
+            }
+
+            document.addEventListener("keydown", (event) => {
+                if (
+                    event.key === "Escape" &&
+                    imageModal &&
+                    !imageModal.classList.contains("hidden")
+                ) {
+                    closeImageModal();
+                }
+            });
+
+            // ========================================
+            // RENDER TOÀN BỘ TRANG
+            // ========================================
+
+            function renderProvince(province) {
+                renderProvinceHeader(province);
+
+                renderFacts(province.facts);
+                renderGeography(province.geography);
+                renderEthnic(province.ethnic);
+                renderEconomy(province.economy);
+                renderCulture(province.culture);
+
+                renderMap(province.mapUrl);
+
+                renderGallery(
+                    province.gallery ||
+                    province.images ||
+                    []
+                );
+
+                if (loadingState) loadingState.classList.add("hidden");
+                if (errorState) errorState.classList.add("hidden");
+                if (pageContent) pageContent.classList.remove("hidden");
+                // Thiết lập âm thanh theo dữ liệu tỉnh
+                setupProvinceSound(province);
+            }
+
+            // ========================================
+            // KHỞI TẠO
+            // ========================================
+
+            async function init() {
+                const slug = getProvinceSlug();
+
+                try {
+                    const response = await fetch(DATA_URL, {
+                        headers: {
+                            "Accept": "application/json"
+                        }
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(
+                            `Không tải được dữ liệu (HTTP ${response.status}).`
+                        );
+                    }
+
+                    const data = await response.json();
+                    const province = findProvince(data, slug);
+
+                    if (!province) {
+                        throw new Error(
+                            `Không tìm thấy dữ liệu cho tỉnh thành "${slug}".`
+                        );
+                    }
+
+                    renderProvince(province);
+                } catch (error) {
+                    console.error("Lỗi tải dữ liệu tỉnh thành:", error);
+
+                    showError(
+                        error.message ||
+                        "Không thể tải dữ liệu tỉnh thành. Vui lòng thử lại."
+                    );
+                }
+            }
+
+            init();
+        });
+    </script>
+
+</body>
+
+</html>

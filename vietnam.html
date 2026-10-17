@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#F8F2E9">
+
+    <title>Bản đồ Việt Nam - Module Trải Nghiệm Thông Minh</title>
+    <meta name="description"
+        content="Khám phá bản đồ hành chính Việt Nam, tìm hiểu các địa phương qua Module Trải Nghiệm Thông Minh.">
+
+    <!-- Be Vietnam Pro: đồng bộ trang chủ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Be Vietnam Pro"', 'sans-serif'],
+                    },
+                    colors: {
+                        vietnam: {
+                            red: '#A51F2B',
+                            dark: '#801B25',
+                            light: '#F8E8E8',
+                            cream: '#F8F2E9',
+                            paper: '#FFFEFC',
+                            ink: '#302927',
+                            muted: '#766B66',
+                        },
+                    },
+                    boxShadow: {
+                        soft: '0 12px 35px rgba(89, 34, 34, 0.08)',
+                        card: '0 18px 45px rgba(89, 34, 34, 0.10)',
+                    },
+                },
+            },
+        };
+    </script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body class="min-h-screen bg-vietnam-paper font-sans text-vietnam-ink antialiased">
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-50 border-b border-red-900/10 bg-white/95 shadow-sm backdrop-blur-md">
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+
+            <!-- Logo -->
+            <a href="index.html" class="group flex min-w-0 items-center gap-3">
+                <div
+                    class="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full border border-red-900/10">
+                    <img src="assets/images/logo.jpg" alt="Logo Module Trải Nghiệm Thông Minh"
+                        class="h-full w-full object-contain">
+                </div>
+
+                <div class="min-w-0">
+                    <span class="block text-sm font-extrabold tracking-[0.12em] text-vietnam-red sm:text-base">
+                        VIỆT NAM
+                    </span>
+                    <span class="mt-0.5 block text-xs font-medium text-vietnam-muted sm:text-sm">
+                        Khám Phá Tổ Quốc
+                    </span>
+                </div>
+            </a>
+
+            <!-- Desktop navigation -->
+            <nav id="desktop-nav" aria-label="Điều hướng chính" class="hidden items-center gap-1 lg:flex">
+                <a href="index.html" class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+                    Giới thiệu
+                </a>
+                <a href="vietnam.html" class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+                    Việt Nam
+                </a>
+                <a href="danang.html" class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+                    Đà Nẵng
+                </a>
+                <a href="dantoc.html" class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+                    Dân tộc
+                </a>
+                <a href="tulieu.html" class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+                    Tư liệu
+                </a>
+                <a href="lienhe.html" class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+                    Liên hệ
+                </a>
+            </nav>
+
+            <!-- Mobile menu button -->
+            <button id="menu-toggle" type="button"
+                class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-red-900/10 text-vietnam-red transition hover:bg-vietnam-light focus:outline-none focus:ring-2 focus:ring-vietnam-red/30 lg:hidden"
+                aria-label="Mở menu điều hướng" aria-controls="mobile-nav" aria-expanded="false">
+                <i id="menu-icon" class="fa-solid fa-bars text-xl" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <!-- Mobile navigation -->
+        <nav id="mobile-nav" aria-label="Điều hướng di động"
+            class="hidden border-t border-red-900/10 bg-white px-4 pb-4 pt-3 shadow-lg lg:hidden">
+            <div class="mx-auto flex max-w-7xl flex-col gap-1">
+                <a href="index.html" class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+                    Giới thiệu
+                </a>
+                <a href="vietnam.html" class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+                    Việt Nam
+                </a>
+                <a href="danang.html" class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+                    Đà Nẵng
+                </a>
+                <a href="dantoc.html" class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+                    Dân tộc
+                </a>
+                <a href="tulieu.html" class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+                    Tư liệu
+                </a>
+                <a href="lienhe.html" class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+                    Liên hệ
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN -->
+    <main class="mx-auto w-full max-w-7xl px-3 py-3 sm:px-6 sm:py-10 lg:px-8">
+        <div id="infoBackdrop" class="pointer-events-none fixed inset-0 z-[100] bg-slate-950/45
+           opacity-0 transition-opacity duration-300 lg:hidden" aria-hidden="true"></div>
+
+        <!-- Tiêu đề -->
+        <section class="mb-3 text-center sm:mb-10">
+            <span
+                class="mb-3 inline-flex items-center gap-2 rounded-full border border-vietnam-red/15 bg-vietnam-light px-4 py-2 text-xs font-bold uppercase tracking-wider text-vietnam-red sm:text-sm">
+                <i class="fa-solid fa-compass" aria-hidden="true"></i>
+                Hành trình khám phá
+            </span>
+
+            <h1 class="text-2xl font-black tracking-tight text-vietnam-ink sm:text-3xl lg:text-4xl">
+                Bản đồ hành chính Việt Nam
+            </h1>
+
+            <div class="mx-auto my-5 flex items-center justify-center gap-2">
+                <span class="h-1 w-12 rounded-full bg-vietnam-red"></span>
+                <span class="h-1 w-5 rounded-full bg-vietnam-red/30"></span>
+                <span class="h-1 w-2 rounded-full bg-vietnam-red/15"></span>
+            </div>
+
+            <p class="mx-auto max-w-2xl text-sm leading-7 text-vietnam-muted sm:text-base">
+                Chọn một tỉnh, thành phố trên bản đồ hoặc sử dụng ô tìm kiếm
+                để khám phá.
+            </p>
+        </section>
+
+
+        <!-- BỐ CỤC CHÍNH -->
+        <section class="flex flex-col gap-3 lg:grid lg:grid-cols-[minmax(0,1fr)_480px] lg:items-start lg:gap-5 xl:gap-6"
+            aria-label="Bản đồ và thông tin địa phương">
+
+            <!-- BẢN ĐỒ -->
+            <div class="order-1 min-w-0 lg:order-1">
+                <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+
+                    <!-- Tiêu đề bản đồ -->
+                    <div
+                        class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 px-4 py-4 sm:px-5">
+                        <div class="flex items-center gap-3">
+                            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-teal-50 text-teal-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" stroke-width="1.8">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M9 18l-6 3V6l6-3m0 15l6 3m-6-3V3m6 18l6-3V3l-6 3m0 15V6m0 0L9 3" />
+                                </svg>
+                            </div>
+
+                            <div>
+                                <h2 class="text-sm font-bold text-slate-900 sm:text-base">
+                                    Bản đồ Việt Nam
+                                </h2>
+                                <p class="mt-0.5 text-xs text-slate-500">
+                                    Nhấn vào địa phương để xem chi tiết
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Vùng hiển thị SVG -->
+                    <div id="mapWrapper" class="relative h-[52dvh] min-h-[320px] max-h-[520px] overflow-hidden
+           bg-slate-50 select-none
+           sm:h-[480px] sm:min-h-[440px] sm:max-h-none
+           lg:h-[calc(100vh-250px)] lg:min-h-[600px] lg:max-h-[900px]">
+                        <object id="map" data="assets/images/bando.svg" type="image/svg+xml"
+                            aria-label="Bản đồ hành chính Việt Nam" class="block h-full min-h-full w-full">
+                            <p class="p-6 text-center text-sm text-slate-500">
+                                Không thể tải bản đồ. Vui lòng kiểm tra file
+                                assets/images/bando.svg.
+                            </p>
+                        </object>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CỘT TÌM KIẾM VÀ THÔNG TIN -->
+            <aside class="order-2 flex min-w-0 flex-col gap-3 lg:order-2 lg:gap-5">
+
+                <!-- HỘP TÌM KIẾM -->
+                <section class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+                    <div class="mb-4 flex items-center gap-3">
+                        <div
+                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-teal-50 text-teal-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="7" />
+                                <path stroke-linecap="round" d="m16 16 4 4" />
+                            </svg>
+                        </div>
+
+                        <div>
+                            <h2 class="text-base font-bold text-slate-900">
+                                Tìm tỉnh / thành phố
+                            </h2>
+                            <p class="mt-1 text-xs text-slate-500">
+                                Tra cứu địa phương nhanh chóng
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="search-box relative z-30">
+                        <input type="text" id="searchInput" placeholder="Ví dụ: Hà Nội..." autocomplete="off"
+                            aria-label="Tìm tỉnh hoặc thành phố"
+                            class="h-12 w-full rounded-xl border border-slate-300 bg-white px-4 pr-10 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-teal-600 focus:ring-4 focus:ring-teal-600/10">
+
+                        <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="1.8">
+                                <circle cx="11" cy="11" r="7" />
+                                <path stroke-linecap="round" d="m16 16 4 4" />
+                            </svg>
+                        </span>
+                    </div>
+
+                </section>
+
+                <!-- THÔNG TIN ĐỊA PHƯƠNG: LUÔN NẰM DƯỚI HỘP TÌM KIẾM -->
+                <section id="infoPanel" role="dialog" aria-label="Thông tin địa phương" aria-modal="false" class="fixed inset-x-0 bottom-0 z-[101] max-h-[85dvh] translate-y-full
+           pointer-events-none overflow-y-auto overscroll-contain
+           rounded-t-3xl border border-slate-200 bg-white shadow-2xl
+           transition-transform duration-300 ease-out
+           lg:relative lg:inset-auto lg:bottom-auto lg:z-auto
+           lg:max-h-none lg:translate-y-0 lg:pointer-events-auto
+           lg:overflow-hidden lg:rounded-2xl lg:shadow-sm">
+                    <!-- Thanh tiêu đề -->
+                    <div class="flex items-center justify-between gap-3 border-b border-slate-100 px-5 py-4 sm:px-6">
+                        <div class="flex items-center gap-3">
+                            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-sky-50 text-sky-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" stroke-width="1.8">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M12 21s7-4.5 7-11a7 7 0 10-14 0c0 6.5 7 11 7 11z" />
+                                    <circle cx="12" cy="10" r="2.5" />
+                                </svg>
+                            </div>
+
+                            <div>
+                                <h2 class="text-base font-bold text-slate-900">
+                                    Thông tin địa phương
+                                </h2>
+                                <p class="mt-1 text-xs text-slate-500">
+                                    Nội dung được cập nhật khi chọn tỉnh
+                                </p>
+                            </div>
+                        </div>
+
+                        <button id="closePanel" type="button" aria-label="Đặt lại bản đồ" title="Đặt lại bản đồ"
+                            class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-slate-200 text-slate-500 transition hover:border-teal-200 hover:bg-teal-50 hover:text-teal-700">
+                            <i class="fa-solid fa-x"></i>
+                        </button>
+                    </div>
+
+                    <!-- JavaScript cập nhật nội dung tại đây -->
+                    <div id="provinceInfo" class="p-5 sm:p-6">
+                        <div class="flex min-h-[200px] flex-col items-center justify-center text-center">
+                            <div
+                                class="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-100 text-slate-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M9 18l-6 3V6l6-3m0 15l6 3m-6-3V3m6 18l6-3V3l-6 3m0 15V6" />
+                                </svg>
+                            </div>
+
+                            <h3 class="text-lg font-bold text-slate-800">
+                                Khám phá Việt Nam
+                            </h3>
+
+                            <p class="mt-2 max-w-xs text-sm leading-6 text-slate-500">
+                                Chọn một tỉnh trên bản đồ hoặc tìm kiếm để xem
+                                thông tin của địa phương tại đây.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+            </aside>
+        </section>
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="mt-10 bg-vietnam-dark px-5 py-7 text-white sm:px-8">
+        <div
+            class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 text-center sm:flex-row sm:text-left">
+            <a href="index.html" class="flex items-center gap-2 font-extrabold tracking-wide">
+                <i class="fa-solid fa-compass text-lg" aria-hidden="true"></i>
+                <span>MODULE TRẢI NGHIỆM THÔNG MINH</span>
+            </a>
+
+            <p class="text-xs leading-6 text-white/75 sm:text-sm">
+                © 2026 MODULE TRẢI NGHIỆM THÔNG MINH
+                <span class="hidden sm:inline">—</span>
+                <span class="block sm:inline">Hành trình khám phá Tổ quốc</span>
+            </p>
+        </div>
+    </footer>
+
+
+    <!-- DỮ LIỆU VÀ LOGIC BẢN ĐỒ -->
+    <script src="assets/js/data/provinces-data.js"></script>
+    <script src="assets/js/vietnammap.js"></script>
+    <script src="/assets/js/header.js"></script>
+
+
+
+</body>
+
+</html>

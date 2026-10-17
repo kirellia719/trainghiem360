@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>54 Dân Tộc Việt Nam - Bản Đồ Văn Hóa</title>
+    <meta name="description"
+        content="Khám phá 54 dân tộc Việt Nam, lịch sử, phong tục, đời sống và bản sắc văn hóa của mỗi dân tộc.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Be Vietnam Pro"', 'sans-serif'],
+                    },
+                    colors: {
+                        vietnam: {
+                            red: '#A51F2B',
+                            dark: '#801B25',
+                            light: '#F8E8E8',
+                            cream: '#F8F2E9',
+                            paper: '#FFFEFC',
+                            ink: '#302927',
+                            muted: '#766B66',
+                        },
+                    },
+                    boxShadow: {
+                        soft: '0 12px 35px rgba(89, 34, 34, 0.08)',
+                        card: '0 18px 45px rgba(89, 34, 34, 0.10)',
+                    },
+                },
+            },
+        };
+    </script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body class="min-h-screen bg-vietnam-paper font-sans text-vietnam-ink antialiased">
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-50 border-b border-red-900/10 bg-white/95 shadow-sm backdrop-blur-md">
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+
+            <!-- Logo -->
+            <a href="index.html" class="group flex min-w-0 items-center gap-3">
+                <div
+                    class="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full border border-red-900/10">
+                    <img src="assets/images/logo.jpg" alt="Logo Module Trải Nghiệm Thông Minh"
+                        class="h-full w-full object-contain">
+                </div>
+
+                <div class="min-w-0">
+                    <span class="block text-sm font-extrabold tracking-[0.12em] text-vietnam-red sm:text-base">
+                        VIỆT NAM
+                    </span>
+                    <span class="mt-0.5 block text-xs font-medium text-vietnam-muted sm:text-sm">
+                        Khám Phá Tổ Quốc
+                    </span>
+                </div>
+            </a>
+
+            <!-- Desktop navigation -->
+            <nav id="desktop-nav" aria-label="Điều hướng chính" class="hidden items-center gap-1 lg:flex">
+                <a href="index.html" class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+                    Giới thiệu
+                </a>
+                <a href="vietnam.html" class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+                    Việt Nam
+                </a>
+                <a href="danang.html" class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+                    Đà Nẵng
+                </a>
+                <a href="dantoc.html" class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+                    Dân tộc
+                </a>
+                <a href="tulieu.html" class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+                    Tư liệu
+                </a>
+                <a href="lienhe.html" class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+                    Liên hệ
+                </a>
+            </nav>
+
+            <!-- Mobile menu button -->
+            <button id="menu-toggle" type="button"
+                class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-red-900/10 text-vietnam-red transition hover:bg-vietnam-light focus:outline-none focus:ring-2 focus:ring-vietnam-red/30 lg:hidden"
+                aria-label="Mở menu điều hướng" aria-controls="mobile-nav" aria-expanded="false">
+                <i id="menu-icon" class="fa-solid fa-bars text-xl" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <!-- Mobile navigation -->
+        <nav id="mobile-nav" aria-label="Điều hướng di động"
+            class="hidden border-t border-red-900/10 bg-white px-4 pb-4 pt-3 shadow-lg lg:hidden">
+            <div class="mx-auto flex max-w-7xl flex-col gap-1">
+                <a href="index.html" class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+                    Giới thiệu
+                </a>
+                <a href="vietnam.html" class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+                    Việt Nam
+                </a>
+                <a href="danang.html" class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+                    Đà Nẵng
+                </a>
+                <a href="dantoc.html" class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+                    Dân tộc
+                </a>
+                <a href="tulieu.html" class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+                    Tư liệu
+                </a>
+                <a href="lienhe.html" class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+                    Liên hệ
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+
+        <!-- ================= HERO ================= -->
+        <section
+            class="relative mb-9 overflow-hidden rounded-3xl bg-gradient-to-br from-vietnam-dark via-vietnam-red to-rose-700 px-5 py-10 text-center text-white shadow-soft sm:px-10 sm:py-14">
+
+            <div class="pointer-events-none absolute -right-12 -top-20 h-64 w-64 rounded-full border border-white/10">
+            </div>
+            <div class="pointer-events-none absolute -right-2 -top-10 h-44 w-44 rounded-full border border-white/10">
+            </div>
+            <div class="pointer-events-none absolute -bottom-20 -left-12 h-56 w-56 rounded-full bg-white/5"></div>
+
+            <div class="relative mx-auto max-w-3xl">
+                <span
+                    class="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold tracking-wide text-white/90 sm:text-sm">
+                    <i class="fa-solid fa-earth-asia"></i>
+                    54 DÂN TỘC VIỆT NAM
+                </span>
+
+                <p class="mx-auto max-w-2xl text-sm leading-7 text-white/85 sm:text-base sm:leading-8">
+                    Cùng tìm hiểu lịch sử, phong tục, đời sống và những nét văn hóa
+                    đặc sắc của cộng đồng các dân tộc trên khắp Việt Nam.
+                </p>
+
+                <div
+                    class="mt-7 flex flex-wrap items-center justify-center gap-3 text-xs font-medium text-white/90 sm:text-sm">
+                    <span class="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2">
+                        <i class="fa-solid fa-people-group"></i>
+                        Cộng đồng các dân tộc
+                    </span>
+                    <span class="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2">
+                        <i class="fa-solid fa-mountain-sun"></i>
+                        Bản sắc vùng miền
+                    </span>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= SEARCH ================= -->
+        <section class="mb-8 rounded-2xl border border-slate-200/80 bg-white p-4 shadow-soft sm:p-5">
+
+            <label for="searchInput" class="mb-3 block text-sm font-bold text-slate-800 sm:text-base">
+                Tìm hiểu các dân tộc
+            </label>
+
+            <div class="relative">
+                <!-- Icon tìm kiếm -->
+                <i class="fa-solid fa-magnifying-glass pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+                    aria-hidden="true"></i>
+
+                <!-- Ô nhập tìm kiếm -->
+                <input id="searchInput" type="search" placeholder="Nhập tên dân tộc, tên gọi khác hoặc địa phương..."
+                    autocomplete="off"
+                    class="w-full rounded-xl border border-slate-200 bg-slate-50 py-3.5 pl-11 pr-12 text-sm text-slate-800 outline-none transition duration-200 placeholder:text-slate-400 hover:border-slate-300 focus:border-vietnam-red focus:bg-white focus:ring-4 focus:ring-red-100 sm:text-base">
+
+                <!-- Nút xóa tìm kiếm -->
+                <button id="clearSearchButton" type="button" aria-label="Xóa nội dung tìm kiếm" title="Xóa tìm kiếm"
+                    class="absolute right-3 top-1/2 hidden h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-slate-400 transition hover:bg-slate-200 hover:text-slate-700 focus:outline-none focus:ring-2 focus:ring-red-200">
+                    <i class="fa-solid fa-xmark text-lg" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <p id="searchHint" class="mt-2 text-xs leading-5 text-slate-500" aria-live="polite">
+                Tìm kiếm theo tên dân tộc, tên gọi khác hoặc địa phương.
+            </p>
+
+        </section>
+
+
+        <!-- ================= LIST HEADER ================= -->
+        <section id="ethnicListSection" aria-labelledby="listTitle">
+
+            <div class="mb-5 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
+                <div>
+                    <p class="mb-1 text-xs font-bold uppercase tracking-[0.16em] text-vietnam-red">
+                        Khám phá văn hóa
+                    </p>
+
+                    <h2 id="listTitle" class="text-xl font-extrabold text-slate-800 sm:text-2xl">
+                        Danh sách các dân tộc
+                    </h2>
+
+                    <p class="mt-2 text-sm leading-6 text-slate-500">
+                        Chọn một dân tộc để xem thông tin chi tiết.
+                    </p>
+                </div>
+
+                <p id="resultCount" aria-live="polite" class="shrink-0 text-sm font-semibold text-slate-500">
+                    Đang tải danh sách...
+                </p>
+            </div>
+
+            <!-- Danh sách được tạo bằng JavaScript -->
+            <div id="ethnicList" class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 xl:grid-cols-4">
+            </div>
+
+            <!-- Trạng thái không tìm thấy -->
+            <div id="emptyState"
+                class="hidden rounded-2xl border border-dashed border-slate-300 bg-white px-5 py-12 text-center">
+                <div
+                    class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-slate-100 text-slate-400">
+                    <i class="fa-solid fa-magnifying-glass text-xl"></i>
+                </div>
+
+                <h3 class="text-base font-bold text-slate-700">
+                    Không tìm thấy dân tộc phù hợp
+                </h3>
+
+                <p class="mt-2 text-sm text-slate-500">
+                    Hãy thử từ khóa khác hoặc xem lại toàn bộ danh sách.
+                </p>
+
+                <button id="emptyShowAllButton" type="button"
+                    class="mt-5 rounded-xl bg-vietnam-red px-5 py-3 text-sm font-bold text-white transition hover:bg-vietnam-dark">
+                    Xem tất cả dân tộc
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- ================= DETAIL MODAL ================= -->
+    <div id="detailModal"
+        class="fixed inset-0 z-[1000] hidden items-center justify-center bg-slate-950/70 p-2 backdrop-blur-sm sm:p-5"
+        role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+
+        <div id="modalContainer"
+            class="flex max-h-[94dvh] w-full max-w-5xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl sm:rounded-3xl">
+
+            <!-- Modal header -->
+            <div
+                class="flex shrink-0 items-center justify-between gap-4 bg-gradient-to-r from-vietnam-dark to-vietnam-red px-4 py-3.5 text-white sm:px-6 sm:py-4">
+
+                <div class="flex min-w-0 items-center gap-3">
+                    <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/15">
+                        <i class="fa-solid fa-book-open text-lg"></i>
+                    </div>
+
+                    <div class="min-w-0">
+                        <p class="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/70 sm:text-xs">
+                            Hồ sơ văn hóa
+                        </p>
+
+                        <h2 id="modalTitle" class="truncate text-lg font-extrabold sm:text-xl">
+                            Thông tin dân tộc
+                        </h2>
+                    </div>
+                </div>
+
+                <button id="closeModalButton" type="button"
+                    class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-2xl transition hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/50"
+                    aria-label="Đóng thông tin chi tiết">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Modal content -->
+            <div id="modalBody"
+                class="min-h-0 flex-1 overflow-y-auto overscroll-contain bg-vietnam-paper p-4 sm:p-6 lg:p-7">
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="mt-12 bg-vietnam-dark px-4 py-6 text-white sm:px-8 sm:py-7">
+        <div
+            class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 text-center sm:flex-row sm:text-left">
+
+            <a href="khampha.html" class="flex items-center gap-2 text-sm font-extrabold tracking-wide">
+                <i class="fa-solid fa-compass text-lg" aria-hidden="true"></i>
+                <span>MODULE TRẢI NGHIỆM THÔNG MINH</span>
+            </a>
+
+            <p class="text-xs leading-6 text-white/75 sm:text-sm">
+                © 2026 MODULE TRẢI NGHIỆM THÔNG MINH
+                <span class="hidden sm:inline">—</span>
+                <span class="block sm:inline">Hành trình khám phá Tổ quốc</span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <!--
+         * DỮ LIỆU CÁC DÂN TỘC
+         *
+         * Hiện có dữ liệu mẫu dân tộc Mảng.
+         * Thêm các dân tộc khác vào mảng ethnicGroups theo cùng cấu trúc.
+         */
+    -->
+    <script src="/assets/js/data/dan-toc-data.js"></script>
+    <script src="/assets/js/dantoc.js"></script>
+    <script src="/assets/js/mobile.js"></script>
+    <script src="/assets/js/header.js"></script>
+
+
+</body>
+
+</html>
