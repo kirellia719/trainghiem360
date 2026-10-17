@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Game: Khám Phá Địa Lý Việt Nam 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .option-btn {
+            transition: all 0.3s ease;
+        }
+        .option-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+    <div id="game-container" class="bg-white rounded-2xl shadow-2xl p-8 max-w-2xl w-full fade-in">
+        <!-- Màn hình bắt đầu -->
+        <div id="start-screen" class="text-center">
+            <h1 class="text-3xl md:text-4xl font-bold text-blue-600 mb-4">🌍 Khám Phá Địa Lý Việt Nam 2025</h1>
+            <p class="text-gray-600 mb-8 text-lg">Thử tài hiểu biết của bạn về những thay đổi hành chính mới nhất!</p>
+            <button onclick="startGame()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-xl shadow-lg transition-transform hover:scale-105">
+                Bắt Đầu Chơi
+            </button>
+        </div>
+
+        <!-- Màn hình câu hỏi -->
+        <div id="quiz-screen" class="hidden">
+            <div class="flex justify-between items-center mb-6">
+                <span class="text-gray-500 font-semibold" id="question-counter">Câu hỏi: 1/5</span>
+                <span class="text-yellow-500 font-bold flex items-center">
+                    <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    Điểm: <span id="score-display">0</span>
+                </span>
+            </div>
+            
+            <h2 id="question-text" class="text-2xl font-bold text-gray-800 mb-6 min-h-[80px]"></h2>
+            
+            <div id="options-container" class="space-y-4">
+                <!-- Các nút đáp án sẽ được tạo bằng JS -->
+            </div>
+            
+            <div id="feedback" class="mt-6 text-center font-bold text-lg hidden h-8"></div>
+            
+            <button id="next-btn" onclick="nextQuestion()" class="mt-6 w-full bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-3 px-4 rounded-xl hidden transition-colors">
+                Câu Tiếp Theo ➡️
+            </button>
+        </div>
+
+        <!-- Màn hình kết quả -->
+        <div id="end-screen" class="hidden text-center fade-in">
+            <h2 class="text-4xl font-bold text-green-500 mb-4">🎉 Chúc Mừng! 🎉</h2>
+            <p class="text-xl text-gray-700 mb-6">Bạn đã hoàn thành bài thi với số điểm:</p>
+            <div class="text-6xl font-black text-blue-600 mb-8"><span id="final-score"></span>/5</div>
+            <p id="result-message" class="text-lg text-gray-600 mb-8 italic"></p>
+            <button onclick="resetGame()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-xl shadow-lg transition-transform hover:scale-105">
+                🔄 Chơi Lại
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const quizData = [
+            {
+                question: "Từ ngày 1/7/2025, cả nước Việt Nam chúng ta chính thức rút gọn còn bao nhiêu đơn vị hành chính cấp tỉnh/thành phố?",
+                options: ["63 đơn vị", "45 đơn vị", "34 đơn vị (28 tỉnh và 6 TP)", "50 đơn vị"],
+                correct: 2
+            },
+            {
+                question: "Cuộc cải cách hành chính năm 2025 đã chính thức bãi bỏ hoàn toàn cấp hành chính trung gian nào trên toàn quốc?",
+                options: ["Cấp xã/phường", "Cấp quận/huyện", "Cấp tỉnh/thành phố", "Cấp thôn/bản"],
+                correct: 1
+            },
+            {
+                question: "Điểm cực Bắc của Tổ quốc (cột cờ Lũng Cú, trước đây thuộc Hà Giang) hiện nay nằm trên địa phận của tỉnh nào sau sáp nhập?",
+                options: ["Tỉnh Tuyên Quang", "Tỉnh Cao Bằng", "Tỉnh Lạng Sơn", "Tỉnh Lào Cai"],
+                correct: 0
+            },
+            {
+                question: "Tỉnh An Giang mới hiện nay có diện tích vươn ra tận Vịnh Thái Lan do được hợp nhất từ An Giang cũ và tỉnh nào?",
+                options: ["Tỉnh Cà Mau", "Tỉnh Kiên Giang", "Tỉnh Đồng Tháp", "Tỉnh Bạc Liêu"],
+                correct: 1
+            },
+            {
+                question: "\"Nóc nhà Đông Dương\" Phan Xi Păng hiện nay nằm ở tỉnh Lào Cai. Tỉnh Lào Cai mới là sự hợp nhất của Lào Cai cũ và tỉnh nào?",
+                options: ["Tỉnh Lai Châu", "Tỉnh Điện Biên", "Tỉnh Yên Bái", "Tỉnh Sơn La"],
+                correct: 2
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let canAnswer = true;
+
+        const startScreen = document.getElementById('start-screen');
+        const quizScreen = document.getElementById('quiz-screen');
+        const endScreen = document.getElementById('end-screen');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const nextBtn = document.getElementById('next-btn');
+        const feedback = document.getElementById('feedback');
+        const scoreDisplay = document.getElementById('score-display');
+        const questionCounter = document.getElementById('question-counter');
+
+        function startGame() {
+            startScreen.classList.add('hidden');
+            quizScreen.classList.remove('hidden');
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            canAnswer = true;
+            nextBtn.classList.add('hidden');
+            feedback.classList.add('hidden');
+            
+            const currentQ = quizData[currentQuestionIndex];
+            questionText.innerText = currentQ.question;
+            questionCounter.innerText = `Câu hỏi: ${currentQuestionIndex + 1}/${quizData.length}`;
+            
+            optionsContainer.innerHTML = '';
+            
+            currentQ.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.innerText = option;
+                button.className = 'option-btn w-full text-left bg-gray-50 border-2 border-gray-200 hover:border-blue-400 p-4 rounded-xl text-lg font-medium text-gray-700';
+                button.onclick = () => selectOption(index, button);
+                optionsContainer.appendChild(button);
+            });
+        }
+
+        function selectOption(index, selectedButton) {
+            if (!canAnswer) return;
+            canAnswer = false;
+
+            const currentQ = quizData[currentQuestionIndex];
+            const allButtons = optionsContainer.children;
+
+            if (index === currentQ.correct) {
+                selectedButton.classList.remove('bg-gray-50', 'border-gray-200');
+                selectedButton.classList.add('bg-green-100', 'border-green-500', 'text-green-700');
+                score++;
+                scoreDisplay.innerText = score;
+                feedback.innerText = "✅ Chính xác!";
+                feedback.classList.remove('text-red-500');
+                feedback.classList.add('text-green-600');
+            } else {
+                selectedButton.classList.remove('bg-gray-50', 'border-gray-200');
+                selectedButton.classList.add('bg-red-100', 'border-red-500', 'text-red-700');
+                
+                // Highlight correct answer
+                allButtons[currentQ.correct].classList.remove('bg-gray-50', 'border-gray-200');
+                allButtons[currentQ.correct].classList.add('bg-green-100', 'border-green-500', 'text-green-700');
+                
+                feedback.innerText = "❌ Sai rồi!";
+                feedback.classList.remove('text-green-600');
+                feedback.classList.add('text-red-500');
+            }
+
+            feedback.classList.remove('hidden');
+            nextBtn.classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < quizData.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            quizScreen.classList.add('hidden');
+            endScreen.classList.remove('hidden');
+            document.getElementById('final-score').innerText = score;
+            
+            const msg = document.getElementById('result-message');
+            if (score === 5) {
+                msg.innerText = "Tuyệt vời! Bạn là chuyên gia địa lý tương lai!";
+            } else if (score >= 3) {
+                msg.innerText = "Làm tốt lắm! Bạn nắm bắt thông tin rất nhanh.";
+            } else {
+                msg.innerText = "Cố gắng lên nhé, hãy chơi lại để nhớ kiến thức tốt hơn!";
+            }
+        }
+
+        function resetGame() {
+            currentQuestionIndex = 0;
+            score = 0;
+            scoreDisplay.innerText = score;
+            endScreen.classList.add('hidden');
+            quizScreen.classList.remove('hidden');
+            loadQuestion();
+        }
+    </script>
+</body>
+</html>

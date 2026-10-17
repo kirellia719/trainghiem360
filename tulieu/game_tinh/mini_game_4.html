@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Game Địa Lý 2025 - Phần 3</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap');
+        
+        body {
+            background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+            font-family: 'Quicksand', sans-serif;
+        }
+        .float-anim {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .slide-in {
+            animation: slideIn 0.5s ease-out forwards;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .option-btn {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 6px 0px rgba(0,0,0,0.1);
+        }
+        .option-btn:active {
+            transform: translateY(6px);
+            box-shadow: 0 0px 0px rgba(0,0,0,0);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+    <div id="game-container" class="bg-white/90 backdrop-blur-sm rounded-[2rem] shadow-2xl p-6 md:p-10 max-w-3xl w-full border-4 border-white slide-in">
+        
+        <!-- Màn hình bắt đầu -->
+        <div id="start-screen" class="text-center py-8">
+            <div class="text-7xl mb-6 float-anim">🌎</div>
+            <h1 class="text-4xl md:text-5xl font-bold text-blue-600 mb-6 drop-shadow-sm">Thử Thách Địa Lý Phần 3!</h1>
+            <p class="text-xl text-gray-700 mb-8 font-semibold">Cùng khám phá những thay đổi thú vị trên bản đồ nhé!</p>
+            <button onclick="startGame()" class="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-4 px-12 rounded-full text-2xl shadow-[0_6px_0_#0891b2] active:shadow-none active:translate-y-[6px] transition-all">
+                Chơi Ngay! 🚢
+            </button>
+        </div>
+
+        <!-- Màn hình câu hỏi -->
+        <div id="quiz-screen" class="hidden">
+            <div class="flex justify-between items-center mb-8 bg-blue-50 p-4 rounded-2xl border border-blue-100">
+                <div class="font-bold text-lg text-blue-800 bg-white px-5 py-2 rounded-xl shadow-sm">
+                    Câu hỏi <span id="question-counter" class="text-cyan-600 text-2xl mx-1">1</span>/5
+                </div>
+                <div class="font-bold text-xl text-yellow-600 flex items-center bg-white px-5 py-2 rounded-xl shadow-sm">
+                    🏆 Điểm: <span id="score-display" class="text-yellow-500 ml-2 text-3xl">0</span>
+                </div>
+            </div>
+            
+            <h2 id="question-text" class="text-2xl md:text-3xl font-bold text-gray-800 mb-8 min-h-[120px] leading-relaxed"></h2>
+            
+            <div id="options-container" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <!-- Nút đáp án -->
+            </div>
+            
+            <div id="feedback" class="mt-8 text-center font-bold text-2xl hidden h-10 slide-in"></div>
+            
+            <button id="next-btn" onclick="nextQuestion()" class="mt-8 w-full bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-4 px-6 rounded-2xl hidden shadow-[0_6px_0_#4338ca] active:shadow-none active:translate-y-[6px] transition-all text-xl">
+                Tiếp Theo Nhé! ⏭️
+            </button>
+        </div>
+
+        <!-- Màn hình kết quả -->
+        <div id="end-screen" class="hidden text-center py-8">
+            <div class="text-8xl mb-6 float-anim">🎊</div>
+            <h2 class="text-5xl font-bold text-blue-600 mb-6">Trò chơi kết thúc!</h2>
+            <p class="text-2xl text-gray-700 mb-4 font-semibold">Điểm số của bạn là:</p>
+            <div class="text-8xl font-black text-cyan-500 mb-8 drop-shadow-md">
+                <span id="final-score"></span>/5
+            </div>
+            <p id="result-message" class="text-2xl text-indigo-600 mb-10 font-bold"></p>
+            <button onclick="resetGame()" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-4 px-12 rounded-full text-2xl shadow-[0_6px_0_#be185d] active:shadow-none active:translate-y-[6px] transition-all">
+                🔄 Chơi Lại Từ Đầu
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const quizData = [
+            {
+                question: "\"Xứ nẫu\" Bình Định và cao nguyên đại ngàn Gia Lai nay đã về chung một nhà, tạo thành đơn vị hành chính cấp tỉnh có tên là gì?",
+                options: [
+                    "Tỉnh Bình Định", 
+                    "Tỉnh Gia Lai", 
+                    "Tỉnh Bình Gia", 
+                    "Tỉnh Nam Trung Bộ"
+                ],
+                correct: 1
+            },
+            {
+                question: "Vịnh Hạ Long – Di sản thiên nhiên thế giới – thuộc tỉnh Quảng Ninh. Theo đợt sáp nhập vừa rồi, Quảng Ninh có bị sáp nhập với tỉnh nào không?",
+                options: [
+                    "Có sáp nhập với Hải Phòng", 
+                    "Có sáp nhập với Lạng Sơn", 
+                    "Không (Quảng Ninh giữ nguyên)", 
+                    "Có sáp nhập với Bắc Giang"
+                ],
+                correct: 2
+            },
+            {
+                question: "Tỉnh Hưng Yên mới là một vựa lúa khổng lồ của Đồng bằng sông Hồng khi hợp nhất Hưng Yên cũ và tỉnh nào?",
+                options: [
+                    "Tỉnh Nam Định", 
+                    "Tỉnh Thái Bình", 
+                    "Tỉnh Hà Nam", 
+                    "Tỉnh Hải Dương"
+                ],
+                correct: 1
+            },
+            {
+                question: "Thành phố Hoa phượng đỏ Hải Phòng hiện nay đã mở rộng địa giới, sáp nhập thêm tỉnh láng giềng nào?",
+                options: [
+                    "Tỉnh Thái Bình", 
+                    "Tỉnh Hải Dương", 
+                    "Tỉnh Nam Định", 
+                    "Tỉnh Ninh Bình"
+                ],
+                correct: 1
+            },
+            {
+                question: "Quê hương Đại tướng Võ Nguyên Giáp (Quảng Bình cũ) và \"đất lửa\" Quảng Trị nay được hợp nhất thành một tỉnh duy nhất mang tên gì?",
+                options: [
+                    "Tỉnh Quảng Trị", 
+                    "Tỉnh Quảng Bình", 
+                    "Tỉnh Bình Trị Thiên", 
+                    "Tỉnh Quảng Bình Trị"
+                ],
+                correct: 0
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let canAnswer = true;
+
+        const startScreen = document.getElementById('start-screen');
+        const quizScreen = document.getElementById('quiz-screen');
+        const endScreen = document.getElementById('end-screen');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const nextBtn = document.getElementById('next-btn');
+        const feedback = document.getElementById('feedback');
+        const scoreDisplay = document.getElementById('score-display');
+        const questionCounter = document.getElementById('question-counter');
+
+        function startGame() {
+            startScreen.classList.add('hidden');
+            quizScreen.classList.remove('hidden');
+            quizScreen.classList.add('slide-in');
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            canAnswer = true;
+            nextBtn.classList.add('hidden');
+            feedback.classList.add('hidden');
+            
+            const currentQ = quizData[currentQuestionIndex];
+            questionText.innerText = currentQ.question;
+            questionCounter.innerText = currentQuestionIndex + 1;
+            
+            optionsContainer.innerHTML = '';
+            
+            currentQ.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.innerHTML = `<div class="flex items-center"><span class="bg-white text-gray-800 rounded-full w-8 h-8 flex items-center justify-center font-bold mr-3 shadow-sm">${['A', 'B', 'C', 'D'][index]}</span> <span>${option}</span></div>`;
+                button.className = `option-btn w-full text-left p-4 rounded-2xl text-lg font-bold text-gray-700 bg-gray-50 hover:bg-cyan-50 border-2 border-gray-200`;
+                
+                button.onclick = () => selectOption(index, button);
+                optionsContainer.appendChild(button);
+            });
+        }
+
+        function selectOption(index, selectedButton) {
+            if (!canAnswer) return;
+            canAnswer = false;
+
+            const currentQ = quizData[currentQuestionIndex];
+            const allButtons = optionsContainer.children;
+
+            // Làm mờ các nút không được chọn
+            for(let i=0; i<allButtons.length; i++) {
+                allButtons[i].style.boxShadow = 'none';
+                allButtons[i].style.transform = 'translateY(6px)';
+                allButtons[i].classList.add('opacity-60', 'grayscale-[50%]');
+            }
+            selectedButton.classList.remove('opacity-60', 'grayscale-[50%]');
+
+            if (index === currentQ.correct) {
+                selectedButton.className = `option-btn w-full text-left p-4 rounded-2xl text-lg font-bold text-white bg-green-500 border-2 border-green-600 slide-in`;
+                score++;
+                scoreDisplay.innerText = score;
+                feedback.innerHTML = "✨ Chính xác! Giỏi quá! ✨";
+                feedback.className = "mt-8 text-center font-bold text-2xl text-green-500 slide-in";
+            } else {
+                selectedButton.className = `option-btn w-full text-left p-4 rounded-2xl text-lg font-bold text-white bg-red-400 border-2 border-red-500 slide-in`;
+                
+                // Hiển thị đáp án đúng
+                allButtons[currentQ.correct].classList.remove('opacity-60', 'grayscale-[50%]');
+                allButtons[currentQ.correct].className = `option-btn w-full text-left p-4 rounded-2xl text-lg font-bold text-white bg-green-500 border-2 border-green-600 slide-in`;
+                
+                feedback.innerHTML = "Oops! Sai mất rồi! 🙈";
+                feedback.className = "mt-8 text-center font-bold text-2xl text-red-500 slide-in";
+            }
+
+            feedback.classList.remove('hidden');
+            nextBtn.classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < quizData.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            quizScreen.classList.add('hidden');
+            endScreen.classList.remove('hidden');
+            endScreen.classList.add('slide-in');
+            document.getElementById('final-score').innerText = score;
+            
+            const msg = document.getElementById('result-message');
+            if (score === 5) {
+                msg.innerText = "Wow! Tuyệt hảo! 100 điểm cho sự thông minh! 🥇";
+            } else if (score >= 3) {
+                msg.innerText = "Khá lắm nha! Mình ôn bài thêm xíu là 10 điểm! 👍";
+            } else {
+                msg.innerText = "Không sao đâu, thử lại để nhớ dai hơn nhé! 💪";
+            }
+        }
+
+        function resetGame() {
+            currentQuestionIndex = 0;
+            score = 0;
+            scoreDisplay.innerText = score;
+            endScreen.classList.add('hidden');
+            startGame();
+        }
+    </script>
+</body>
+</html>

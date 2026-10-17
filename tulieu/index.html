@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tư liệu - Module Trải Nghiệm Thông Minh</title>
+    <meta name="description"
+        content="Khám phá các trò chơi kiến thức về tỉnh thành Việt Nam, Đà Nẵng và video trải nghiệm cùng Module Trải Nghiệm Thông Minh.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Be Vietnam Pro"', 'sans-serif'],
+                    },
+                    colors: {
+                        vietnam: {
+                            red: '#A51F2B',
+                            dark: '#801B25',
+                            light: '#F8E8E8',
+                            cream: '#F8F2E9',
+                            paper: '#FFFEFC',
+                            ink: '#302927',
+                            muted: '#766B66',
+                        },
+                    },
+                    boxShadow: {
+                        soft: '0 12px 35px rgba(89, 34, 34, 0.08)',
+                        card: '0 18px 45px rgba(89, 34, 34, 0.10)',
+                    },
+                },
+            },
+        };
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body class="bg-vietnam-paper font-sans text-vietnam-ink antialiased">
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-50 border-b border-red-900/10 bg-white/95 shadow-sm backdrop-blur-md">
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+
+            <!-- Logo -->
+            <a href="/" class="group flex min-w-0 items-center gap-3">
+                <div
+                    class="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full border border-red-900/10">
+                    <img src="/assets/images/logo.jpg" alt="Logo Module Trải Nghiệm Thông Minh"
+                        class="h-full w-full object-contain">
+                </div>
+
+                <div class="min-w-0">
+                    <span class="block text-sm font-extrabold tracking-[0.12em] text-vietnam-red sm:text-base">
+                        VIỆT NAM
+                    </span>
+                    <span class="mt-0.5 block text-xs font-medium text-vietnam-muted sm:text-sm">
+                        Khám Phá Tổ Quốc
+                    </span>
+                </div>
+            </a>
+
+            <!-- Desktop navigation -->
+            <nav id="desktop-nav" aria-label="Điều hướng chính" class="hidden items-center gap-1 lg:flex">
+                <a href="/" class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+                    Giới thiệu
+                </a>
+                <a href="/vietnam" class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+                    Việt Nam
+                </a>
+                <a href="/danang" class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+                    Đà Nẵng
+                </a>
+                <a href="/dantoc" class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+                    Dân tộc
+                </a>
+                <a href="/tulieu" class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+                    Tư liệu
+                </a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLw5YvkzZ0DEHrtd4pybU4x7wrW7r-hZXSpBBSn3szOhEhuw/viewform"
+                    target="_blank" rel="noopener noreferrer"
+                    class="nav-link rounded-full px-4 py-2.5 text-sm font-semibold transition">
+                    Liên hệ
+                </a>
+            </nav>
+
+            <!-- Mobile menu button -->
+            <button id="menu-toggle" type="button"
+                class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-red-900/10 text-vietnam-red transition hover:bg-vietnam-light focus:outline-none focus:ring-2 focus:ring-vietnam-red/30 lg:hidden"
+                aria-label="Mở menu điều hướng" aria-controls="mobile-nav" aria-expanded="false">
+                <i id="menu-icon" class="fa-solid fa-bars text-xl" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <!-- Mobile navigation -->
+        <nav id="mobile-nav" aria-label="Điều hướng di động"
+            class="hidden border-t border-red-900/10 bg-white px-4 pb-4 pt-3 shadow-lg lg:hidden">
+            <div class="mx-auto flex max-w-7xl flex-col gap-1">
+                <a href="/" class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+                    Giới thiệu
+                </a>
+                <a href="/vietnam" class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+                    Việt Nam
+                </a>
+                <a href="/danang" class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+                    Đà Nẵng
+                </a>
+                <a href="/dantoc" class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+                    Dân tộc
+                </a>
+                <a href="/tulieu" class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+                    Tư liệu
+                </a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLw5YvkzZ0DEHrtd4pybU4x7wrW7r-hZXSpBBSn3szOhEhuw/viewform"
+                    target="_blank" rel="noopener noreferrer"
+                    class="mobile-nav-link rounded-xl px-4 py-3 text-sm font-semibold transition">
+                    Liên hệ
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- HERO -->
+        <section class="relative overflow-hidden bg-gradient-to-br from-vietnam-cream via-white to-red-50">
+            <div class="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-red-100/60 blur-3xl"></div>
+            <div class="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-amber-100/50 blur-3xl"></div>
+
+            <div class="relative mx-auto max-w-7xl px-5 py-14 sm:px-8 sm:py-20 lg:py-24">
+                <div class="max-w-3xl">
+                    <span
+                        class="inline-flex items-center gap-2 rounded-full border border-red-200 bg-white/80 px-4 py-2 text-xs font-bold tracking-wider text-vietnam-red shadow-sm">
+                        <i class="fa-solid fa-compass"></i>
+                        KHÔNG GIAN HỌC TẬP TƯƠNG TÁC
+                    </span>
+
+                    <h1
+                        class="mt-6 text-3xl font-black leading-tight tracking-tight text-vietnam-ink sm:text-5xl lg:text-6xl">
+                        Tư liệu và
+                        <span class="text-vietnam-red">trải nghiệm</span>
+                        khám phá
+                    </h1>
+
+                    <p class="mt-5 max-w-2xl text-sm leading-7 text-vietnam-muted sm:text-base sm:leading-8">
+                        Cùng khám phá các tỉnh thành Việt Nam, tìm hiểu Đà Nẵng
+                        qua những trò chơi kiến thức và video trực quan, sinh động.
+                    </p>
+
+                    <div class="mt-8 flex flex-wrap gap-3">
+                        <a href="#kham-pha-tinh"
+                            class="inline-flex items-center gap-2 rounded-full bg-vietnam-red px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-red-900/15 transition hover:-translate-y-0.5 hover:bg-vietnam-dark">
+                            Khám phá ngay
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </a>
+                        <a href="#video"
+                            class="inline-flex items-center gap-2 rounded-full border border-red-200 bg-white px-6 py-3.5 text-sm font-bold text-vietnam-red transition hover:bg-vietnam-light">
+                            <i class="fa-solid fa-circle-play"></i>
+                            Xem video
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KHÁM PHÁ TỈNH -->
+        <section id="kham-pha-tinh" class="scroll-mt-24 px-5 py-14 sm:px-8 sm:py-20">
+            <div class="mx-auto max-w-7xl">
+
+                <div class="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+                    <div>
+                        <div
+                            class="mb-3 flex items-center gap-2 text-xs font-extrabold tracking-[0.18em] text-vietnam-red">
+                            <span class="h-1 w-8 rounded-full bg-vietnam-red"></span>
+                            HÀNH TRÌNH TRI THỨC
+                        </div>
+                        <h2 class="text-2xl font-black tracking-tight sm:text-3xl">
+                            Khám phá tỉnh
+                        </h2>
+                        <p class="mt-3 max-w-2xl text-sm leading-7 text-vietnam-muted">
+                            Thử sức với những câu hỏi thú vị về địa lý và các đơn vị hành chính Việt Nam.
+                        </p>
+                    </div>
+                    <span
+                        class="inline-flex w-fit items-center gap-2 rounded-full bg-vietnam-light px-4 py-2 text-xs font-bold text-vietnam-red">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        04 hoạt động
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+
+                    <!-- TRÒ CHƠI 1 -->
+
+
+                    <!-- GÓI CÂU HỎI 01: THỬ THÁCH SÁP NHẬP TỈNH THÀNH -->
+                    <a href="/tulieu/game_tinh/mini_game_1.html"
+                        class="group flex flex-col overflow-hidden rounded-3xl border border-orange-100 bg-white shadow-soft transition duration-300 hover:-translate-y-1 hover:shadow-card focus:outline-none focus-visible:ring-4 focus-visible:ring-orange-200">
+
+                        <!-- Hình đại diện -->
+                        <div
+                            class="relative flex h-44 items-center justify-center overflow-hidden bg-gradient-to-br from-amber-100 via-orange-50 to-red-100">
+                            <div class="absolute -right-6 -top-8 h-32 w-32 rounded-full bg-white/50"></div>
+                            <div class="absolute -bottom-10 -left-5 h-32 w-32 rounded-full bg-orange-200/40"></div>
+
+                            <div
+                                class="relative flex h-24 w-24 items-center justify-center rounded-3xl bg-white text-5xl shadow-lg transition duration-300 group-hover:rotate-3 group-hover:scale-110">
+                                🗺️
+                            </div>
+
+                            <span
+                                class="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1.5 text-[10px] font-extrabold tracking-wider text-orange-700">
+                                GÓI CÂU HỎI 01
+                            </span>
+
+
+                        </div>
+
+                        <!-- Nội dung card -->
+                        <div class="flex flex-1 flex-col p-5">
+
+                            <h3
+                                class="text-lg font-extrabold leading-snug text-vietnam-ink transition group-hover:text-vietnam-red">
+                                Hành trình khám phá
+                            </h3>
+
+                            <p class="mt-2 flex-1 text-xs leading-6 text-vietnam-muted">
+                                Khám phá những thay đổi địa giới hành chính Việt Nam và thử tài ghi nhớ các tỉnh, thành
+                                phố sau sáp nhập.
+                            </p>
+
+                            <!-- Thông tin gói câu hỏi -->
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <span
+                                    class="rounded-lg bg-orange-50 px-2.5 py-1.5 text-xs font-semibold text-orange-700">
+                                    <i class="fa-solid fa-list-ol mr-1"></i> 5 câu hỏi
+                                </span>
+                                <span class="rounded-lg bg-amber-50 px-2.5 py-1.5 text-xs font-semibold text-amber-700">
+                                    <i class="fa-regular fa-clock mr-1"></i> Trắc nghiệm
+                                </span>
+                            </div>
+
+                            <!-- Nút điều hướng -->
+                            <div
+                                class="mt-5 flex items-center justify-between border-t border-slate-100 pt-4 text-sm font-bold text-vietnam-red">
+                                <span>Vào trò chơi</span>
+                                <span
+                                    class="flex h-9 w-9 items-center justify-center rounded-full bg-red-50 transition duration-300 group-hover:bg-vietnam-red group-hover:text-white">
+                                    <i
+                                        class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-0.5"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+
+
+
+                    <!-- TRÒ CHƠI 2 -->
+
+                    <!-- GÓI CÂU HỎI 02: KHÁM PHÁ ĐỊA LÝ VIỆT NAM 2025 -->
+                    <a href="/tulieu/game_tinh/mini_game_2.html"
+                        class="group flex flex-col overflow-hidden rounded-3xl border border-sky-100 bg-white shadow-soft transition duration-300 hover:-translate-y-1 hover:shadow-card focus:outline-none focus-visible:ring-4 focus-visible:ring-sky-200">
+
+                        <!-- Hình đại diện -->
+                        <div
+                            class="relative flex h-44 items-center justify-center overflow-hidden bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100">
+                            <div class="absolute -right-6 -top-8 h-32 w-32 rounded-full bg-white/50"></div>
+                            <div class="absolute -bottom-10 -left-5 h-32 w-32 rounded-full bg-blue-200/40"></div>
+
+                            <div
+                                class="relative flex h-24 w-24 items-center justify-center rounded-3xl bg-white text-5xl shadow-lg transition duration-300 group-hover:-rotate-3 group-hover:scale-110">
+                                🌏
+                            </div>
+
+                            <span
+                                class="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1.5 text-[10px] font-extrabold tracking-wider text-blue-700">
+                                GÓI CÂU HỎI 02
+                            </span>
+
+                        </div>
+
+                        <!-- Nội dung card -->
+                        <div class="flex flex-1 flex-col p-5">
+                            <h3
+                                class="text-lg font-extrabold leading-snug text-vietnam-ink transition group-hover:text-vietnam-red">
+                                Khám phá địa lý Việt Nam
+                            </h3>
+
+                            <p class="mt-2 flex-1 text-xs leading-6 text-vietnam-muted">
+                                Thử tài hiểu biết về bản đồ hành chính Việt Nam, các tỉnh thành sau sáp nhập và những
+                                thay đổi từ năm 2025.
+                            </p>
+
+                            <!-- Thông tin gói câu hỏi -->
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <span class="rounded-lg bg-sky-50 px-2.5 py-1.5 text-xs font-semibold text-sky-700">
+                                    <i class="fa-solid fa-list-ol mr-1"></i> 5 câu hỏi
+                                </span>
+
+                                <span
+                                    class="rounded-lg bg-indigo-50 px-2.5 py-1.5 text-xs font-semibold text-indigo-700">
+                                    <i class="fa-solid fa-map mr-1"></i> Hành chính
+                                </span>
+                            </div>
+
+                            <!-- Nút điều hướng -->
+                            <div
+                                class="mt-5 flex items-center justify-between border-t border-slate-100 pt-4 text-sm font-bold text-vietnam-red">
+                                <span>Bắt đầu khám phá</span>
+
+                                <span
+                                    class="flex h-9 w-9 items-center justify-center rounded-full bg-red-50 transition duration-300 group-hover:bg-vietnam-red group-hover:text-white">
+                                    <i
+                                        class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-0.5"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+
+
+                    <!-- TRÒ CHƠI 3 -->
+                    <!-- GÓI CÂU HỎI 03: SIÊU TRÍ TUỆ ĐỊA LÝ -->
+                    <a href="/tulieu/game_tinh/mini_game_3.html"
+                        class="group flex flex-col overflow-hidden rounded-3xl border border-orange-100 bg-white shadow-soft transition duration-300 hover:-translate-y-1 hover:shadow-card focus:outline-none focus-visible:ring-4 focus-visible:ring-orange-200">
+
+                        <!-- Ảnh bìa -->
+                        <div
+                            class="relative flex h-44 items-center justify-center overflow-hidden bg-gradient-to-br from-amber-100 via-orange-50 to-rose-100">
+                            <div class="absolute -right-6 -top-8 h-32 w-32 rounded-full bg-white/50"></div>
+                            <div class="absolute -bottom-10 -left-5 h-32 w-32 rounded-full bg-orange-200/40"></div>
+
+                            <div
+                                class="relative flex h-24 w-24 items-center justify-center rounded-3xl bg-white text-5xl shadow-lg transition duration-300 group-hover:-rotate-3 group-hover:scale-110">
+                                🚀
+                            </div>
+
+                            <span
+                                class="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1.5 text-[10px] font-extrabold tracking-wider text-orange-700">
+                                GÓI CÂU HỎI 03
+                            </span>
+
+                        </div>
+
+                        <!-- Nội dung thẻ -->
+                        <div class="flex flex-1 flex-col p-5">
+                            <h3
+                                class="text-lg font-extrabold leading-snug text-vietnam-ink transition group-hover:text-vietnam-red">
+                                Siêu trí tuệ địa lý
+                            </h3>
+
+                            <p class="mt-2 flex-1 text-xs leading-6 text-vietnam-muted">
+                                Chinh phục 5 câu hỏi thú vị về bản đồ hành chính Việt Nam sau sáp nhập. Khám phá các
+                                tỉnh, thành phố và thử thách khả năng ghi nhớ địa lý của bạn!
+                            </p>
+
+                            <!-- Nhãn thông tin -->
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <span
+                                    class="rounded-lg bg-orange-50 px-2.5 py-1.5 text-xs font-semibold text-orange-700">
+                                    <i class="fa-solid fa-list-ol mr-1"></i>
+                                    5 câu hỏi
+                                </span>
+
+                                <span class="rounded-lg bg-amber-50 px-2.5 py-1.5 text-xs font-semibold text-amber-700">
+                                    <i class="fa-solid fa-brain mr-1"></i>
+                                    Thử thách trí tuệ
+                                </span>
+                            </div>
+
+                            <!-- Liên kết -->
+                            <div
+                                class="mt-5 flex items-center justify-between border-t border-slate-100 pt-4 text-sm font-bold text-vietnam-red">
+                                <span>Bắt đầu khám phá</span>
+
+                                <span
+                                    class="flex h-9 w-9 items-center justify-center rounded-full bg-red-50 transition duration-300 group-hover:bg-vietnam-red group-hover:text-white">
+                                    <i
+                                        class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-0.5"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- TRÒ CHƠI 4 -->
+                    <!-- GÓI CÂU HỎI 04: THỬ THÁCH ĐỊA LÝ -->
+                    <a href="/tulieu/game_tinh/mini_game_4.html"
+                        class="group flex flex-col overflow-hidden rounded-3xl border border-cyan-100 bg-white shadow-soft transition duration-300 hover:-translate-y-1 hover:shadow-card focus:outline-none focus-visible:ring-4 focus-visible:ring-cyan-200">
+
+                        <!-- Ảnh bìa -->
+                        <div
+                            class="relative flex h-44 items-center justify-center overflow-hidden bg-gradient-to-br from-sky-100 via-cyan-50 to-blue-100">
+                            <div class="absolute -right-6 -top-8 h-32 w-32 rounded-full bg-white/50"></div>
+                            <div class="absolute -bottom-10 -left-5 h-32 w-32 rounded-full bg-cyan-200/40"></div>
+
+                            <div
+                                class="relative flex h-24 w-24 items-center justify-center rounded-3xl bg-white text-5xl shadow-lg transition duration-300 group-hover:-rotate-3 group-hover:scale-110">
+                                🌎
+                            </div>
+
+                            <span
+                                class="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1.5 text-[10px] font-extrabold tracking-wider text-cyan-700">
+                                GÓI CÂU HỎI 04
+                            </span>
+
+                        </div>
+
+                        <!-- Nội dung thẻ -->
+                        <div class="flex flex-1 flex-col p-5">
+                            <h3
+                                class="text-lg font-extrabold leading-snug text-vietnam-ink transition group-hover:text-vietnam-red">
+                                Thử thách địa lý Việt Nam
+                            </h3>
+
+                            <p class="mt-2 flex-1 text-xs leading-6 text-vietnam-muted">
+                                Khám phá những thay đổi trên bản đồ Việt Nam qua 5 câu hỏi về các tỉnh, thành phố sau
+                                sáp nhập. Cùng thử sức và tích lũy thêm kiến thức địa lý!
+                            </p>
+
+                            <!-- Nhãn thông tin -->
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <span class="rounded-lg bg-cyan-50 px-2.5 py-1.5 text-xs font-semibold text-cyan-700">
+                                    <i class="fa-solid fa-list-ol mr-1"></i>
+                                    5 câu hỏi
+                                </span>
+
+                                <span class="rounded-lg bg-blue-50 px-2.5 py-1.5 text-xs font-semibold text-blue-700">
+                                    <i class="fa-solid fa-map-location-dot mr-1"></i>
+                                    Bản đồ hành chính
+                                </span>
+                            </div>
+
+                            <!-- Liên kết -->
+                            <div
+                                class="mt-5 flex items-center justify-between border-t border-slate-100 pt-4 text-sm font-bold text-vietnam-red">
+                                <span>Bắt đầu khám phá</span>
+
+                                <span
+                                    class="flex h-9 w-9 items-center justify-center rounded-full bg-red-50 transition duration-300 group-hover:bg-vietnam-red group-hover:text-white">
+                                    <i
+                                        class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-0.5"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- KHÁM PHÁ ĐÀ NẴNG -->
+        <section id="kham-pha-da-nang"
+            class="scroll-mt-24 border-y border-blue-100 bg-gradient-to-br from-sky-50 via-white to-blue-50 px-5 py-14 sm:px-8 sm:py-20">
+            <div class="mx-auto max-w-7xl">
+
+                <div class="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+                    <div>
+                        <div
+                            class="mb-3 flex items-center gap-2 text-xs font-extrabold tracking-[0.18em] text-blue-700">
+                            <span class="h-1 w-8 rounded-full bg-blue-600"></span>
+                            THÀNH PHỐ ĐÁNG SỐNG
+                        </div>
+                        <h2 class="text-2xl font-black tracking-tight sm:text-3xl">
+                            Khám phá Đà Nẵng
+                        </h2>
+                        <p class="mt-3 max-w-2xl text-sm leading-7 text-vietnam-muted">
+                            Tìm hiểu thiên nhiên, văn hóa, lịch sử và những nét đặc trưng của Đà Nẵng.
+                        </p>
+                    </div>
+                    <span
+                        class="inline-flex w-fit items-center gap-2 rounded-full bg-blue-100 px-4 py-2 text-xs font-bold text-blue-800">
+                        <i class="fa-solid fa-water"></i>
+                        04 hoạt động
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+
+                    <article
+                        class="group flex flex-col overflow-hidden rounded-3xl border border-blue-100 bg-white shadow-soft transition hover:-translate-y-1 hover:shadow-card">
+
+                        <div class="flex h-40 items-center justify-center bg-gradient-to-br from-blue-100 to-cyan-200">
+                            <div
+                                class="flex h-20 w-20 items-center justify-center rounded-3xl bg-white text-4xl shadow-lg transition group-hover:scale-110">
+                                🐬
+                            </div>
+                        </div>
+
+                        <div class="flex flex-1 flex-col p-5">
+                            <h3 class="font-extrabold">Thử thách vùng biển mới</h3>
+
+                            <p class="mt-2 flex-1 text-xs leading-6 text-vietnam-muted">
+                                Khám phá Đà Nẵng sau sáp nhập qua 5 câu hỏi thú vị về địa giới hành chính,
+                                phố cổ Hội An và những địa danh nổi tiếng của thành phố biển.
+                            </p>
+
+                            <a href="/tulieu/game_da_nang/game_trac_nghiem_bien_xanh.html"
+                                class="mt-5 inline-flex items-center justify-center rounded-xl border border-blue-200 px-4 py-3 text-sm font-bold text-blue-800 transition hover:bg-blue-50">
+                                Khám phá
+                                <i
+                                    class="fa-solid fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article
+                        class="group flex flex-col overflow-hidden rounded-3xl border border-orange-100 bg-white shadow-soft transition hover:-translate-y-1 hover:shadow-card">
+
+                        <div
+                            class="flex h-40 items-center justify-center bg-gradient-to-br from-orange-100 to-green-200">
+                            <div
+                                class="flex h-20 w-20 items-center justify-center rounded-3xl bg-white text-4xl shadow-lg transition group-hover:scale-110">
+                                🌄
+                            </div>
+                        </div>
+
+                        <div class="flex flex-1 flex-col p-5">
+                            <h3 class="font-extrabold">Hành trình dải đất miền Trung</h3>
+
+                            <p class="mt-2 flex-1 text-xs leading-6 text-vietnam-muted">
+                                Khám phá thiên nhiên, văn hóa và những thay đổi hành chính của miền Trung
+                                qua 5 câu hỏi thú vị về Đà Nẵng, Đông Giang và vùng đất sâm Ngọc Linh.
+                            </p>
+
+                            <a href="/tulieu/game_da_nang/hanh_trinh_dai_dat_mien_trung.html"
+                                class="mt-5 inline-flex items-center justify-center rounded-xl border border-orange-200 px-4 py-3 text-sm font-bold text-orange-800 transition hover:bg-orange-50">
+                                Khám phá
+                                <i
+                                    class="fa-solid fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article
+                        class="group flex flex-col overflow-hidden rounded-3xl border border-indigo-100 bg-white shadow-soft transition hover:-translate-y-1 hover:shadow-card">
+
+                        <div
+                            class="flex h-40 items-center justify-center bg-gradient-to-br from-slate-200 to-indigo-300">
+                            <div
+                                class="flex h-20 w-20 items-center justify-center rounded-3xl bg-white text-4xl shadow-lg transition group-hover:scale-110">
+                                🏛️
+                            </div>
+                        </div>
+
+                        <div class="flex flex-1 flex-col p-5">
+                            <h3 class="font-extrabold">Thử tài kiến thức</h3>
+
+                            <p class="mt-2 flex-1 text-xs leading-6 text-vietnam-muted">
+                                Thử sức với 5 câu hỏi về các đơn vị hành chính mới của Đà Nẵng,
+                                từ Nông Sơn, Điện Bàn đến Quảng Phú và những địa danh nổi tiếng.
+                            </p>
+
+                            <a href="/tulieu/game_da_nang/thu_tai_kien_thuc_trac_nghiem.html"
+                                class="mt-5 inline-flex items-center justify-center rounded-xl border border-indigo-200 px-4 py-3 text-sm font-bold text-indigo-800 transition hover:bg-indigo-50">
+                                Khám phá
+                                <i
+                                    class="fa-solid fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article
+                        class="group flex flex-col overflow-hidden rounded-3xl border border-amber-100 bg-white shadow-soft transition hover:-translate-y-1 hover:shadow-card">
+
+                        <div
+                            class="flex h-40 items-center justify-center bg-gradient-to-br from-amber-100 to-green-200">
+                            <div
+                                class="flex h-20 w-20 items-center justify-center rounded-3xl bg-white text-4xl shadow-lg transition group-hover:scale-110">
+                                🏛️
+                            </div>
+                        </div>
+
+                        <div class="flex flex-1 flex-col p-5">
+                            <h3 class="font-extrabold">Trò chơi khám phá địa danh</h3>
+
+                            <p class="mt-2 flex-1 text-xs leading-6 text-vietnam-muted">
+                                Khám phá những địa danh nổi tiếng, di sản văn hóa và các đơn vị hành chính
+                                mới của Đà Nẵng qua 5 câu hỏi trắc nghiệm thú vị.
+                            </p>
+
+                            <a href="/tulieu/game_da_nang/tro_choi_kham_pha_dia_danh.html"
+                                class="mt-5 inline-flex items-center justify-center rounded-xl border border-amber-200 px-4 py-3 text-sm font-bold text-amber-800 transition hover:bg-amber-50">
+                                Khám phá
+                                <i
+                                    class="fa-solid fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- VIDEO -->
+        <!-- ================= VIDEO TƯ LIỆU ================= -->
+        <section id="video-tu-lieu" class="bg-[#FFFEFC] px-4 py-12 sm:px-6 sm:py-16 lg:py-20">
+
+            <div class="mx-auto max-w-7xl">
+
+                <!-- Tiêu đề -->
+                <div class="mb-8 sm:mb-10">
+                    <div
+                        class="mb-3 inline-flex items-center gap-2 rounded-full bg-[#A51F2B]/5 px-4 py-2 text-sm font-bold text-[#A51F2B]">
+                        <i class="fa-solid fa-film"></i>
+                        THƯ VIỆN ĐA PHƯƠNG TIỆN
+                    </div>
+
+                    <h2 class="text-3xl font-black tracking-tight text-[#302927] sm:text-4xl">
+                        Video <span class="text-[#A51F2B]">tư liệu</span>
+                    </h2>
+
+                    <p class="mt-3 max-w-2xl text-sm leading-7 text-[#766B66] sm:text-base">
+                        Khám phá lịch sử, văn hóa, thiên nhiên và những địa danh tiêu biểu
+                        của Đà Nẵng qua các video tư liệu trực quan, sinh động.
+                    </p>
+                </div>
+
+                <!-- Container render video -->
+                <div id="videos-tulieu" class="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= MODAL PHÁT VIDEO ================= -->
+
+        <!-- MODAL VIDEO TƯ LIỆU -->
+        <div id="videoModal"
+            class="fixed inset-0 z-[9999] hidden items-center justify-center overflow-y-auto bg-[#302927]/75 p-3 backdrop-blur-sm sm:p-6"
+            role="dialog" aria-modal="true" aria-labelledby="videoModalTitle">
+            <div class="relative my-auto w-full max-w-5xl overflow-hidden rounded-2xl border border-[#A51F2B]/15 bg-[#FFFEFC] shadow-[0_24px_80px_rgba(48,41,39,0.3)] sm:rounded-xl"
+                onclick="event.stopPropagation()">
+
+                <!-- Header -->
+                <div
+                    class="flex items-center justify-between gap-4 border-b border-[#A51F2B]/10 bg-[#F8F2E9] px-4 py-4 sm:px-7 sm:py-5">
+                    <div class="flex min-w-0 items-center gap-3 sm:gap-4">
+                        <div
+                            class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#A51F2B] text-lg text-white shadow-md shadow-[#A51F2B]/20 sm:h-12 sm:w-12 sm:rounded-2xl">
+                            <i class="fa-solid fa-book-open"></i>
+                        </div>
+
+                        <div class="min-w-0">
+                            <div class="mb-1 flex items-center gap-2">
+                                <span
+                                    class="text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#A51F2B] sm:text-xs">
+                                    Tư liệu khám phá
+                                </span>
+                                <span class="h-1 w-1 rounded-full bg-[#D9A66C]"></span>
+                            </div>
+
+                            <h3 id="videoModalTitle"
+                                class="truncate text-base font-extrabold text-[#302927] sm:text-xl">
+                                Video tư liệu
+                            </h3>
+                        </div>
+                    </div>
+
+                    <button type="button" id="closeVideoButton" aria-label="Đóng video"
+                        class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#A51F2B]/15 bg-white text-lg text-[#801B25] transition hover:border-[#A51F2B] hover:bg-[#A51F2B] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#A51F2B]/30 sm:h-11 sm:w-11">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <!-- Khu vực phát video -->
+                <div class="bg-[#EDE5D9] p-2 sm:p-4">
+                    <div class="overflow-hidden bg-black shadow-inner rounded-md">
+                        <video id="modalVideo"
+                            class="block max-h-[65vh] min-h-[180px] w-full sm:max-h-[72vh] aspect-video" controls
+                            preload="metadata">
+                            Trình duyệt của bạn không hỗ trợ phát video.
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-vietnam-dark px-5 py-7 text-white sm:px-8">
+        <div
+            class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 text-center sm:flex-row sm:text-left">
+            <a href="index.html" class="flex items-center gap-2 font-extrabold tracking-wide">
+                <i class="fa-solid fa-compass text-lg" aria-hidden="true"></i>
+                <span>MODULE TRẢI NGHIỆM THÔNG MINH</span>
+            </a>
+
+            <p class="text-xs leading-6 text-white/75 sm:text-sm">
+                © 2026 MODULE TRẢI NGHIỆM THÔNG MINH - Hành trình khám phá Tổ Quốc
+            </p>
+        </div>
+    </footer>
+    <!-- JAVASCRIPT -->
+    <script src="/assets/js/header.js"></script>
+    <script src="videos.js"></script>
+
+</body>
+
+</html>

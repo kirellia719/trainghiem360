@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khám Phá Thành Phố Biển</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap');
+
+        body {
+            /* Ocean gradient background */
+            background: linear-gradient(180deg, #4facfe 0%, #00f2fe 100%);
+            font-family: 'Nunito', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Floating bubbles animation */
+        .bubble {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            bottom: -20px;
+            animation: floatUp infinite ease-in;
+            z-index: -1;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(-120vh) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .bounce-in {
+            animation: bounceIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .option-btn {
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 5px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        .option-btn:active {
+            transform: translateY(5px);
+            box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+        }
+    </style>
+</head>
+
+<body class="flex items-center justify-center p-4 relative">
+
+    <!-- Decorative bubbles -->
+    <div class="bubble" style="left: 10%; width: 40px; height: 40px; animation-duration: 8s; animation-delay: 1s;">
+    </div>
+    <div class="bubble" style="left: 30%; width: 20px; height: 20px; animation-duration: 5s; animation-delay: 3s;">
+    </div>
+    <div class="bubble" style="left: 50%; width: 50px; height: 50px; animation-duration: 10s; animation-delay: 0s;">
+    </div>
+    <div class="bubble" style="left: 70%; width: 30px; height: 30px; animation-duration: 6s; animation-delay: 2s;">
+    </div>
+    <div class="bubble" style="left: 85%; width: 60px; height: 60px; animation-duration: 12s; animation-delay: 4s;">
+    </div>
+
+    <div id="game-container"
+        class="bg-white/95 backdrop-blur-md rounded-[2.5rem] shadow-2xl p-6 md:p-10 max-w-3xl w-full border-4 border-cyan-100 bounce-in z-10">
+
+        <!-- Màn hình bắt đầu -->
+        <div id="start-screen" class="text-center py-8">
+            <div class="text-7xl mb-6 animate-bounce">🐬🌊</div>
+            <h1 class="text-4xl md:text-5xl font-black text-cyan-600 mb-6 drop-shadow-sm leading-tight">
+                Thử Thách Vùng Biển Mới!
+            </h1>
+            <p class="text-xl text-gray-700 mb-8 font-bold">Cùng lặn xuống đại dương để khám phá bản đồ mới nhé!</p>
+            <button onclick="startGame()"
+                class="bg-gradient-to-r from-cyan-400 to-blue-500 hover:from-cyan-500 hover:to-blue-600 text-white font-black py-4 px-12 rounded-full text-2xl shadow-[0_6px_0_#1d4ed8] active:shadow-none active:translate-y-[6px] transition-all">
+                Lặn Xuống Thôi! 🤿
+            </button>
+        </div>
+
+        <!-- Màn hình câu hỏi -->
+        <div id="quiz-screen" class="hidden">
+            <div class="flex justify-between items-center mb-8 bg-cyan-50 p-4 rounded-2xl border border-cyan-200">
+                <div class="font-bold text-lg text-cyan-800 bg-white px-5 py-2 rounded-xl shadow-sm">
+                    ⛵ Câu <span id="question-counter" class="text-blue-500 text-2xl mx-1 font-black">1</span>/5
+                </div>
+                <div class="font-bold text-xl text-blue-700 flex items-center bg-white px-5 py-2 rounded-xl shadow-sm">
+                    ⭐ Điểm: <span id="score-display" class="text-yellow-500 ml-2 text-3xl font-black">0</span>
+                </div>
+            </div>
+
+            <h2 id="question-text"
+                class="text-2xl md:text-3xl font-extrabold text-gray-800 mb-8 min-h-[120px] leading-relaxed"></h2>
+
+            <div id="options-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Nút đáp án sẽ được tạo bằng JS -->
+            </div>
+
+            <div id="feedback" class="mt-8 text-center font-black text-2xl hidden h-10 bounce-in"></div>
+
+            <button id="next-btn" onclick="nextQuestion()"
+                class="mt-8 w-full bg-blue-500 hover:bg-blue-600 text-white font-black py-4 px-6 rounded-2xl hidden shadow-[0_6px_0_#1e3a8a] active:shadow-none active:translate-y-[6px] transition-all text-xl">
+                Bơi Tiếp Nào! 🐠
+            </button>
+        </div>
+
+        <!-- Màn hình kết quả -->
+        <div id="end-screen" class="hidden text-center py-8">
+            <div class="text-8xl mb-6 animate-bounce">🐳</div>
+
+            <h2 class="text-4xl md:text-5xl font-black text-cyan-600 mb-6">
+                Trồi Lên Mặt Nước!
+            </h2>
+
+            <p class="text-2xl text-gray-700 mb-4 font-bold">
+                Số sao biển bạn thu thập được là:
+            </p>
+
+            <div class="text-8xl font-black text-yellow-400 mb-8 drop-shadow-md">
+                <span id="final-score"></span>/5
+            </div>
+
+            <p id="result-message" class="text-2xl text-blue-700 mb-10 font-bold"></p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-5 px-4">
+                <a href="/tulieu/#kham-pha-da-nang"
+                    class="w-full sm:w-auto inline-flex items-center justify-center bg-white hover:bg-cyan-50 text-cyan-700 font-black py-4 px-8 rounded-full text-xl border-2 border-cyan-500 shadow-md transition-all hover:scale-105">
+                    <i class="fa-solid fa-arrow-left mr-2"></i>
+                    Trở về
+                </a>
+                <button onclick="resetGame()"
+                    class="w-full sm:w-auto bg-gradient-to-r from-teal-400 to-cyan-500 hover:from-teal-500 hover:to-cyan-600 text-white font-black py-4 px-8 rounded-full text-xl shadow-[0_6px_0_#0f766e] active:shadow-none active:translate-y-[6px] transition-all">
+                    🔄 Chơi Lại Từ Đầu
+                </button>
+
+
+            </div>
+
+            <script>
+                const quizData = [
+                    {
+                        question: "Từ ngày 1/7/2025, Thành phố Đà Nẵng trực thuộc Trung ương đã chính thức sáp nhập toàn bộ diện tích và dân số của địa phương nào?",
+                        correct: "Tỉnh Quảng Nam",
+                        wrong: ["Tỉnh Thừa Thiên Huế", "Tỉnh Quảng Ngãi", "Tỉnh Kon Tum"]
+                    },
+                    {
+                        question: "Theo Nghị quyết số 1659/NQ-UBTVQH15, do không còn cấp huyện, Thành phố Đà Nẵng bao gồm tổng cộng 94 đơn vị hành chính cấp dưới, trong đó có 23 phường, 70 xã và 1 đặc khu. Đặc khu đó tên là gì?",
+                        correct: "Đặc khu Hoàng Sa",
+                        wrong: ["Đặc khu Trường Sa", "Đặc khu Cù Lao Chàm", "Đặc khu Lý Sơn"]
+                    },
+                    {
+                        question: "Di sản văn hóa thế giới Phố cổ Hội An hiện nay nằm trên địa bàn trực thuộc tỉnh/thành phố nào?",
+                        correct: "Thành phố Đà Nẵng",
+                        wrong: ["Tỉnh Quảng Nam", "Tỉnh Quảng Ngãi", "Tỉnh Thừa Thiên Huế"]
+                    },
+                    {
+                        question: "Nơi trung tâm sầm uất nhất, trước đây gọi là \"Quận Hải Châu\", nay đã được chuyển đổi thành đơn vị hành chính cấp gì trực thuộc TP. Đà Nẵng?",
+                        correct: "Cấp phường (Phường Hải Châu)",
+                        wrong: ["Cấp xã", "Cấp thị xã", "Thành phố thuộc thành phố"]
+                    },
+                    {
+                        question: "Đèo Hải Vân hùng vĩ nay đã nằm gọn trong địa bàn quản lý của đơn vị hành chính mới tên là gì trực thuộc TP. Đà Nẵng?",
+                        correct: "Phường Hải Vân",
+                        wrong: ["Phường Liên Chiểu", "Xã Hòa Bắc", "Phường Lăng Cô"]
+                    }
+                ];
+
+                let currentQuestionIndex = 0;
+                let score = 0;
+                let canAnswer = true;
+                let currentCorrectAnswer = "";
+
+                const startScreen = document.getElementById('start-screen');
+                const quizScreen = document.getElementById('quiz-screen');
+                const endScreen = document.getElementById('end-screen');
+                const questionText = document.getElementById('question-text');
+                const optionsContainer = document.getElementById('options-container');
+                const nextBtn = document.getElementById('next-btn');
+                const feedback = document.getElementById('feedback');
+                const scoreDisplay = document.getElementById('score-display');
+                const questionCounter = document.getElementById('question-counter');
+
+                // Hàm xáo trộn mảng (Fisher-Yates shuffle)
+                function shuffleArray(array) {
+                    let currentIndex = array.length, randomIndex;
+                    while (currentIndex !== 0) {
+                        randomIndex = Math.floor(Math.random() * currentIndex);
+                        currentIndex--;
+                        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+                    }
+                    return array;
+                }
+
+                function startGame() {
+                    startScreen.classList.add('hidden');
+                    quizScreen.classList.remove('hidden');
+                    quizScreen.classList.add('bounce-in');
+                    loadQuestion();
+                }
+
+                function loadQuestion() {
+                    canAnswer = true;
+                    nextBtn.classList.add('hidden');
+                    feedback.classList.add('hidden');
+
+                    const currentQ = quizData[currentQuestionIndex];
+                    questionText.innerText = currentQ.question;
+                    questionCounter.innerText = currentQuestionIndex + 1;
+
+                    // Xáo trộn đáp án mỗi khi load câu hỏi
+                    let options = [currentQ.correct, ...currentQ.wrong];
+                    options = shuffleArray(options);
+                    currentCorrectAnswer = currentQ.correct;
+
+                    optionsContainer.innerHTML = '';
+
+                    // Màu sắc mang hơi hướm đại dương, bãi cát
+                    const styles = [
+                        { bg: 'bg-cyan-50', hover: 'hover:bg-cyan-100', border: 'border-cyan-300' },
+                        { bg: 'bg-blue-50', hover: 'hover:bg-blue-100', border: 'border-blue-300' },
+                        { bg: 'bg-sky-50', hover: 'hover:bg-sky-100', border: 'border-sky-300' },
+                        { bg: 'bg-teal-50', hover: 'hover:bg-teal-100', border: 'border-teal-300' }
+                    ];
+
+                    options.forEach((optionText, index) => {
+                        const s = styles[index % styles.length];
+                        const button = document.createElement('button');
+
+                        button.innerHTML = `<span class="font-bold text-gray-800">${optionText}</span>`;
+                        button.className = `option-btn w-full text-left p-5 rounded-2xl text-lg font-bold text-gray-800 border-2 ${s.bg} ${s.hover} ${s.border}`;
+
+                        button.onclick = () => selectOption(button, optionText);
+                        optionsContainer.appendChild(button);
+                    });
+                }
+
+                function selectOption(selectedButton, selectedText) {
+                    if (!canAnswer) return;
+                    canAnswer = false;
+
+                    const allButtons = optionsContainer.children;
+
+                    // Làm mờ và khóa tất cả các nút
+                    for (let i = 0; i < allButtons.length; i++) {
+                        allButtons[i].style.boxShadow = 'none';
+                        allButtons[i].style.transform = 'translateY(5px)';
+                        allButtons[i].classList.add('opacity-60');
+
+                        // Luôn làm nổi bật đáp án ĐÚNG
+                        if (allButtons[i].innerText === currentCorrectAnswer) {
+                            allButtons[i].className = `option-btn w-full text-left p-5 rounded-2xl text-lg font-black text-white bg-green-500 border-2 border-green-600 bounce-in opacity-100`;
+                        }
+                    }
+
+                    selectedButton.classList.remove('opacity-60');
+
+                    if (selectedText === currentCorrectAnswer) {
+                        score++;
+                        scoreDisplay.innerText = score;
+                        feedback.innerHTML = "✨ Đỉnh Quá! Hoàn toàn chính xác! 🌊";
+                        feedback.className = "mt-8 text-center font-black text-2xl text-green-500 bounce-in";
+                    } else {
+                        // Nếu người chơi chọn sai, tô đỏ nút họ vừa bấm
+                        selectedButton.className = `option-btn w-full text-left p-5 rounded-2xl text-lg font-black text-white bg-red-400 border-2 border-red-500 bounce-in opacity-100`;
+
+                        feedback.innerHTML = "Ối! Sai mất rồi bạn ơi! 🦀";
+                        feedback.className = "mt-8 text-center font-black text-2xl text-red-500 bounce-in";
+                    }
+
+                    feedback.classList.remove('hidden');
+                    nextBtn.classList.remove('hidden');
+                }
+
+                function nextQuestion() {
+                    currentQuestionIndex++;
+                    if (currentQuestionIndex < quizData.length) {
+                        loadQuestion();
+                    } else {
+                        showResults();
+                    }
+                }
+
+                function showResults() {
+                    quizScreen.classList.add('hidden');
+                    endScreen.classList.remove('hidden');
+                    endScreen.classList.add('bounce-in');
+                    document.getElementById('final-score').innerText = score;
+
+                    const msg = document.getElementById('result-message');
+                    if (score === 5) {
+                        msg.innerText = "Bạn đích thực là Vua Hải Tặc của kiến thức! 👑🐬";
+                    } else if (score >= 3) {
+                        msg.innerText = "Quá xịn! Bơi thêm chút xíu nữa là tuyệt đối luôn! ⛵";
+                    } else {
+                        msg.innerText = "Cố lên! Lần sau chắc chắn sẽ bơi xa hơn nhé! 🐙";
+                    }
+                }
+
+                function resetGame() {
+                    currentQuestionIndex = 0;
+                    score = 0;
+                    scoreDisplay.innerText = score;
+                    endScreen.classList.add('hidden');
+                    startGame();
+                }
+            </script>
+</body>
+
+</html>

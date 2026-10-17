@@ -519,19 +519,6 @@
         closePanel.addEventListener("click", () => {
             resetMap();
 
-            if (provinceInfo) {
-                provinceInfo.innerHTML = `
-                <div class="info-placeholder">
-                    <i class="fas fa-map-location-dot" aria-hidden="true"></i>
-                    <h3>Khám phá Việt Nam</h3>
-                    <p>
-                        Chọn một tỉnh trên bản đồ hoặc tìm kiếm
-                        để xem thông tin tại đây.
-                    </p>
-                </div>
-            `;
-            }
-
             if (infoPanel) {
                 infoPanel.style.display = "block";
                 infoPanel.classList.add("active");

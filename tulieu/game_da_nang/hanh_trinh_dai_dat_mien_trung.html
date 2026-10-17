@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hành Trình Dải Đất Miền Trung</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
+
+        body {
+            /* Warm sunset orange to deep forest green gradient */
+            background: linear-gradient(135deg, #f97316 0%, #166534 100%);
+            font-family: 'Nunito', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        /* Glassmorphism container */
+        .glass-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border-radius: 1.5rem;
+        }
+
+        /* Animations */
+        .fade-in-up {
+            animation: fadeInUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .bounce-in {
+            animation: bounceIn 0.5s ease-out forwards;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            50% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Option buttons styling */
+        .option-btn {
+            transition: all 0.2s ease-in-out;
+            border-width: 2px;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-color: #f97316;
+            /* Sunset orange hover */
+        }
+
+        .option-btn:active:not(:disabled) {
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="glass-container p-6 md:p-10 max-w-3xl w-full fade-in-up relative overflow-hidden">
+
+        <!-- Decoration circles -->
+        <div
+            class="absolute top-0 right-0 -mt-8 -mr-8 w-32 h-32 bg-orange-400 rounded-full blur-2xl opacity-30 pointer-events-none">
+        </div>
+        <div
+            class="absolute bottom-0 left-0 -mb-8 -ml-8 w-32 h-32 bg-green-500 rounded-full blur-2xl opacity-30 pointer-events-none">
+        </div>
+
+        <!-- Start Screen -->
+        <div id="start-screen" class="text-center py-10 relative z-10">
+            <div class="text-6xl mb-6 bounce-in" style="animation-delay: 0.1s;">🌄🌿</div>
+            <h1 class="text-4xl md:text-5xl font-black text-green-800 mb-4 tracking-tight leading-tight bounce-in"
+                style="animation-delay: 0.2s;">
+                Hành Trình Dải Đất<br><span class="text-orange-600">Miền Trung</span>
+            </h1>
+            <p class="text-lg text-gray-600 mb-10 font-semibold bounce-in" style="animation-delay: 0.3s;">
+                Cùng khám phá những thay đổi thú vị về thiên nhiên, di sản và hành chính qua 5 câu hỏi!
+            </p>
+            <button onclick="startGame()"
+                class="bg-gradient-to-r from-orange-500 to-green-600 hover:from-orange-600 hover:to-green-700 text-white font-bold py-4 px-12 rounded-xl text-xl shadow-lg transition-transform hover:scale-105 bounce-in"
+                style="animation-delay: 0.4s;">
+                Bắt Đầu Khám Phá 🚶‍♂️
+            </button>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quiz-screen" class="hidden relative z-10">
+            <!-- Header -->
+            <div class="flex justify-between items-center mb-8 pb-4 border-b-2 border-orange-100">
+                <div class="bg-green-100 text-green-800 font-bold px-4 py-2 rounded-lg flex items-center">
+                    <span>🏞️ Câu: </span>
+                    <span id="question-counter" class="text-xl ml-2">1/5</span>
+                </div>
+                <div class="bg-orange-100 text-orange-800 font-bold px-4 py-2 rounded-lg flex items-center">
+                    <span>⭐ Điểm: </span>
+                    <span id="score-display" class="text-xl ml-2">0</span>
+                </div>
+            </div>
+
+            <!-- Question -->
+            <h2 id="question-text"
+                class="text-2xl md:text-3xl font-bold text-gray-800 mb-8 min-h-[120px] leading-relaxed"></h2>
+
+            <!-- Options -->
+            <div id="options-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Buttons injected by JS -->
+            </div>
+
+            <!-- Feedback -->
+            <div id="feedback" class="mt-8 text-center font-black text-2xl hidden h-10 fade-in-up"></div>
+
+            <!-- Next Button -->
+            <button id="next-btn" onclick="nextQuestion()"
+                class="mt-8 w-full bg-green-700 hover:bg-green-800 text-white font-bold py-4 px-6 rounded-xl hidden shadow-lg transition-all text-xl border-b-4 border-green-900 active:border-b-0 active:translate-y-1 flex justify-center items-center">
+                Tiếp Tục Hành Trình
+                <svg class="w-6 h-6 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3">
+                    </path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- End Screen -->
+        <div id="end-screen" class="hidden text-center py-10 relative z-10">
+            <div class="text-7xl mb-6 bounce-in">🏆</div>
+
+            <h2 class="text-4xl md:text-5xl font-black text-green-800 mb-6">
+                Kết Thúc Hành Trình!
+            </h2>
+
+            <p class="text-xl text-gray-700 mb-4 font-bold">
+                Thành tích khám phá của bạn:
+            </p>
+
+            <div class="flex justify-center items-end mb-8 text-orange-600">
+                <span id="final-score" class="text-8xl font-black leading-none"></span>
+                <span class="text-4xl font-bold mb-2">/5</span>
+            </div>
+
+            <p id="result-message" class="text-2xl text-green-700 mb-10 font-bold"></p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 px-4">
+                <a href="/tulieu/#kham-pha-da-nang"
+                    class="w-full sm:w-auto inline-flex items-center justify-center bg-white hover:bg-green-50 text-green-800 font-bold py-4 px-8 rounded-xl text-lg border-2 border-green-600 shadow-md transition-transform hover:scale-105">
+                    <i class="fa-solid fa-arrow-left mr-2"></i>
+                    Trở về
+                </a>
+                <button onclick="resetGame()"
+                    class="w-full sm:w-auto bg-gradient-to-r from-green-600 to-orange-500 hover:from-green-700 hover:to-orange-600 text-white font-bold py-4 px-8 rounded-xl text-lg shadow-lg transition-transform hover:scale-105">
+                    🔄 Khám Phá Lại Từ Đầu
+                </button>
+
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const quizData = [
+            {
+                question: "Huyện miền núi Đông Giang cũ nơi đồng bào Cơ Tu sinh sống nay đã trở thành đơn vị hành chính cấp xã mang tên gì trực thuộc TP. Đà Nẵng?",
+                correct: "Xã Đông Giang.",
+                wrong: ["Xã Tây Giang.", "Xã Nam Giang.", "Xã Phước Sơn."]
+            },
+            {
+                question: "Vùng đất trồng sâm Ngọc Linh - dược liệu quý hiếm ở Trà My - nay thuộc quyền quản lý hành chính cấp tỉnh/thành phố nào?",
+                correct: "Thành phố Đà Nẵng.",
+                wrong: ["Tỉnh Kon Tum.", "Tỉnh Quảng Nam.", "Tỉnh Quảng Ngãi."]
+            },
+            {
+                question: "Đỉnh Bàn Cờ và loài linh trưởng quý hiếm Voọc chà vá chân nâu hiện nay nằm trên địa phận phường nào của Thành phố Đà Nẵng?",
+                correct: "Phường Sơn Trà.",
+                wrong: ["Phường Liên Chiểu.", "Phường Ngũ Hành Sơn.", "Phường Hải Châu."]
+            },
+            {
+                question: "Thành phố trực thuộc Trung ương duy nhất ở miền Trung hiện nay sở hữu cả đường bờ biển Đông tuyệt đẹp lẫn đường biên giới đất liền giáp nước bạn Lào là thành phố nào?",
+                correct: "Thành phố Đà Nẵng.",
+                wrong: ["Thành phố Huế.", "Tỉnh Quảng Nam.", "Tỉnh Quảng Bình."]
+            },
+            {
+                question: "Các đặc sản ẩm thực như cao lầu Hội An, cơm gà Tam Kỳ, bê thui Cầu Mống, bún chả cá... hiện nay đều hội tụ chung và làm nên bản sắc của một 'siêu đô thị' duy nhất tên là gì?",
+                correct: "Thành phố Đà Nẵng.",
+                wrong: ["Đô thị cổ Hội An.", "Tỉnh Quảng Nam.", "Thành phố Huế."]
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let canAnswer = true;
+        let currentCorrectAnswer = "";
+
+        const startScreen = document.getElementById('start-screen');
+        const quizScreen = document.getElementById('quiz-screen');
+        const endScreen = document.getElementById('end-screen');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const nextBtn = document.getElementById('next-btn');
+        const feedback = document.getElementById('feedback');
+        const scoreDisplay = document.getElementById('score-display');
+        const questionCounter = document.getElementById('question-counter');
+
+        // Hàm xáo trộn mảng để đổi vị trí đáp án ngẫu nhiên
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function startGame() {
+            startScreen.classList.add('hidden');
+            quizScreen.classList.remove('hidden');
+            quizScreen.classList.add('fade-in-up');
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            canAnswer = true;
+            nextBtn.classList.add('hidden');
+            feedback.classList.add('hidden');
+            feedback.className = "mt-8 text-center font-black text-2xl hidden h-10"; // Reset classes
+
+            const currentQ = quizData[currentQuestionIndex];
+            questionText.innerText = currentQ.question;
+            questionCounter.innerText = `${currentQuestionIndex + 1}/5`;
+
+            // Xáo trộn 1 đáp án đúng và 3 đáp án sai
+            let options = [currentQ.correct, ...currentQ.wrong];
+            options = shuffleArray(options);
+            currentCorrectAnswer = currentQ.correct;
+
+            optionsContainer.innerHTML = '';
+
+            options.forEach((optionText, index) => {
+                const button = document.createElement('button');
+
+                const labels = ['A', 'B', 'C', 'D'];
+                button.innerHTML = `
+                    <div class="flex items-center">
+                        <span class="w-8 h-8 rounded-md bg-orange-100 text-orange-700 font-bold flex items-center justify-center mr-3 shrink-0">${labels[index]}</span>
+                        <span>${optionText}</span>
+                    </div>
+                `;
+
+                button.className = `option-btn w-full text-left p-4 rounded-xl text-lg font-bold text-gray-700 bg-white border-2 border-gray-200`;
+
+                button.onclick = () => selectOption(button, optionText);
+                optionsContainer.appendChild(button);
+            });
+        }
+
+        function selectOption(selectedButton, selectedText) {
+            if (!canAnswer) return;
+            canAnswer = false; // Ngăn người chơi bấm nhiều lần
+
+            const allButtons = optionsContainer.children;
+
+            // Xử lý hiệu ứng cho các nút sau khi chọn
+            for (let i = 0; i < allButtons.length; i++) {
+                allButtons[i].disabled = true; // Khóa nút
+                allButtons[i].classList.add('opacity-50');
+                allButtons[i].classList.remove('bg-white', 'border-gray-200');
+                allButtons[i].classList.add('bg-gray-100', 'border-gray-300');
+
+                // Trích xuất text thực tế từ HTML của nút để so sánh
+                const buttonText = allButtons[i].innerText.substring(2).trim(); // Bỏ chữ A, B, C, D ở đầu
+
+                // Luôn hiển thị đáp án đúng (Màu xanh lá)
+                if (buttonText === currentCorrectAnswer || allButtons[i].innerText.includes(currentCorrectAnswer)) {
+                    allButtons[i].className = `option-btn w-full text-left p-4 rounded-xl text-lg font-bold text-white bg-green-600 border-2 border-green-700 opacity-100 bounce-in`;
+                    allButtons[i].querySelector('span').className = "w-8 h-8 rounded-md bg-green-500 text-white font-bold flex items-center justify-center mr-3 shrink-0";
+                }
+            }
+
+            selectedButton.classList.remove('opacity-50');
+
+            if (selectedText === currentCorrectAnswer) {
+                score++;
+                scoreDisplay.innerText = score;
+                feedback.innerHTML = "✨ Tuyệt vời! Bạn trả lời đúng rồi!";
+                feedback.classList.add('text-green-600', 'fade-in-up');
+                feedback.classList.remove('hidden');
+            } else {
+                // Nếu chọn sai, tô màu cam đỏ cho nút vừa chọn
+                selectedButton.className = `option-btn w-full text-left p-4 rounded-xl text-lg font-bold text-white bg-orange-600 border-2 border-orange-700 opacity-100 bounce-in`;
+                selectedButton.querySelector('span').className = "w-8 h-8 rounded-md bg-orange-500 text-white font-bold flex items-center justify-center mr-3 shrink-0";
+
+                feedback.innerHTML = "🍂 Tiếc quá, chưa chính xác!";
+                feedback.classList.add('text-orange-600', 'fade-in-up');
+                feedback.classList.remove('hidden');
+            }
+
+            nextBtn.classList.remove('hidden');
+            nextBtn.classList.add('fade-in-up');
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < quizData.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            quizScreen.classList.add('hidden');
+            endScreen.classList.remove('hidden');
+            endScreen.classList.add('fade-in-up');
+            document.getElementById('final-score').innerText = score;
+
+            const msg = document.getElementById('result-message');
+            if (score === 5) {
+                msg.innerText = "🌟 Quá xuất sắc! Bạn là một chuyên gia về vùng đất Miền Trung!";
+            } else if (score >= 3) {
+                msg.innerText = "👏 Rất tốt! Bạn có sự hiểu biết khá rõ về quê hương mình đấy!";
+            } else {
+                msg.innerText = "🌱 Đừng lo lắng, hãy chơi lại để ghi nhớ thêm những kiến thức thú vị này nhé!";
+            }
+        }
+
+        function resetGame() {
+            currentQuestionIndex = 0;
+            score = 0;
+            scoreDisplay.innerText = score;
+            endScreen.classList.add('hidden');
+            startGame();
+        }
+    </script>
+</body>
+
+</html>

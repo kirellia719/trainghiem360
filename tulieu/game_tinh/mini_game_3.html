@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Game Địa Lý - Phần 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800;900&display=swap');
+        
+        body {
+            background: radial-gradient(circle, #ffecd2 0%, #fcb69f 100%);
+            font-family: 'Nunito', sans-serif;
+        }
+        .bouncy {
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-15px); }
+            60% { transform: translateY(-7px); }
+        }
+        .pop-in {
+            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .option-btn {
+            transition: all 0.2s;
+            box-shadow: 0 4px 0 #d1d5db;
+        }
+        .option-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #d1d5db;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+    <div id="game-container" class="bg-white rounded-[2.5rem] shadow-2xl p-6 md:p-10 max-w-3xl w-full border-8 border-white pop-in">
+        
+        <!-- Màn hình bắt đầu -->
+        <div id="start-screen" class="text-center py-8">
+            <div class="text-6xl mb-4 bouncy">🚀</div>
+            <h1 class="text-4xl md:text-5xl font-black text-orange-500 mb-6 tracking-tight">Siêu Trí Tuệ Địa Lý!</h1>
+            <p class="text-xl text-gray-600 mb-8 font-semibold">Chinh phục 5 câu hỏi về bản đồ mới của Việt Nam nhé!</p>
+            <button onclick="startGame()" class="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white font-black py-4 px-10 rounded-full text-2xl shadow-[0_6px_0_#c2410c] active:shadow-none active:translate-y-[6px] transition-all">
+                BẮT ĐẦU NÀO! 🎮
+            </button>
+        </div>
+
+        <!-- Màn hình câu hỏi -->
+        <div id="quiz-screen" class="hidden">
+            <div class="flex justify-between items-center mb-6 bg-gray-100 p-4 rounded-2xl">
+                <div class="font-bold text-lg text-gray-500 bg-white px-4 py-2 rounded-xl shadow-sm">
+                    🚩 Câu <span id="question-counter" class="text-orange-500 text-xl">1</span>/5
+                </div>
+                <div class="font-black text-xl text-gray-600 flex items-center bg-white px-4 py-2 rounded-xl shadow-sm">
+                    ⭐ Điểm: <span id="score-display" class="text-yellow-500 ml-2 text-2xl">0</span>
+                </div>
+            </div>
+            
+            <h2 id="question-text" class="text-2xl md:text-3xl font-extrabold text-gray-800 mb-8 min-h-[100px] leading-tight"></h2>
+            
+            <div id="options-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Nút đáp án -->
+            </div>
+            
+            <div id="feedback" class="mt-8 text-center font-black text-2xl hidden h-10 pop-in"></div>
+            
+            <button id="next-btn" onclick="nextQuestion()" class="mt-6 w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-6 rounded-2xl hidden shadow-[0_5px_0_#1d4ed8] active:shadow-none active:translate-y-[5px] transition-all text-xl">
+                Tiếp tục thôiii 🚀
+            </button>
+        </div>
+
+        <!-- Màn hình kết quả -->
+        <div id="end-screen" class="hidden text-center py-8">
+            <div class="text-7xl mb-4 bouncy">🏆</div>
+            <h2 class="text-5xl font-black text-red-500 mb-6">Hoàn Thành!</h2>
+            <p class="text-2xl text-gray-700 mb-4 font-bold">Số sao bạn thu thập được là:</p>
+            <div class="text-7xl font-black text-yellow-400 mb-6 drop-shadow-md">
+                <span id="final-score"></span>/5
+            </div>
+            <p id="result-message" class="text-2xl text-orange-600 mb-10 font-bold"></p>
+            <button onclick="resetGame()" class="bg-green-500 hover:bg-green-600 text-white font-black py-4 px-10 rounded-full text-2xl shadow-[0_6px_0_#15803d] active:shadow-none active:translate-y-[6px] transition-all">
+                🔄 CHƠI LẠI TỪ ĐẦU
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const quizData = [
+            {
+                question: "Siêu đô thị lớn nhất nước ta – Thành phố Hồ Chí Minh – hiện nay đã được mở rộng bao trùm lên 2 địa phương cũ nào ở Đông Nam Bộ?",
+                options: [
+                    "Đồng Nai và Bình Phước", 
+                    "Tây Ninh và Bình Thuận", 
+                    "Tỉnh Bình Dương và tỉnh Bà Rịa - Vũng Tàu", 
+                    "Đồng Nai và Bà Rịa - Vũng Tàu"
+                ],
+                correct: 2
+            },
+            {
+                question: "Tỉnh mới mang tên Phú Thọ hiện là nơi hội tụ đất Tổ, mở rộng qua việc sáp nhập Phú Thọ cũ cùng với 2 tỉnh nào?",
+                options: [
+                    "Vĩnh Phúc và Hòa Bình", 
+                    "Yên Bái và Tuyên Quang", 
+                    "Vĩnh Phúc và Thái Nguyên", 
+                    "Sơn La và Điện Biên"
+                ],
+                correct: 0
+            },
+            {
+                question: "Trung tâm Chính trị - Hành chính của tỉnh An Giang mới (sau khi sáp nhập An Giang và Kiên Giang) được đặt tại thành phố/thị xã nào trước đây?",
+                options: [
+                    "Long Xuyên", 
+                    "Châu Đốc", 
+                    "Rạch Giá", 
+                    "Hà Tiên"
+                ],
+                correct: 2
+            },
+            {
+                question: "Mũi đất tận cùng phía Nam của Tổ quốc thuộc tỉnh Cà Mau mới. Tỉnh Cà Mau mới là kết quả của việc sáp nhập Cà Mau cũ và tỉnh nào?",
+                options: [
+                    "Tỉnh Kiên Giang", 
+                    "Tỉnh Bạc Liêu", 
+                    "Tỉnh Sóc Trăng", 
+                    "Tỉnh Hậu Giang"
+                ],
+                correct: 1
+            },
+            {
+                question: "Thành phố Cần Thơ trực thuộc Trung ương hiện nay mang diện mạo vô cùng rộng lớn khi sáp nhập Cần Thơ cũ cùng với hai tỉnh nào?",
+                options: [
+                    "Hậu Giang và Vĩnh Long", 
+                    "An Giang và Đồng Tháp", 
+                    "Trà Vinh và Bến Tre", 
+                    "Sóc Trăng và Bạc Liêu"
+                ],
+                correct: 3
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let canAnswer = true;
+
+        const startScreen = document.getElementById('start-screen');
+        const quizScreen = document.getElementById('quiz-screen');
+        const endScreen = document.getElementById('end-screen');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const nextBtn = document.getElementById('next-btn');
+        const feedback = document.getElementById('feedback');
+        const scoreDisplay = document.getElementById('score-display');
+        const questionCounter = document.getElementById('question-counter');
+
+        function startGame() {
+            startScreen.classList.add('hidden');
+            quizScreen.classList.remove('hidden');
+            quizScreen.classList.add('pop-in');
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            canAnswer = true;
+            nextBtn.classList.add('hidden');
+            feedback.classList.add('hidden');
+            
+            const currentQ = quizData[currentQuestionIndex];
+            questionText.innerText = currentQ.question;
+            questionCounter.innerText = currentQuestionIndex + 1;
+            
+            optionsContainer.innerHTML = '';
+            
+            const colors = ['bg-pink-100', 'bg-blue-100', 'bg-purple-100', 'bg-green-100'];
+            const borderColors = ['border-pink-300', 'border-blue-300', 'border-purple-300', 'border-green-300'];
+            const shadowColors = ['#f9a8d4', '#93c5fd', '#d8b4fe', '#86efac'];
+
+            currentQ.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.innerHTML = `<span class="font-bold text-gray-700">${['A', 'B', 'C', 'D'][index]}.</span> ${option}`;
+                button.className = `option-btn w-full text-left p-5 rounded-2xl text-lg font-bold text-gray-800 border-2 ${colors[index]} ${borderColors[index]}`;
+                button.style.boxShadow = `0 4px 0 ${shadowColors[index]}`;
+                
+                button.onclick = () => selectOption(index, button, colors[index], borderColors[index], shadowColors[index]);
+                optionsContainer.appendChild(button);
+            });
+        }
+
+        function selectOption(index, selectedButton, bgColor, borderColor, shadowColor) {
+            if (!canAnswer) return;
+            canAnswer = false;
+
+            const currentQ = quizData[currentQuestionIndex];
+            const allButtons = optionsContainer.children;
+
+            // Reset box shadow styles for all buttons to look pressed or inactive
+            for(let i=0; i<allButtons.length; i++) {
+                allButtons[i].style.boxShadow = 'none';
+                allButtons[i].style.transform = 'translateY(4px)';
+                allButtons[i].classList.add('opacity-50');
+            }
+            selectedButton.classList.remove('opacity-50');
+
+            if (index === currentQ.correct) {
+                selectedButton.className = `option-btn w-full text-left p-5 rounded-2xl text-lg font-bold text-white bg-green-500 border-2 border-green-600 pop-in`;
+                score++;
+                scoreDisplay.innerText = score;
+                feedback.innerHTML = "🎉 Tuyệt vờiiii! Chính xác!";
+                feedback.className = "mt-8 text-center font-black text-2xl text-green-500 pop-in";
+            } else {
+                selectedButton.className = `option-btn w-full text-left p-5 rounded-2xl text-lg font-bold text-white bg-red-500 border-2 border-red-600 pop-in`;
+                
+                // Highlight correct answer
+                allButtons[currentQ.correct].classList.remove('opacity-50');
+                allButtons[currentQ.correct].className = `option-btn w-full text-left p-5 rounded-2xl text-lg font-bold text-white bg-green-500 border-2 border-green-600 pop-in`;
+                
+                feedback.innerHTML = "😥 Ồ không! Sai mất rùi!";
+                feedback.className = "mt-8 text-center font-black text-2xl text-red-500 pop-in";
+            }
+
+            feedback.classList.remove('hidden');
+            nextBtn.classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < quizData.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            quizScreen.classList.add('hidden');
+            endScreen.classList.remove('hidden');
+            endScreen.classList.add('pop-in');
+            document.getElementById('final-score').innerText = score;
+            
+            const msg = document.getElementById('result-message');
+            if (score === 5) {
+                msg.innerText = "🌟 Quá đỉnh! Em là Thần đồng Địa lý! 🌟";
+            } else if (score >= 3) {
+                msg.innerText = "👏 Rất giỏi! Cố gắng thêm một chút nữa nhé!";
+            } else {
+                msg.innerText = "📚 Đừng buồn, hãy chơi lại để nhớ bài tốt hơn nha!";
+            }
+        }
+
+        function resetGame() {
+            currentQuestionIndex = 0;
+            score = 0;
+            scoreDisplay.innerText = score;
+            endScreen.classList.add('hidden');
+            startGame();
+        }
+    </script>
+</body>
+</html>

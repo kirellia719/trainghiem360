@@ -6,21 +6,30 @@ document.addEventListener('DOMContentLoaded', function () {
     // Chuẩn hóa đường dẫn để xác định trang đang mở.
     function getCurrentPage() {
         const path = window.location.pathname;
-        const file = path.split('/').filter(Boolean).pop();
-        return file || 'index.html';
+        return path.split('/')[1] || '/';
     }
 
     const currentPage = getCurrentPage();
 
+    console.log(currentPage);
+
+
+
     // Tô màu liên kết của trang hiện tại.
     document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(function (link) {
-        const linkPage = link.getAttribute('href').split('/').pop();
-        const isActive = linkPage === currentPage;
+        const href = link.getAttribute('href');
+        const linkPage = href.split('/').pop() || '/';
+
+        const isHomePage = currentPage === '/' && href === '/';
+        const isActive = isHomePage || (linkPage !== '/' && linkPage === currentPage);
 
         if (isActive) {
             link.classList.add('bg-vietnam-red', 'text-white');
             link.setAttribute('aria-current', 'page');
         } else {
+            link.classList.remove('bg-vietnam-red', 'text-white');
+            link.removeAttribute('aria-current');
+
             link.classList.add(
                 'text-vietnam-muted',
                 'hover:bg-vietnam-light',
