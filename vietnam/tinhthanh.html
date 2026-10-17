@@ -253,12 +253,6 @@
                         ảnh.
                     </p>
                 </div>
-
-                <span id="galleryCount"
-                    class="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-vietnam-muted shadow-sm">
-                    <i class="fa-regular fa-images text-vietnam-red"></i>
-                    0 hình ảnh
-                </span>
             </div>
 
             <div id="provinceGallery" class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -1180,9 +1174,8 @@
             function renderGallery(gallery) {
                 const container = $("provinceGallery");
                 const galleryCard = $("galleryCard");
-                const galleryCount = $("galleryCount");
 
-                if (!container || !galleryCard || !galleryCount) return;
+                if (!container || !galleryCard) return;
 
                 const images = normalizeList(gallery)
                     .map(getGalleryImage)
@@ -1199,11 +1192,6 @@
                 }
 
                 galleryCard.classList.remove("hidden");
-
-                galleryCount.innerHTML = `
-                    <i class="fa-regular fa-images text-vietnam-red"></i>
-                    ${images.length} hình ảnh
-                `;
 
                 container.innerHTML = images.map((item, index) => {
                     const src = escapeHTML(item.src);
