@@ -425,6 +425,7 @@
         path.style.filter = "drop-shadow(0 0 3px rgba(0,0,0,0.25))";
     }
 
+
     function selectProvince(id) {
         if (!svgElement) return;
 
@@ -435,14 +436,25 @@
             return;
         }
 
-        activeProvinceId = id;
-        showProvinceLabel(id);
+        // Lấy thông tin tỉnh trước khi sử dụng tên
+        const province = getProvinceData(id, path);
 
+        // Hiển thị tên tỉnh trong ô tìm kiếm
+        if (searchInput) {
+            searchInput.value = province.name;
+        }
+
+        activeProvinceId = id;
+
+        // Tô sáng tỉnh được chọn và hiển thị tên trên bản đồ
         highlightProvince(path);
         showProvinceLabel(id);
+
+        // Hiển thị thông tin và phóng to tỉnh
         showInfo(id, path);
         zoomToProvince(path);
     }
+
 
     // =====================================================
     // 8. HIỂN THỊ THÔNG TIN TỈNH
@@ -501,17 +513,78 @@
         </div>
     `;
 
-        infoPanel.classList.add("active");
+
+        infoPanel.classList.remove(
+            "translate-y-full",
+            "pointer-events-none"
+        );
+
+        infoPanel.classList.add(
+            "translate-y-0",
+            "pointer-events-auto",
+            "active"
+        );
+
+        infoPanel.style.display = "block";
         infoPanel.setAttribute("aria-live", "polite");
+
+        // Hiện nền tối phía sau modal trên điện thoại
+        const backdrop = document.getElementById("infoBackdrop");
+
+        if (backdrop && isMobile()) {
+            backdrop.classList.remove(
+                "opacity-0",
+                "pointer-events-none"
+            );
+
+            backdrop.classList.add(
+                "opacity-100",
+                "pointer-events-auto"
+            );
+        }
+
     }
+
 
 
     function hideInfo() {
         if (!infoPanel) return;
 
-        infoPanel.classList.remove("active");
-        infoPanel.style.display = "none";
+        infoPanel.classList.remove(
+            "active",
+            "translate-y-0",
+            "pointer-events-auto"
+        );
+
+        infoPanel.classList.add(
+            "translate-y-full",
+            "pointer-events-none"
+        );
+
+        // Chỉ ẩn hoàn toàn trên mobile
+        if (isMobile()) {
+            infoPanel.style.display = "none";
+        } else {
+            // Desktop vẫn giữ bảng thông tin trong bố cục
+            infoPanel.style.display = "block";
+        }
+
+        const backdrop = document.getElementById("infoBackdrop");
+
+        if (backdrop) {
+            backdrop.classList.remove(
+                "opacity-100",
+                "pointer-events-auto"
+            );
+
+            backdrop.classList.add(
+                "opacity-0",
+                "pointer-events-none"
+            );
+        }
     }
+
+
 
     function setupPanel() {
         if (!closePanel) return;
@@ -519,16 +592,43 @@
         closePanel.addEventListener("click", () => {
             resetMap();
 
-            if (infoPanel) {
-                infoPanel.style.display = "block";
-                infoPanel.classList.add("active");
-            }
-
             if (searchInput) {
                 searchInput.value = "";
             }
+
+            // Mobile: ẩn modal.
+            // Desktop: giữ bảng thông tin mặc định.
+            if (infoPanel && !isMobile()) {
+                infoPanel.style.display = "block";
+
+                infoPanel.classList.remove(
+                    "translate-y-full",
+                    "pointer-events-none"
+                );
+
+                infoPanel.classList.add(
+                    "translate-y-0",
+                    "pointer-events-auto"
+                );
+            }
+
+            if (provinceInfo) {
+                provinceInfo.innerHTML = `
+                <div class="flex min-h-[200px] flex-col items-center justify-center text-center">
+                    <h3 class="text-lg font-bold text-slate-800">
+                        Khám phá Việt Nam
+                    </h3>
+
+                    <p class="mt-2 max-w-xs text-sm leading-6 text-slate-500">
+                        Chọn một tỉnh trên bản đồ hoặc tìm kiếm để xem
+                        thông tin của địa phương tại đây.
+                    </p>
+                </div>
+            `;
+            }
         });
     }
+
 
     // =====================================================
     // 9. PHÓNG TO VÀ DI CHUYỂN

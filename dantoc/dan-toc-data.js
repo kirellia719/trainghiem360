@@ -11,6 +11,7 @@ const ethnicGroups = [
         customs: "Người Mảng có nhiều nghi lễ gắn với sản xuất nông nghiệp như lễ cúng bản, lễ cầu mùa, lễ mừng cơm mới. Đám cưới thường được tổ chức với sự tham gia của cả cộng đồng. Họ tin vào nhiều vị thần như thần núi, thần rừng, thần sông và vẫn lưu giữ một số tín ngưỡng dân gian truyền thống. Các trò chơi dân gian gồm kéo co, ném còn và các hoạt động múa hát tập thể.",
         lifestyle: "Người Mảng thường ở nhà sàn bằng gỗ, mái lợp tranh hoặc lá. Thức ăn chủ yếu là cơm, rau rừng, cá suối và thịt săn bắt. Nam giới mặc áo ngắn, quần đơn giản; phụ nữ mặc váy truyền thống, áo có hoa văn đặc trưng được dệt thủ công từ sợi bông và nhuộm màu tự nhiên.",
         culture: "Văn nghệ dân gian phong phú với các làn điệu dân ca, múa tập thể và nhạc cụ truyền thống như trống, chiêng, sáo. Các bài hát thường phản ánh lao động sản xuất, tình yêu đôi lứa và cuộc sống cộng đồng.",
+        sound: '/assets/sounds/dantoc/DAN TOC MANG.mp3',
         images: [
             "https://cdn.nhandan.vn/images/2be182691a0b5864a20bb7e57d45ea5a95fc6baf90fc087fb12a13aa8e8fa2d8c5ae1e27fe3be8a38ff27f4a87502c6a5cfacd5ee898d181029010948d9846a0/dongbaomang2.jpg.avif",
             "https://cdn.nhandan.vn/images/1ea1ae7a315d88fc6fbf4369608261156da51f0c0ad991901283c66f347bc9e4db8cc3dae7862691eb786be816d8de4599b1b468a74722cf3765eef137efb38b/mang3-971.jpg.avif",
@@ -30,6 +31,7 @@ const ethnicGroups = [
         customs: "Người Cống tổ chức lễ cúng tổ tiên, lễ cầu mùa và nhiều nghi lễ liên quan đến nông nghiệp. Họ tin vào thần linh và linh hồn của thiên nhiên. Các dịp lễ thường có múa hát cộng đồng và uống rượu cần.",
         lifestyle: "Nhà ở phổ biến là nhà sàn. Trang phục truyền thống được làm từ vải tự dệt. Phụ nữ thường đeo nhiều đồ trang sức bằng bạc. Thức ăn chủ yếu gồm cơm, rau rừng, thịt và cá suối.",
         culture: "Dân ca, dân vũ đóng vai trò quan trọng trong đời sống tinh thần. Những bài hát thường được trình diễn trong đám cưới, lễ hội và các dịp sinh hoạt cộng đồng.",
+        sound: '/assets/sounds/dantoc/DAN TOC CONG.mp3',
         images: [
             "https://cdn.nhandan.vn/images/a2fb952abd4504389bfea2e4f7b4acc2f4a1f57e848fcfdca6d8d83162f9dc903c513397b0edb4984d201437df44ef5b63a899dc0d598a8828a44264337440e8/congdat2.jpg.avif",
             "https://cdn.nhandan.vn/images/1ea1ae7a315d88fc6fbf43696082611593d4091ddd874bc6072c0621b9c3c8a2344579346d54efce47330c5faf7c0d28d66404ca85fd260b30b5c5ee8246d331/congbn-6232.jpg.avif",
@@ -49,6 +51,7 @@ const ethnicGroups = [
         customs: "Người Si La có lễ cúng bản, lễ cầu mùa và các nghi lễ vòng đời. Họ tin vào thần linh và các lực lượng siêu nhiên trong tự nhiên. Một số tập tục tín ngưỡng cổ truyền vẫn còn được duy trì.",
         lifestyle: "Nhà ở thường là nhà sàn nhỏ. Trang phục phụ nữ nổi bật với khăn đội đầu và các hạt trang trí nhiều màu sắc. Thức ăn chủ yếu là cơm, ngô, rau rừng và thịt gia súc.",
         culture: "Âm nhạc dân gian, các điệu múa tập thể và truyện kể dân gian là những nét văn hóa tiêu biểu của người Si La.",
+        sound: '/assets/sounds/dantoc/DAN TOC SI LA.mp3',
         images: [
             "https://cdn.nhandan.vn/images/1ea1ae7a315d88fc6fbf43696082611593d4091ddd874bc6072c0621b9c3c8a234b75f8e2cf271ed86c4511820cebf8cbd0c11a66814e4c79d415647b47e9ca9/sila-dat2-1493.jpg.avif",
             "https://cdn.nhandan.vn/images/1ea1ae7a315d88fc6fbf43696082611593d4091ddd874bc6072c0621b9c3c8a24164e6fa41199cdb9c56f05d51c4f56b391da9f9516655dd1dc2b0c8d6ee4519/sila4-4470.jpg.avif",
@@ -69,6 +72,7 @@ const ethnicGroups = [
         customs: "Có nhiều nghi lễ liên quan đến thần rừng, thần núi và tổ tiên. Lễ cầu mùa là một trong những hoạt động cộng đồng quan trọng. Các trò chơi dân gian gồm đánh quay, kéo co và múa hát tập thể.",
         lifestyle: "Nhà ở thường làm bằng gỗ và tre nứa. Trang phục được may từ vải tự dệt, màu sắc giản dị. Bữa ăn gồm cơm, ngô, rau rừng và thịt chăn nuôi.",
         culture: "Người La Hủ có kho tàng truyện cổ, dân ca và các làn điệu hát giao duyên phong phú, phản ánh đời sống lao động và tình cảm cộng đồng.",
+        sound: '/assets/sounds/dantoc/DAN TOC LA HU.mp3',
         images: [
             "https://cdn.nhandan.vn/images/a2fb952abd4504389bfea2e4f7b4acc2f4a1f57e848fcfdca6d8d83162f9dc9025dec4b6acef1945c8d13271b9073a7c63a899dc0d598a8828a44264337440e8/lahu1dat.jpg.avif",
             "https://cdn.nhandan.vn/images/a2fb952abd4504389bfea2e4f7b4acc2f4a1f57e848fcfdca6d8d83162f9dc908136884488ef57e5f302dfe7118edbade667d376bf869970b83bd2a9ea12e0ea/lahubadat.jpg.avif",

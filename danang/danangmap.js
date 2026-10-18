@@ -654,7 +654,6 @@
             {
                 title: "Giới thiệu",
                 icon: "fa-circle-info",
-                content: province.intro
             },
             {
                 title: "Lịch sử",
@@ -735,7 +734,7 @@
                                         ${section.title}
                                     </h5>
 
-                                    <p class="mt-0.5 whitespace-pre-line break-words text-sm leading-5 text-slate-600">${escapeHTML(section.content)}</p>
+                                    <p class="mt-0.5 whitespace-pre-line break-words text-sm leading-5 text-slate-600">${escapeHTML(section?.content)}</p>
 
                                 </div>
                             </div>
@@ -763,50 +762,65 @@
         setupProvinceSound();
     }
 
+
     function hideInfo() {
         if (!infoPanel) return;
 
-        // Đảm bảo âm thanh dừng khi đóng bảng.
+        // Dừng âm thanh đang phát
         stopProvinceAudio();
 
-        infoPanel.classList.remove("active");
+        // Ẩn modal / bảng thông tin
+        infoPanel.classList.remove(
+            "active",
+            "translate-y-0",
+            "pointer-events-auto"
+        );
+
+        infoPanel.classList.add(
+            "translate-y-full",
+            "pointer-events-none"
+        );
+
         infoPanel.style.display = "none";
     }
+
+
 
     function setupPanel() {
         if (!closePanel) return;
 
+
         closePanel.addEventListener("click", () => {
             resetMap();
 
-            if (provinceInfo) {
-                provinceInfo.innerHTML = `
-                    <div class="flex min-h-[220px] flex-col items-center justify-center text-center">
-
-                        <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-sky-50 text-sky-500">
-                            <i
-                                class="fa-solid fa-map-location-dot text-2xl"
-                                aria-hidden="true"
-                            ></i>
-                        </div>
-
-                        <h4 class="text-base font-bold text-slate-800">
-                            Khám phá Đà Nẵng
-                        </h4>
-
-                        <p class="mt-2 max-w-xs text-sm leading-6 text-slate-500">
-                            Chọn một xã, phường trên bản đồ hoặc tìm kiếm tên địa phương
-                            để xem thông tin giới thiệu, lịch sử, sản xuất và văn hóa.
-                        </p>
-
-                    </div>
-                `;
+            // Chỉ ẩn hoàn toàn modal trên mobile
+            if (isMobile() && infoPanel) {
+                infoPanel.style.display = "none";
             }
 
-            // Dừng âm thanh và xóa tham chiếu nút cũ.
+            if (provinceInfo) {
+                provinceInfo.innerHTML = `
+            <div class="flex min-h-[220px] flex-col items-center justify-center text-center">
+                <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-sky-50 text-sky-500">
+                    <i class="fa-solid fa-map-location-dot text-2xl"
+                       aria-hidden="true"></i>
+                </div>
+
+                <h4 class="text-base font-bold text-slate-800">
+                    Khám phá Đà Nẵng
+                </h4>
+
+                <p class="mt-2 max-w-xs text-sm leading-6 text-slate-500">
+                    Chọn một xã, phường trên bản đồ hoặc tìm kiếm tên địa phương
+                    để xem thông tin giới thiệu, lịch sử, sản xuất và văn hóa.
+                </p>
+            </div>
+        `;
+            }
+
             stopProvinceAudio();
 
-            if (infoPanel) {
+            if (infoPanel && !isMobile()) {
                 infoPanel.style.display = "block";
                 infoPanel.classList.add("active");
             }
@@ -815,7 +829,9 @@
                 searchInput.value = "";
             }
         });
+
     }
+
 
     // =====================================================
     // 10. GIỚI HẠN VÙNG DI CHUYỂN CỦA BẢN ĐỒ
